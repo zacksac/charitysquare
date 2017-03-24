@@ -1,0 +1,33 @@
+
+[1mFrom:[0m /home/ip-d/esfera_projects/charity/charitysquare/app/controllers/user/registrations_controller.rb @ line 10 User::RegistrationsController#create:
+
+     [1;34m9[0m: [32mdef[0m [1;34mcreate[0m
+ => [1;34m10[0m:   binding.pry
+    [1;34m11[0m:   puts [31m[1;31m'[0m[31m---------------------------------------------------------[1;31m'[0m[31m[0m
+    [1;34m12[0m:     @allparams=params[[33m:user[0m]
+    [1;34m13[0m:     [32mif[0m params[[33m:user[0m].has_key?([[33m:form_type[0m])
+    [1;34m14[0m:       puts [31m[1;31m'[0m[31mhelo[1;31m'[0m[31m[0m
+    [1;34m15[0m:     [32mend[0m 
+    [1;34m16[0m:   puts[31m[1;31m'[0m[31m-------------------------------------------------------[1;31m'[0m[31m[0m
+    [1;34m17[0m: 
+    [1;34m18[0m:       [32mif[0m params[[33m:user[0m][[33m:formtype[0m].present?
+    [1;34m19[0m:         @params=[1;34;4mUser[0m.new sign_up_params
+    [1;34m20[0m:         [32mif[0m @params.save
+    [1;34m21[0m:           render [35mjson[0m: @params
+    [1;34m22[0m:         [32melse[0m
+    [1;34m23[0m:           [1;34m#render json: @params.errors.messages[0m
+    [1;34m24[0m:           flash[[33m:errors[0m] = @params.errors.messages
+    [1;34m25[0m:           redirect_to(home_charity_signup_path)   
+    [1;34m26[0m:         [32mend[0m
+    [1;34m27[0m:       [32melse[0m
+    [1;34m28[0m:         @params=[1;34;4mUser[0m.new sign_up_params
+    [1;34m29[0m:         [32mif[0m @params.save
+    [1;34m30[0m:           render [35mjson[0m: @params
+    [1;34m31[0m:         [32melse[0m
+    [1;34m32[0m:           [1;34m#render json: @params.errors.messages[0m
+    [1;34m33[0m:           flash[[33m:errors[0m] = @params.errors.messages
+    [1;34m34[0m:           redirect_to(home_user_signup_path)     
+    [1;34m35[0m:         [32mend[0m
+    [1;34m36[0m:       [32mend[0m 
+    [1;34m37[0m:   [32mend[0m
+

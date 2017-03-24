@@ -1,0 +1,75 @@
+<div class="off-canvas-wrap docs-wrap" data-offcanvas="">
+  <div class="inner-wrap">
+    <!-- header section start here -->
+
+  <%= render 'layouts/header' %>                                <section class="banner-section" style="height: 367px;">
+          <% if notice %>
+            <p class="alert alert-success"><%= notice %></p>
+          <% end %>
+          <% if alert %>
+            <p class="alert alert-danger"><%= alert %></p>
+          <% end %> 
+            <div class="row">
+              <div class="large-12 column">
+                <div class="search_categories">
+                  <%= form_tag filter_path, method: :post do %>
+                    <%= text_field_tag :q, nil, :placeholder => 'search ...' %>
+                    <%= image_submit_tag("search_icon.png", :class => "search") %>  
+                     
+                        <select name='category' value='categories'>
+                        <option selected='selected'>Categories</option>
+                        <option>Lottery</option>
+                        <option>Raffles</option>
+                        <option>Auctions</option>
+                        <option>Appeals</option>
+                        <option>Bets</option>
+                      </select>
+                    <% end %>   
+                  </div>
+              </div>  
+            </div>  
+        </section>
+
+<h3>Feedback Form</h3><br/>
+
+<%= form_tag order_summary_path, method: :get do %>
+  <%= label_tag 'feed', "Tell us more" %>
+  <%= text_area_tag 'feed', nil, class: 'txtarea' %><br/><br/><br/><br/><br/><br/><br/>
+  <%= label_tag 'rating', "Rate this transaction" %><br/>
+  <%= radio_button_tag 'rating', 'Positive' %>
+  <%= label_tag 'rating', "Positive" %><br/>
+  <%= radio_button_tag 'rating', 'Neutral' %>
+  <%= label_tag 'rating', "Neutral" %><br/>
+  <%= radio_button_tag 'rating', 'Negative' %>
+  <%= label_tag 'rating', "Negative" %><br/>
+  <%= radio_button_tag 'rating', 'I will be back later' %>
+  <%= label_tag 'rating', "I will be back later, June 3, 2015" %><br/><br/>
+  <%= label_tag 'arrival', "Did the item arrive on or before Wednesday, June 3, 2015" %><br/>
+  <%= radio_button_tag 'arrival', 'Yes' %>
+  <%= label_tag 'arrival', "Yes" %><br/>
+  <%= radio_button_tag 'arrival', 'No' %>
+  <%= label_tag 'arrival', "No" %><br/><br/>
+
+<h5><b><i>Rating</i></b></h5>
+  How accurate was the item description?   <%= rating_for @summary, "accuracy", :star => 5 %>
+  How satisfied were you with the seller's communication? <%= rating_for @summary, "satisfaction", :star => 5 %>
+  How quickly did the seller dispatch the item? <%= rating_for @summary, "quick_dispatch", :star => 5 %>
+  How reasonable were the P&P charges? <%= rating_for @summary, "reasonable", :star => 5 %>
+
+  <%= submit_tag 'Leave Feedback'%>
+<% end %><br/><br/>
+
+<%= render 'layouts/footer' %>
+
+<style>
+  div.star {
+    margin-left: 380px !important;
+    bottom: 20px !important;
+    position: relative !important;
+}
+
+.txtarea {
+  height:100px; 
+  width:300px;
+}
+</style>

@@ -1,0 +1,495 @@
+
+    <div class="off-canvas-wrap docs-wrap" data-offcanvas="">
+      <div class="inner-wrap">
+
+      <!-- header section start here -->
+
+        <%= render 'layouts/header'%>
+        
+        
+        <section class="inner_grey_bg">
+        <%= form_for(@user, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+          <div class="row">
+            <div class="account_setting_basic_information left">
+              <div class="large-12 medium-12 small-12 columns">
+                <h1>Basic information</h1>
+                <h2>Account type: Charity</h2>
+              </div>
+              <div class="large-4 medium-4 small-12 columns">
+                <!-- <label>Displayed name</label> -->
+                <!-- <input type="text" value=""> -->
+                <%= f.label :display_name, "Displayed name" %><br />
+                <%= f.text_field :display_name, autofocus: true %>
+              <!--   <span class="condition_accountsetting_field left">Max. 40 characters.</span> -->
+              </div>
+              <div class="large-4 medium-4 small-12 columns">
+                <!-- <label>Username</label>
+                <input type="text" value=""> -->
+                <%= f.label :firstname, "Username" %><br />
+                <%= f.text_field :firstname, autofocus: true %>
+                <!-- <span class="condition_accountsetting_field left">Letters and numbers only.</span> -->
+              </div>
+              <div class="large-4 medium-4 small-12 columns">
+                <!-- <label>Charity category</label>
+                <input type="text" value=""> -->
+                <%= f.label :category, "Charity category" %><br />
+                <%= f.text_field :category, autofocus: true %>
+                <!-- <span class="condition_accountsetting_field left">You can only change this once.</span> -->
+              </div>
+              <div class="large-12 medium-12 small-12 left">
+                <div class="large-4 medium-4 small-12 columns">
+                 <!--  <label>Email used for logging in</label>
+                  <input type="email" value=""> -->
+                  <%= f.label :email, "Email used for logging in" %><br />
+                  <%= f.email_field :email, autofocus: true %>
+                 <!--  <span class="condition_accountsetting_field left">We send password reminders here.</span> -->
+                </div>  
+              </div>
+              <div class="large-4 medium-4 small-12 columns">
+                <!-- <label>New password:</label>
+                <input type="password" value=""> -->
+                <%= f.label :password, "New password:" %><br />
+                <%= f.password_field :password, autocomplete: "off" %>
+               <!--  <span class="condition_accountsetting_field left">Min. 6 characters. Include at least one number.</span> -->
+              </div> 
+              <div class="large-4 medium-4 small-12 columns">
+                <!-- <label>Confirm new password:</label>
+                <input class="confirm_new_password" type="password" value=""> -->
+                <%= f.label :password_confirmation, "Confirm new password:" %><br />
+                <%= f.password_field :password_confirmation, autocomplete: "off" %>
+               <!--  <span class="condition_accountsetting_field left">Mismatch.</span> -->
+              </div> 
+            </div>
+            <div class="account_setting_contact_details">
+              <div class="large-12 columns">
+                <h1>Contact details</h1>
+              </div>
+              <div class="large-2 medium-4 small-12 columns">
+                <%= f.label :title, "Title:" %><br />
+                <%= f.select :title, ["Select title","Mr","Ms"] %>
+              </div>
+              <div class="large-4 medium-4 small-12 columns">
+                <%= f.label :firstname, "First name" %><br />
+                <%= f.text_field :firstname, autofocus: true %>
+              </div>
+              <div class="large-4 medium-4 small-12 columns">
+                <%= f.label :lastname, "Surname" %><br />
+                <%= f.text_field :lastname, autofocus: true %>
+              </div>
+              <div class="large-4 medium-4 small-12 columns">
+                <%= f.label :email, "Email address" %><br />
+                <%= f.email_field :email, autofocus: true %>
+                <!-- <label>Email address</label>
+                <input type="email" value="">
+                <span class="condition_accountsetting_field left">Used for communcation with other users and newsletters.</span> -->
+              </div>
+              <div class="large-4 medium-4 phone_margin small-12 columns">
+                <label>Phone number</label>
+                <div class="large-4 medium-4 small-6 left">
+                  <div class="full_number left"><%= f.text_field :phone_code, autofocus: true %></div>
+                </div>
+                <div class="large-8 medium-8 small-6 left"><%= f.text_field :phone_number, autofocus: true %></div>
+              </div>
+            </div>
+            <div class="account_setting_address_details">
+              <div class="large-12 columns">
+                <h1>Addresses</h1>
+              </div>
+              <div class="large-4 medium-4 small-12 left">
+                <div class="large-12 medium-12 small-12 columns">
+                  <label>Primary</label>
+                  <!-- <select>
+                    <option></option>
+                  </select> -->
+                  <%= f.text_field :primary_address1, autofocus: true, :placeholder => "Street" %>
+                  <%= f.text_field :primary_address2, autofocus: true, :placeholder => "City" %>
+                  <%= f.text_field :primary_address3, autofocus: true, :placeholder => "State" %>
+                  <%= f.text_field :primary_address4, autofocus: true, :placeholder => "Landmark" %>
+                  <div class="large-5 medium-5 small-5 left">
+                    <%= f.text_field :primary_address_pin, autofocus: true, :placeholder => "Pincode" %>
+                  </div>
+                </div>
+              </div>  
+              <div class="large-4 medium-4 small-12 left phone_margin">
+                <div class="large-12 medium-12 small-12 columns">
+                  <label style="margin-top: 25px;">
+                    <span class="left" style="margin-right:52px;">Billing address</span> 
+                    <%= f.check_box :same_address %>
+                    <span class="filters_checkbox left">
+                      <!-- <input type="checkbox"> -->
+                      <span class="filters_checked"></span>
+                      <span class="filters_checked_text account_setting_address_check">Same as primary</span> 
+                    </span>
+                  </label>
+                  <!-- <select>
+                    <option></option>
+                  </select> -->
+                  <%= f.text_field :secondary_address1, autofocus: true, :placeholder => "Street" %>
+                  <%= f.text_field :secondary_address2, autofocus: true, :placeholder => "City" %>
+                  <%= f.text_field :secondary_address3, autofocus: true, :placeholder => "State" %>
+                  <%= f.text_field :secondary_address4, autofocus: true, :placeholder => "Landmark" %>
+                  <div class="large-5 medium-5 small-5 left">
+                    <%= f.text_field :secondary_address_pin, autofocus: true, :placeholder => "Pincode" %>
+                  </div>
+                </div>
+              </div>  
+            </div>
+           
+            <div class="account_setting_giftaid">
+              <div class="large-4 medium-4 small-12 columns">
+                <h1>Giftaid</h1>
+                <div class="uk_taxpayer left">
+                 <%= f.check_box :UK_taxpayer %>
+                  <span class="filters_checkbox left">
+                    <!-- <input type="checkbox"> -->
+                    <span class="filters_checked"></span>
+                    <span class="filters_checked_text account_setting_address_check">I’m a UK taxpayer</span> 
+                  </span>
+                  <p class="left">
+                      Lorem ipsum dolor sit amet,<br> consectetur adipiscing elit.<br> Cras egestas laoreet justo et<br> eleifend. Integer vitae
+                  </p>
+                </div>  
+              </div>
+              <div class="large-4 medium-4 small-12 columns">
+                <div class="account_setting_ninumber left">
+                  <label>NI Number</label>
+                  <div class="large-5 medium-5 small-12 left"><%= f.text_field :ni_number, autofocus: true %></div>
+                </div>  
+              </div>
+              <div class="large-4 medium-4 small-12 columns">
+                <div class="account_setting_giftaid_inner left text-center">
+                  <%= image_tag("giftaid_it.jpg") %>
+                  <p class="text-left">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras egestas laoreet justo et eleifend. Integer vitae consequat ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                  </p>
+                </div>
+              </div>
+            </div> 
+            <div class="account_setting_paypal">
+              <div class="large-4 medium-4 small-12 columns">
+                <h1>Paypal</h1>
+                <div class="account_setting_paypal_inner left">
+                  <h2>Your account is linked.</h2><br/>
+                  <%= f.text_field :paypal_email, autofocus: true, :placeholder=>"Enter paypal account" %>
+                  <!-- <a href="#"> paypalusername <span class="blue_close"><%#= image_tag("blue_close.png") %></span></a> -->
+                </div>
+              </div>
+              <div class="large-4 medium-4 small-12 columns right">
+                <div class="account_setting_giftaid_inner account_setting_giftaid_inner_paypal left text-center">
+                  <%= image_tag("paypal.png") %>
+                  <p class="text-left">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras egestas laoreet justo et eleifend. Integer vitae consequat ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                  </p>
+                </div>
+              </div>     
+            </div>
+            <div class="account_setting_communication_preferences">
+              <div class="large-12 columns"><h1>Communication preferences</h1></div>
+              <div class="account_setting_communication_preferences_inner left">
+                <div class="large-5 medium-5 small-12 columns">
+                 <%= f.check_box :allow_emails_from_followed_charities %>
+                  <span class="filters_checkbox left">
+                    <!-- <input type="checkbox"> -->
+                    <span class="filters_checked"></span>
+                    <span class="filters_checked_text account_setting_address_check">Allow emails from charities you follow</span> 
+                  </span>
+                </div>
+                <div class="large-6 medium-6 small-12 columns">
+                 <%= f.check_box :subscription_to_charity_square_emails %>
+                  <span class="filters_checkbox left">
+                    <!-- <input type="checkbox"> -->
+                    <span class="filters_checked"></span>
+                    <span class="filters_checked_text account_setting_address_check"> Subscribe to Charity Squares emails</span> 
+                  </span>
+                  <div class="account_setting_communication_email_html left">
+                    <div class="large-6 medium-6 small-12 left">
+                     <%= f.radio_button :email_type, 'html-emails' %>
+                      <span class="filters_radio communication_email_html_radio left">
+                        <!-- <input type="radio" name="radio"> -->
+                        <span class="filters_radio_checked"></span>
+                        <span class="filters_radio_checked_text">HTML emails</span> 
+                      </span>
+                      <p>
+                        Lorem ipsum dolor sit amet, <br>consectetur adipiscing elit.<br> Cras egestas laoreet justo et<br> eleifend. Integer vitae
+                      </p>
+                    </div>
+                    <div class="large-6 medium-6 small-12 columns right">
+                     <%= f.radio_button :email_type, 'text-only' %>
+                      <span class="filters_radio communication_email_html_radio left">
+                        <!-- <input type="radio" name="radio"> -->
+                        <span class="filters_radio_checked"></span>
+                        <span class="filters_radio_checked_text">Text only</span> 
+                      </span>
+                      <p>
+                        Lorem ipsum dolor sit amet, <br>consectetur adipiscing elit.<br> Cras egestas laoreet justo et<br> eleifend. Integer vitae
+                      </p>
+                    </div>
+                  </div>  
+                </div>
+              </div>
+            </div>
+            <div class="account_setting_privacy">
+              <div class="large-12 columns"><h1>Privacy settings</h1></div>
+              <div class="account_setting_privacy_inner left">
+                <div class="large-4 medium-4 small-12 columns left">
+                 <%= f.radio_button :profile_type, 'public' %>
+                  <span class="filters_radio communication_email_html_radio left">
+                    <!-- <input type="radio" name="public"> -->
+                    <span class="filters_radio_checked"></span>
+                    <span class="filters_radio_checked_text">Public profile</span> 
+                  </span>
+                  <p>
+                    Lorem ipsum dolor sit amet, <br>consectetur adipiscing elit.<br> Cras egestas laoreet justo et<br> eleifend. Integer vitae
+                  </p>
+                </div>
+                <div class="large-4 medium-4 small-12 columns left">
+                 <%= f.radio_button :profile_type, 'semi-private' %>
+                  <span class="filters_radio communication_email_html_radio left">
+                    <!-- <input type="radio" name="public"> -->
+                    <span class="filters_radio_checked"></span>
+                    <span class="filters_radio_checked_text">Semi-private</span> 
+                  </span>
+                  <p>
+                    Lorem ipsum dolor sit amet, <br>consectetur adipiscing elit.<br> Cras egestas laoreet justo et<br> eleifend. Integer vitae
+                  </p>
+                </div>
+                <div class="large-4 medium-4 small-12 columns left">
+                 <%= f.radio_button :profile_type, 'private' %>
+                  <span class="filters_radio communication_email_html_radio left">
+                    <!-- <input type="radio" name="public"> -->
+                    <span class="filters_radio_checked"></span>
+                    <span class="filters_radio_checked_text">Private</span> 
+                  </span>
+                  <p>
+                    Lorem ipsum dolor sit amet, <br>consectetur adipiscing elit.<br> Cras egestas laoreet justo et<br> eleifend. Integer vitae
+                  </p>
+                </div>
+                <div class="large-4 medium-4 small-12 columns">
+                  <div class="privacy_check left">
+                   <%= f.check_box :suggestions %>
+                    <span class="filters_checkbox left">
+                      <!-- <input type="checkbox"> -->
+                      <span class="filters_checked"></span>
+                      <span class="filters_checked_text account_setting_address_check privacy_check_text "> Suggestions</span> 
+                    </span>
+                  </div>  
+                </div>
+                <div class="large-4 medium-4 small-12 columns">
+                <div class="privacy_check left">
+                  <%= f.check_box :tailored_ads %>
+                    <span class="filters_checkbox left">
+                      <!-- <input type="checkbox"> -->
+                      <span class="filters_checked"></span>
+                      <span class="filters_checked_text account_setting_address_check privacy_check_text "> Tailored ads</span> 
+                    </span>
+                 </div>
+                  <!-- <div class="privacy_check left">
+                    <span class="filters_checkbox left">
+                      <input type="checkbox">
+                      <span class="filters_checked"></span>
+                      <span class="filters_checked_text account_setting_address_check privacy_check_text "> Tailored ads</span> 
+                    </span>
+                  </div>  -->
+                </div>
+              </div>  
+            </div>
+          </div>
+          <div class="account_setting_button_save_cancel left">
+            <div class="row">
+              <div class="large-12 columns">
+                <div class="button_save_cancel right">
+                  <button>cancel</button>
+                  <!-- <button>save changes</button> -->
+                  <%= f.submit "save changes", :class=>"save" %>
+                </div>  
+              </div>
+            </div>
+          </div>
+         <% end %>
+          <%= render "layouts/footer" %>
+      </div>
+    </div>
+    
+<script type= "text/javascript">
+  $("#child_btn").click(function(){
+    window.location.href = '/charitychildren/new';
+    return false;
+  });
+
+  $("#user_same_address").click(function(){
+  var x = $('#user_primary_address1').val();
+  var y = $('#user_primary_address2').val();
+  var m = $('#user_primary_address3').val();
+  var n = $('#user_primary_address4').val();
+  var k = $('#user_primary_address_pin').val();
+  var check = $('#user_same_address').prop('checked');
+  if (check == true) {
+    $('#user_secondary_address1').val(x);
+    $('#user_secondary_address2').val(y);
+    $('#user_secondary_address3').val(m);
+    $('#user_secondary_address4').val(n);
+    $('#user_secondary_address_pin').val(k);
+  }
+
+  });
+
+</script>
+
+<style>
+  input#child_btn.left {
+    height: 30.5px !important;
+  }   
+  .save{
+    background-color: #ffffff;
+    color: #0000FF;
+    border: solid 1px #0000FF;
+    border-radius: 4px !important;
+    padding: 16.5px 21px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+  }
+
+  #user_profile_type_public {
+    height: 28px !important;
+    margin-left: -135px !important;
+    margin-top: -5px !important;
+    position: relative !important;
+    width: 25px !important;
+    z-index: 999 !important;
+  }
+
+  #user_profile_type_semi-private {
+    height: 28px !important;
+    margin-left: -135px !important;
+    margin-top: -5px !important;
+    position: relative !important;
+    width: 25px !important;
+    z-index: 999 !important;
+  }
+
+  #user_profile_type_private {
+    height: 28px !important;
+    margin-left: -87px !important;
+    margin-top: -5px !important;
+    position: relative !important;
+    width: 25px !important;
+    z-index: 999 !important;
+  }
+ 
+  #user_UK_taxpayer {
+    height: 28px;
+    margin-left: -173px;
+    margin-top: -5px;
+    position: relative;
+    width: 25px;
+    z-index: 999;
+  }
+
+  #user_allow_emails_from_followed_charities{
+    height: 28px;
+    position: relative;
+    width: 25px;
+    z-index: 999;
+    margin-left: -339px;
+    margin-top: -5px;
+  }
+
+  #user_subscription_to_charity_square_emails{
+    height: 28px;
+    position: relative;
+    width: 25px;
+    z-index: 999;
+    margin-left: -325px;
+    margin-top: -5px;
+  }
+
+  #user_html_emails_1{
+    height: 28px;
+    position: relative;
+    width: 25px;
+    z-index: 999;
+    margin-left: -320px;
+    margin-top: -5px;
+  }
+
+  #user_text_only_1{
+    height: 28px;
+    position: relative;
+    width: 25px;
+    z-index: 999;
+    margin-left: -288px;
+    margin-top: -5px;
+  }
+
+  #user_tailored_ads{
+    height: 28px;
+    position: relative;
+    width: 25px;
+    z-index: 999;
+    margin-left: -130px;
+    margin-top: -5px;
+  }
+
+  #user_suggestions{
+    height: 28px;
+    position: relative;
+    width: 25px;
+    z-index: 999;
+    margin-left: -127px;
+    margin-top: -5px;
+  }
+
+  #user_email_type_html-emails{
+    height: 28px;
+    position: relative;
+    width: 25px;
+    z-index: 999;
+    margin-left: -134px;
+    margin-top: -5px;
+  }
+
+  #user_email_type_text-only{
+    height: 28px;
+    position: relative;
+    width: 25px;
+    z-index: 999;
+    margin-left: -99px;
+    margin-top: -5px;
+  }
+
+  #user_profile_type_public{
+    height: 28px;
+    position: relative;
+    width: 25px;
+    z-index: 999;
+    margin-left: -397px;
+    margin-top: -5px;
+  }
+
+  #user_profile_type_semi-private{
+    height: 28px;
+    position: relative;
+    width: 25px;
+    z-index: 999;
+    margin-left: -397px;
+    margin-top: -5px;
+  }
+
+  #user_profile_type_private{
+    height: 28px;
+    position: relative;
+    width: 25px;
+    z-index: 999;
+    margin-left: -397px;
+    margin-top: -5px;
+  }
+
+  #user_same_address{
+    height: 28px;
+    position: relative;
+    width: 25px;
+    z-index: 999;
+    margin-left: -169px;
+    margin-top: 0px;
+  }
+</style>

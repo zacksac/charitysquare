@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  charityusersquare_id: 1
+  enddate: MyString
+  startdate: MyString
+  description: MyText
+  user_id: 1
+  charitytype: MyString
+  active: false
+  appeal_type: MyString
+  specific_appeal_description: MyString
+
+two:
+  charityusersquare_id: 1
+  enddate: MyString
+  startdate: MyString
+  description: MyText
+  user_id: 1
+  charitytype: MyString
+  active: false
+  appeal_type: MyString
+  specific_appeal_description: MyString

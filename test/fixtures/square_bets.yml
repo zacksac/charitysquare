@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  charityusersquare_id: 1
+  user_1: 1
+  user_2: 1
+  user1_amt: 1
+  user2_amt: 1
+  winner: MyString
+
+two:
+  charityusersquare_id: 1
+  user_1: 1
+  user_2: 1
+  user1_amt: 1
+  user2_amt: 1
+  winner: MyString

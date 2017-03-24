@@ -1,0 +1,24 @@
+<%= render 'layouts/navigation' %>
+<h1>Editing charityusersquare</h1>
+
+<div class='media'>
+   Your Photos
+
+  <% @charitypics.each do |pics|%>
+  <img height='100px' width='100px' src=<%=pics.picture%>>
+  <%= link_to 'remove',  remove_picture_path(pics.id), :confirm => "Are you sure?",:method => "GET"%>
+  
+  <%end%>
+
+   <%= form_for(:charity_media ,url: charity_upload_path ,:html => {:id=>"charity_media"}) do |f| %>
+   <%= f.file_field :picture, autocomplete: "off" ,placeholder:"Picture" %>
+   <%= f.hidden_field :squareid, autocomplete: "off",:value =>@charityusersquareid %>
+  
+    <button class='mform'>Upload</button> 
+   <%end%>
+ </div> 
+<%= render 'form' %>
+
+<%= link_to 'Show', @charityusersquare %> |
+<%= link_to 'Back', charity_path %>
+<%= render 'layouts/footer' %>

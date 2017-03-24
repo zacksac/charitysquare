@@ -1,0 +1,301 @@
+    <div class="off-canvas-wrap docs-wrap" data-offcanvas="">
+      <div class="inner-wrap">
+        <%= render 'layouts/header' %>
+       
+        <!-- Charity list section start here -->
+
+        <section class="inner_grey_bg">
+          <div class="row">
+            <div class="charity_feed left">
+              <div class="welcome_text left">
+                <div class="large-12 columns">
+                  <h1>
+                    <a href="#">Welcome <%= current_user.firstname %>.</a>
+                    This is your feed. Here we display the most recent squares of people and organisations you follow.
+                  </h1>
+                </div>  
+              </div>
+              <% unless @charityusers.nil? %>
+               <% @charityusers.each.with_index do |c, index| %>
+                <% if index == 2 %>
+                  <div class="large-4 medium-6 small-12 columns">
+                    <div class="watch_list left">
+                      <h1>Watch list</h1>
+                      <div class="watch_list_inner left">
+                        <div class="watch_list_details left">
+                          <span class="watch_list_img left"></span>
+                          <div class="watch_list_right_text left">
+                            <h2 class="left">Lorem ipsum dolor sit amet</h2>
+                            <div class="watch_list_time_price left">
+                              Time left: 4 hours &nbsp&nbsp Price: £20.00
+                            </div>
+                            <span class="watch_list_view_more left">
+                              <a href="#" title="View more">View more</a>
+                            </span>
+                          </div>
+                        </div>
+
+                        <div class="watch_list_details left">
+                          <span class="watch_list_img left"></span>
+                          <div class="watch_list_right_text left">
+                            <h2 class="left">Lorem ipsum dolor sit amet</h2>
+                            <div class="watch_list_time_price left">
+                              Time left: 4 hours &nbsp&nbsp Price: £20.00
+                            </div>
+                            <span class="watch_list_view_more left">
+                              <a href="#" title="View more">View more</a>
+                            </span>
+                          </div>
+                        </div>
+
+                        <div class="watch_list_details left">
+                          <span class="watch_list_img left"></span>
+                          <div class="watch_list_right_text left">
+                            <h2 class="left">Lorem ipsum dolor sit amet</h2>
+                            <div class="watch_list_time_price left">
+                              Time left: 4 hours &nbsp&nbsp Price: £20.00
+                            </div>
+                            <span class="watch_list_view_more left">
+                              <a href="#" title="View more">View more</a>
+                            </span>
+                          </div>
+                        </div>
+
+                        <div class="watch_list_details left">
+                          <span class="watch_list_img left"></span>
+                          <div class="watch_list_right_text left">
+                            <h2 class="left">Lorem ipsum dolor sit amet</h2>
+                            <div class="watch_list_time_price left">
+                              Time left: 4 hours &nbsp&nbsp Price: £20.00
+                            </div>
+                            <span class="watch_list_view_more left">
+                              <a href="#" title="View more">View more</a>
+                            </span>
+                          </div>
+                        </div>
+
+                        <div class="watch_list_details left">
+                          <span class="watch_list_img left"></span>
+                          <div class="watch_list_right_text left">
+                            <h2 class="left">Lorem ipsum dolor sit amet</h2>
+                            <div class="watch_list_time_price left">
+                              Time left: 4 hours &nbsp&nbsp Price: £20.00
+                            </div>
+                            <span class="watch_list_view_more left">
+                              <a href="#" title="View more">View more</a>
+                            </span>
+                          </div>
+                        </div>
+                      </div>  
+                      <div class="watch_list_nav_bullet text-center left">
+                        <ul class="left">
+                          <li class="active">
+                            <a href="#"></a>
+                          </li>
+                          <li>
+                            <a href="#"></a>
+                          </li>
+                          <li>
+                            <a href="#"></a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>  
+                  </div>
+                <% else %>
+                <% if c.charitytype == "bet" %>
+                 <a href=<%="/bets/#{c.id}?user_id=#{current_user.id}"%>>
+                <% else %> 
+                <a href=<%="/appeal/#{c.id}?user_id=#{current_user.id}"%>>
+                <%end%>
+                  <div class="large-4 medium-6 small-12 columns">
+                    <div class="charity_feed_box left">
+                      <div class="charity_box_img left">
+                      <% @cmedia = CharityMedia.where(:charityusersquare_id => c.id)%>
+                        <% if !@cmedia.blank? %>                    
+                          <img src="/images/<%=@cmedia.first.picture%>.jpg">
+                       <% end %>
+
+
+                      </div>
+                      <div class="charity_feed_box_contant left">
+                        <h1><%= c.description.first(30)%></h1>
+                        <span class="charity_feed_box_contant_user">
+                          by <%= User.find_by_id(c.user_id).firstname %>
+                        </span>
+                        <div class="charity_feed_box_user_detail left">
+                           <span class="about_square_page_user_img_thumb left" style="background-image:url('<%= User.find_by_id(c.user_id).picture %>');background-size:cover;"></span>
+                          <span class="charity_feed_box_time left">
+                            <% start_time = Time.now.in_time_zone(@tz).to_s %>
+                            <% end_time   =  c.enddate.in_time_zone(@tz).to_s %>
+                            <% if start_time > end_time %>
+                                Time left <br><span class="charity_feed_box_day"><%#= s.enddate %>Time Over</span>
+                            <% else %> 
+                              Time left <br><span class="charity_feed_box_day"><%#= s.enddate %><%= distance_of_time_in_words(end_time, start_time)  %></span>
+                            <% end %>
+                       
+                          </span>
+                          <% if c.charitytype == "bet" %>
+                            <span class="charity_feed_box_ticket_price left">
+                              Amount <br><span class="  charity_feed_box_price">£<%= c.amount %></span>
+                            </span>
+                          <%end%>  
+
+                          <% if c.charitytype == "Auctions" %>
+                            <span class="charity_feed_box_buy right">
+                              <a href="#" title="Buy now">Buy now</a>
+                            </span>
+                          <% elsif c.charitytype == "Appeals" %>  
+                            <span class="charity_feed_box_donate right">
+                              <a href="#" title="Donate">Donate</a>
+                            </span>
+                          <% elsif c.charitytype == "Bid" %>
+                            <span class="charity_feed_box_Bid right">
+                              <a href="#" title="Bid now">Bid now</a>
+                            </span>
+                          <% elsif c.charitytype == "Bets" %> 
+                            <span class="charity_feed_box_place_bet right">
+                              <a href="#" title="Place bet">Place bet</a>
+                            </span> 
+                          <% elsif c.charitytype == "Lottery" %>  
+                            <span class="charity_feed_box_play_lottery right">
+                              <a href="#" title="Play lottery">Play lottery</a>
+                            </span>
+                          <% elsif c.charitytype == "Raffles" %>  
+                            <span class="charity_feed_box_play_raffle right">
+                              <a href="#" title="Play raffle">Play raffle</a>
+                            </span>
+                          <% else %>
+                          <% end %>  
+                        </div>
+                      </div>
+                    </div>
+                  </div> 
+                 </a> 
+                <% end %> 
+               <% end %>  
+              <% end %>  
+
+              <div class="large-12 columns">
+                <h3>suggestions</h3>
+              </div>
+              <% @charityusers.first(3).each do |c| %>
+               <% if c.charitytype == "bet" %>
+                 <a href=<%="/bets/#{c.id}?user_id=#{current_user.id}"%>>
+                <% else %> 
+                <a href=<%="/appeal/#{c.id}?user_id=#{current_user.id}"%>>
+                <%end%>
+                <div class="large-4 medium-6 small-12 columns">
+                  <div class="charity_feed_box left">
+                    <div class="charity_box_img left">
+
+
+                      <% @cmedia = CharityMedia.where(:charityusersquare_id => c.id)%>
+                        <% if !@cmedia.blank? %>                    
+                          <img src="/images/<%=@cmedia.first.picture%>.jpg">
+                       <% end %>
+
+
+
+                    </div>
+                    <div class="charity_feed_box_contant left">
+                      <h1><%= c.description.first(30) %></h1>
+                      <span class="charity_feed_box_contant_user">
+                        by <%= User.find_by_id(c.user_id).firstname %>
+                      </span>
+                      <div class="charity_feed_box_user_detail left">
+                         <span class="about_square_page_user_img_thumb left" style="background-image:url('<%= User.find_by_id(c.user_id).picture %>');background-size:cover;"></span>
+
+                        <span class="charity_feed_box_time left">
+                            <% start_time = Time.now.in_time_zone(@tz).to_s %>
+                            <% end_time   =  c.enddate.in_time_zone(@tz).to_s %>
+                            <% if start_time > end_time %>
+                                Time left <br><span class="charity_feed_box_day"><%#= s.enddate %>Time Over</span>
+                            <% else %> 
+                              Time left <br><span class="charity_feed_box_day"><%#= s.enddate %><%= distance_of_time_in_words(end_time, start_time)  %></span>
+                            <% end %>
+                       
+                          </span>
+                       
+                        <% if c.charitytype == "bet" %>
+                          <span class="charity_feed_box_ticket_price left">
+                            Ticket price <br><span class="charity_feed_box_price">£<%= c.amount %></span>
+                          </span>
+                        <% end %>  
+
+                        <% if c.charitytype == "Auctions" %>
+                            <span class="charity_feed_box_buy right">
+                              <a href="#" title="Buy now">Buy now</a>
+                            </span>
+                          <% elsif c.charitytype == "Appeals" %>  
+                            <span class="charity_feed_box_donate right">
+                              <a href="#" title="Donate">Donate</a>
+                            </span>
+                          <% elsif c.charitytype == "Bid" %>
+                            <span class="charity_feed_box_Bid right">
+                              <a href="#" title="Bid now">Bid now</a>
+                            </span>
+                          <% elsif c.charitytype == "Bets" %> 
+                            <span class="charity_feed_box_place_bet right">
+                              <a href="#" title="Place bet">Place bet</a>
+                            </span> 
+                          <% elsif c.charitytype == "Lottery" %>  
+                            <span class="charity_feed_box_play_lottery right">
+                              <a href="#" title="Play lottery">Play lottery</a>
+                            </span>
+                          <% elsif c.charitytype == "Raffles" %>  
+                            <span class="charity_feed_box_play_raffle right">
+                              <a href="#" title="Play raffle">Play raffle</a>
+                            </span>
+                          <% else %>
+                          <% end %>  
+                      </div>
+                    </div>
+                  </div>
+                </div>  
+               </a> 
+              <% end %>   
+            </div>
+          </div>  
+        <%= render 'layouts/footer' %>
+      </div>  
+    </div>
+ 
+<script>
+
+  var socket = io.connect('http://localhost:8000');
+  // Connectivity 
+  socket.emit('username', '<%= current_user.email %>');
+  socket.on('reconnect', function () {
+    console.log('Reconnected to the server');
+    socket.emit('username', '<%= current_user.email %>');
+  });
+
+  // socket.emit('customId','<%current_user.email%>');
+  
+  socket.emit('storeClientInfo', {'userId': '<%= current_user.email%>'});
+ 
+  socket.emit('getclients');
+
+  socket.on('fire_response',function(data){
+  // $('body').html(data.name)
+  })
+  socket.on('reconnecting', function () {
+    console.log('Attempting to re-connect to the server');
+  });
+  // Buyer Messages
+  socket.on('wassup', function(data) {
+    $('#notifications').append("<div class='notifications'>" + 
+      "Notification: " + data.message +
+      "</div>");
+  });
+  function fire()
+  {
+    socket.emit('fire', {'fire': 'datea'});
+
+  }
+
+/* other site jquery */
+ 
+
+   </script>

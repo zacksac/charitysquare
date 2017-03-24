@@ -1,0 +1,288 @@
+  <div class="off-canvas-wrap docs-wrap" data-offcanvas="">
+      <div class="inner-wrap">
+<%= render 'layouts/navigation' %>
+
+        <section class="inner_grey_bg">
+          <div class="charity_feed left">
+            <div class="row ">
+              <div class="large-12 medium-12 small-12 columns">
+                <ul class="Square_breadcrumb left">
+                  <li>
+                    <!-- <a href="#" title="breadcrumb ">breadcrumb</a> -->
+                  </li>
+                  <li>
+                    <!-- <a href="#" title="breadcrumb ">breadcrumb</a> -->
+                  </li>
+                  <li>
+                    <!-- <a href="#" title="breadcrumb ">breadcrumb</a> -->
+                  </li>
+                </ul>
+              </div>  
+              <div class="large-6 medium-6 small-12 columns">
+
+                <div class="square_page_slider left">
+                  <div class="square_page_slider_big_img left"> 
+                   <% if !CharityMedia.where(:charityusersquare_id=>@appeal.id).blank? %> 
+                    <img src="/images/<%=CharityMedia.where(:charityusersquare_id=>@appeal.id).first.picture%>.jpg">
+                   <%end%> 
+                  </div>
+                  <ul class="square_page_slider_thumb right">
+                   <% @charitymedia = CharityMedia.where(:charityusersquare_id=>@appeal.id)%>
+                     <% @charitymedia.each do |i|%>
+                     <li> <a class='/images/<%=i.picture%>.jpg' href="javascript:void(0);">
+                     <img src="/images/<%=i.picture%>.jpg">
+                       <li></a>
+                     <% end %>
+                  </ul>
+                </div>
+
+              </div>
+
+              <div class="large-6 medium-6 small-12 columns">
+                <div class="square_page_about_pro_right left">
+                  <h1><%= @appeal.appeal_type%></h1>
+                    <div class="about_square_page_user left">
+                     <span class="about_square_page_user_img_thumb left" style="background-image:url('/images/profile/<%= User.find_by_id(@appeal.user_id).profile_image %>');background-size:cover;">
+                     </span>
+                    <span class="about_square_page_user_img_name left">
+                       by <%= User.find_by_id(@appeal.user_id).firstname %> 
+                      <span class="about_square_page_user_feedback left">Feedback 100%</span>
+                    </span>
+                  </div>
+                  <div class="about_square_page_time_price time_down left">
+                    <span class="about_square_time left">
+                      Time left:
+                      <% start_time = Time.now.in_time_zone(@tz) %>
+
+                      <% end_time   =  Appeal.find(params[:id]).enddate.in_time_zone(@tz) %>
+                      <% if start_time > end_time %>
+                        <% diff = 0 %>
+                      <% else %> 
+                        <% diff = 1 %> 
+                        <% @time_in_minutes=(Appeal.find(params[:id]).enddate.in_time_zone(@tz) - Time.now.in_time_zone(@tz))/60 %>
+                        <% @time_enque=@time_in_minutes.floor %>
+                      <% end %>  
+                      <span class="time_price left" id="until2d">
+                      <%#= distance_of_time_in_words(start_time, end_time)  %></span>
+                      <!-- <span id="text"></span> -->
+                    </span>
+                   
+                  </div>
+                  
+                  <!-- 
+
+
+                      Price 
+                      <span class="time_price left">£<%#= @bet.amount%></span>
+                    </span>
+                  </div>
+
+
+                  <div class="select_size_quantity right">
+                    <select class="right">
+                      <option>quantity</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                    </select>
+
+                    <select class="right">
+                      <option>size</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                    </select>
+
+
+                  </div> -->
+
+                  <div class="inv large-6 medium-6 small-12 columns">
+                    <%= form_tag appeal_donations_path, method: :post, :class =>"frm1" do %>
+                      <%= label_tag "amount", "Donation amount" %><br/>
+                      <%= text_field_tag "amount" %>
+                      <%= hidden_field_tag "appeal_id", params[:id] %>
+                      <%= hidden_field_tag "user_id", current_user.id %>
+                      <%= hidden_field_tag "charitytype", "Appeals" %>
+                      <%= submit_tag "Donate", :class => "button left" %>
+                    <% end %>
+                  </div> 
+
+                  <a class="left text-center " href="#" title="add to watch list">add to watch list</a>
+                  </div>
+
+                  <ul class="sequre_address_list left">
+                   <!--  <li><span class="grey_color">Delivery:</span> Free delivery (UK only) or Pick-up from seller</li>
+                    <li><span class="grey_color">Location:</span> London, UK</li>
+                    <li><span class="grey_color">Payment:</span> Paypal, Debit and Credit cards</li> -->
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="about_squre_charity left">
+              <div class="row">
+                <div class="large-12 medium-12 small-12 columns">
+                  <div class="squre_charity_follow_share_outer my_profile_share right">
+                            <div class="squre_charity_follow_share right">
+                              <!-- <a title="follow" href="#">follow</a> --><!-- User.find_by_id(@bet.charityusersquare_id) -->
+                              <%#= link_to User.find(@bet.charityusersquare_id).follow_status, follows_path(:id =>@bet.charityusersquare_id), :id => "follow", :remote => true %>
+                              <!-- <a title="follow" href="#">follow</a> -->
+                              <a title="share" href="javascript:void(0)" id="share">share</a>
+                                <div class="tooltip_share" style="display: none;">
+                                  <ul class="social_share">
+
+                                    <li> <%= render_shareable :buttons=> ['twitter'] %> </li>
+                                    <li> <%= render_shareable :buttons=> ['facebook'] %> </li>
+                                    <!-- <li> <a class="you_tube_share" href="#"> </a> </li>
+                                    <li> <a class="facebook_share" href="#"> </a> </li> -->
+                                  </ul>
+
+                                </div>
+                            </div>
+                          </div>
+
+                  <%@charity=User.where(:id=>@appeal.charityusersquare_id)%>
+
+                  <div class="squre_charity_img left" style="background-image:url('/images/profile/<%=@charity.first.profile_image%>'); background-size: cover; background-position: center center;">
+
+                    
+                  </div>
+                
+                 <div class="squre_charity_content left">
+                    <%@charity=User.where(:id=>@appeal.charityusersquare_id)%>
+                    <h1><%=@charity.first.charityname%></h1>
+                    <span class="about_squre_charity_name left">
+                     <%= @charity.first.firstname%>
+                    </span>
+                    <p><%= @charity.first.mission%></p>
+
+                  </div>
+                </div>  
+              </div>
+            </div>
+
+         
+            
+            <div class="row">
+              <div class="large-12 columns">
+                <h3>suggestions</h3>
+              </div>
+              <%@appealall=Appeal.where(:active => 1 ) %>
+              <%@appealall.each do |c|%>
+             <a href=<%="/appeal/#{c.id}"%>>
+             <div class="large-4 medium-6 small-12 columns">
+                    <div class="charity_feed_box left">
+                      <div class="charity_box_img left">
+
+                       <% @cmedia = CharityMedia.where(:charityusersquare_id => c.id)%>
+                        <% if !@cmedia.blank? %>                    
+                          <img src="/images/<%=@cmedia.first.picture%>.jpg">
+                       <% end %>
+
+                      </div>
+                      <div class="charity_feed_box_contant left">
+                        <h1><%= c.description%></h1>
+                        <span class="charity_feed_box_contant_user">
+                          by <%= User.find_by_id(c.user_id).firstname %>
+                        </span>
+                        <div class="charity_feed_box_user_detail left">
+                         <span class="about_square_page_user_img_thumb left" style="background-image:url('/images/profile/<%= User.find_by_id(c.user_id).profile_image %>');background-size:cover;"></span>
+                          <span class="charity_feed_box_time left">
+                            <% start_time = Time.now.in_time_zone(@tz).to_s %>
+                            <% end_time   =  Appeal.find(params[:id]).enddate.in_time_zone(@tz).to_s %>
+                            <% if start_time > end_time %>
+                                Time left <br><span class="charity_feed_box_day"><%#= s.enddate %>Time Over</span>
+                            <% else %> 
+                              Time left <br><span class="charity_feed_box_day"><%#= s.enddate %><%= distance_of_time_in_words(end_time, start_time)  %></span>
+                            <% end %>
+                       
+                          </span>
+
+                          <% if c.charitytype == "Auctions" %>
+                            <span class="charity_feed_box_buy right">
+                              <a href="#" title="Buy now">Buy now</a>
+                            </span>
+                          <% elsif c.charitytype == "Appeals" %>  
+                            <span class="charity_feed_box_donate right">
+                              <a href="#" title="Donate">Donate</a>
+                            </span>
+                          <% elsif c.charitytype == "Bid" %>
+                            <span class="charity_feed_box_Bid right">
+                              <a href="#" title="Bid now">Bid now</a>
+                            </span>
+                          <% elsif c.charitytype == "Bets" %> 
+                            <span class="charity_feed_box_place_bet right">
+                              <a href="#" title="Place bet">Place bet</a>
+                            </span> 
+                          <% elsif c.charitytype == "Lottery" %>  
+                            <span class="charity_feed_box_play_lottery right">
+                              <a href="#" title="Play lottery">Play lottery</a>
+                            </span>
+                          <% elsif c.charitytype == "Raffles" %>  
+                            <span class="charity_feed_box_play_raffle right">
+                              <a href="#" title="Play raffle">Play raffle</a>
+                            </span>
+                          <% else %>
+                          <% end %>  
+                        </div>
+                      </div>
+                    </div>
+
+                  </div> 
+                  </a>
+               <%end%>
+
+            
+            </div>    
+          </div> 
+
+<%= render 'layouts/footer' %>
+
+
+</div>
+</div>
+
+
+<script type="text/javascript">
+  $("document").ready(function(){
+
+    $('.chosen-it').chosen();
+    $("#share").click(function(){
+      $(".tooltip_share").toggle();
+    });
+
+    $("#share").click(function(){
+      $(".tooltip_share").toggle();
+    });
+
+  });
+</script>
+
+<script type="text/javascript">
+
+  $(function () { 
+   var diff ="<%=diff%>";
+
+      if (diff == 0) {
+        $('#until2d').countdown({until: '+0'});
+      }
+
+      else {
+        $('#until2d').countdown({until: '+<%= @time_enque %>m'});
+      } 
+      $(".square_page_slider_thumb li a").click(function(){
+      var img=$(this).attr('class');
+      $('.square_page_slider_big_img img').attr('src',img);
+      })
+    
+    });
+  
+</script>
+
+<style>
+
+#until2d{
+  width: 301px;
+  height: 59px;
+  padding-top: 6px;
+}
+</style>

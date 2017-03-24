@@ -1,0 +1,197 @@
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<!--
+ Required. Application name, unique across eBay. A descriptive name is good.
+    Dots, characters, and numerals are allowed.
+-->
+<OEApplication xmlns="www.ebay.com/openebay/2008" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="myapplication.mycompany.com" xsi:schemaLocation="www.ebay.com/openebay/2008 http://developer.ebay.com/webservices/selling-manager-applications/dd/1.1.0/OpeneBayDD.xsd" schemaVersion="1.1.0">
+<!--
+ To be used by developers to version their applications 
+-->
+<Version release="1" major="0" minor="0"/>
+<!--  Declare the target container  -->
+<Target containerId="sellingmanager"/>
+<Resources>
+<Images>
+<!--
+ Image used on the Manage Applications Tab, Application Canvas header and Subscription Flow 
+-->
+<Image height="" url="http://url/image" id="" mode="" width="" useAs="smallIcon"/>
+</Images>
+</Resources>
+<Implements>
+<!--
+
+      If the subscription  feature is present, eBay will send subscription requests to the
+      endpoint declared in the EndPoint.Management Link below. Remove this tag if you do not
+      implement the OEPI interface for subscription-related events, and eBay will not send any
+      subscription events to your application.
+     
+-->
+<Feature name="subscription"/>
+</Implements>
+<!--
+Set to public to true if you want everyone to see your application
+-->
+<Permission public="true"></Permission>
+<!--
+ If you only want specific eBay members to see your application, set
+  public to false and add the user IDs to the permissions list. 
+-->
+<!--
+
+  <Permission public="false">
+    <User id="yourusername"/>
+  </Permission>
+  
+-->
+<!--
+ Gadget info. This section implements the Gadgets specification. 
+-->
+<Gadget>
+<Module xmlns="www.opensocial.org/gadget/2008">
+<ModulePrefs title="My Test Selling Manager Application">
+<Require feature="dynamic-height"/>
+<!--
+ This feature allows your application to use the eBay APIs,
+        passing ebay_auth_token as a placeholder for the user's auth token. 
+-->
+<Require feature="ebay-api"/>
+<Preload href="http://aaa.com"/>
+<Icon></Icon>
+<!--
+
+        Endpoint for the OEPI interface (addSubscriber listener).
+        Required only when the subscription feature is present in the <implements> tag in
+        this deployment descriptor. eBay sends addSubscriber and removeSubscriber calls to
+        this address. HTTPS is  recommended.
+        
+-->
+<Link rel="EndPoint.Management" href="http://url/IntegrationManagement"/>
+<!--
+ Required. Links within the Help Menu on the Application Canvas header 
+-->
+<Link rel="EndPoint.ApplicationHelp" href="http://url/help.asp"/>
+<Link rel="EndPoint.ApplicationFaq" href="http://url/faq.asp"/>
+<Link rel="EndPoint.ApplicationContactUs" href="http://url/contact"/>
+<Locale lang="en" country="US">
+<!--
+ Required. Specify an Application Name of up to 25 characters.
+          This field supplies the name of the application as it is displayed in the
+          applications directory. 
+-->
+<msg name="sellingmanager.msg.application.applicationName">My Application Display Name</msg>
+<!--  Required.  -->
+<msg name="sellingmanager.msg.application.shortDescription">My Application Short Description</msg>
+<!--
+ Provide full content for Terms and Conditions visible during Subscription Flow 
+-->
+<msg name="sellingmanager.msg.company.legal.terms">
+<![CDATA[
+<font size="3" face="Arial">My Legal Terms here</font>
+]]>
+</msg>
+<!--
+Provide full content for Privacy Policy visible during Subcription Flow 
+-->
+<msg name="sellingmanager.msg.company.legal.privacyPolicy">
+<![CDATA[ 
+ <center><b>My Privacy Policy Here</b></center>
+ ]]>
+</msg>
+<!--
+Provide full content for About Us visible from Help Menu on the Application Canvas header 
+-->
+<msg name="sellingmanager.msg.company.aboutUs">
+<![CDATA[ 
+ My about Us Here
+ ]]>
+</msg>
+</Locale>
+</ModulePrefs>
+<UserPref name="dd">
+<EnumValue display_value="xsmall" value="0"/>
+</UserPref>
+<!--
+ This section contains the URL and metadata that make up the URL-type gadget,
+        for display as the large "canvas" view in a user's browser.
+      
+-->
+<Content type="url" view="canvas" href="http://url/myentrypointURLhere" preferred_height="800"></Content>
+<!--
+ The CDATA tags in this section enclose the HTML and JavaScript that
+      make up the HTML-type gadget, which will be displayed as the small
+      "default" view in a summary page. This application uses makeRequest
+      to call the Google weather API. Note: This default ("summary") view is optional.
+      
+-->
+<Content type="html" view="default">
+<![CDATA[
+<link type="text/css" href="http://css.ebay.com:8080/RefApp/css/style.css" media="all" rel="stylesheet"/>
+ <script type="text/javascript">
+ function response(obj) {
+ var html = [];
+ resp = obj.data;
+ 
+ if (resp) {
+ jobs = resp.getElementsByTagName("job");
+ if (jobs) {
+ html.push('<table border="0" width="100%">');
+ html.push('<tr>');
+ html.push('<td><b>DSR Jobs Summary</b></td>');
+ html.push('</tr>');
+ html.push('<tr>');
+ html.push('<td>Day</td>');
+ html.push('<td>Weather</td>');
+ html.push('<td>Low degree</td>');
+ html.push('<td>High degree</td>');
+ html.push('</tr>');
+ for (var i = 0; i < jobs.length; i++) {
+ html.push('<tr>');
+ html.push('<td>' + jobs[i].getElementsByTagName(
+ "jobId")[0].childNodes[0].nodeValue + '</td>');
+ html.push('<td>' + jobs[i].getElementsByTagName(
+ "userId")[0].childNodes[0].nodeValue + '</td>');
+ html.push('<td>' + jobs[i].getElementsByTagName(
+ "dateFrom")[0].childNodes[0].nodeValue + '</td>');
+ html.push('<td>' + jobs[i].getElementsByTagName(
+ "dateTo")[0].childNodes[0].nodeValue + '</td>');
+ html.push('<td>' + jobs[i].getElementsByTagName(
+ "dateRangeEventType")[0].childNodes[0].nodeValue + '</td>');
+ html.push('</tr>');
+ }
+ html.push('</table>');
+ }
+ }
+ 
+ document.getElementById("contentDiv").innerHTML = html.join("");
+ };
+ 
+ 
+ function request() {
+ var params = {};
+ params[gadgets.io.RequestParameters.CONTENT_TYPE] = gadgets.io.ContentType.DOM;
+ //params[gadgets.io.RequestParameters.AUTHORIZATION] = 'EAUTH';
+ var url = "http://www.MyServer.com/referenceapp/DSRShowXML";
+ gadgets.io.makeRequest(url, response, params);
+ 
+ gadgets.io.makeRequest(url, response, params);
+ };
+ 
+ 
+ function setHeight(height) {
+ gadgets.window.adjustHeight(height);
+ }
+ </script>
+ 
+ <body onload="setHeight(600);">
+ <div id="contentDiv"></div>
+ 
+ <script type="text/javascript">
+ request();
+ </script>
+ </body>
+]]>
+</Content>
+</Module>
+</Gadget>
+</OEApplication>

@@ -1,0 +1,280 @@
+<div class="off-canvas-wrap docs-wrap" data-offcanvas="">
+      <div class="inner-wrap">
+        <!-- header section start here -->
+        <%= render 'layouts/navigation' %>
+        <!-- banner section start here -->
+        <section class="filter_banner">
+            <div class="row">
+              <div class="large-12 column">
+                <div class="search_categories filter_search_categories">
+                  <%= form_tag  filter_path , method: :get do %>
+                    <%= text_field_tag :q, nil, :placeholder => (@searchname.present?  ? @searchname : 'search ...' ) %>
+                   
+                    <%= image_submit_tag("search_icon.png", :class => "search") %>  
+                      
+                        <select onChange='this.form.submit();' name='category' value='categories'>
+                        <option <%= @q =='Categories' ? 'selected =Selected' : ''%>>Categories</option>
+                        <option <%= @q == 'Lottery' ? 'selected =Selected' : ''%>>Lottery</option>
+                        <option <%= @q == 'Raffles' ? 'selected =Selected' : ''%>>Raffles</option>
+                        <option <%= @q == 'Auctions' ? 'selected =Selected' : ''%>>Auctions</option>
+                        <option <%= @q == 'Appeals' ? 'selected =Selected' : ''%>>Appeals</option>
+                        <option <%= @q == 'Bets' ? 'selected =Selected' : ''%>>Bets</option>
+                      </select>
+                      </ul>
+                    <% end %>   
+                </div>
+              </div>  
+            </div>  
+        </section>
+      </div>
+
+      <!-- Charity list section start here -->
+
+      <section class="inner_grey_bg">
+        <%= form_tag filter_path, method: :get, id: "myForm" do %>
+        <div class="filter_section left">
+          <div class="row">
+            <div class="large-12 medium-12 small-12 columns">
+              <ul class="filter_list left">
+                <li>
+                  <div id='all' class="active catfilter" >All</div>
+                   <input id='all1' style='display:block;' type='checkbox' name="maintype[]" value='all' onClick="searchform()"> 
+                </li>
+                <li>
+                  <div id='appeals' value='auction' class='catfilter'></div>
+                  <span class="tooltip_filter">Appeals</span>
+                  
+                  <input id='appeals1' style='display:block;' type='checkbox' name="maintype[]" value='appeals' onClick="searchform()"> 
+                </li>
+                <li>
+                  <div id='auctions' class='catfilter'></div>
+                  <span class="tooltip_filter">Auctions</span>
+                  <input id='auctions1' style='display:block;' type='checkbox' name="maintype[]" value='auctions' onClick="searchform()"> 
+                </li>
+                <li>
+                  <div id='buy' class='catfilter'></div>
+                  <span class="tooltip_filter">Buy </span>
+                  <input id='buy1' style='display:block;' type='checkbox' name="maintype[]" value='buy' onClick="searchform()">
+                </li>
+                <li>
+                  <div id='raffles' class='catfilter'></div>
+                  <span class="tooltip_filter">Raffles & L</span>
+                  <input id='raffles1' style='display:block;' type='checkbox' name="maintype[]" value='raffles' onClick="searchform()">
+                </li>
+                <li>
+                  <div id='bets' class='catfilter'></div>
+                  <span class="tooltip_filter">Celebrity bets</span>
+                  <input id='bets1' style='display:block;' type='checkbox' name="maintype[]" value='bet' onClick="searchform()">
+                </li>
+              </ul>
+              <div class="more_filters_top left" >
+                <a class='morefilter' href="javascript:void(0)" title="More filters">More filters +</a>
+              </div>
+              <table class="filters_tabel" style='display:none;'>
+                <tr>
+                  <th>Charity type:</th>
+                  <td>Animals</td>
+                  <td>Lorem ipsum</td>
+                  <td>Lorem ipsum</td>
+                  <td>Lorem ipsum</td>                
+                  <td>Lorem ipsum</td>
+                </tr>
+                <tr>
+                  <th></th>
+                  <td>Animals</td>
+                  <td>Lorem ipsum</td>
+                  <td>Lorem ipsum</td>
+                  <td>Lorem ipsum</td>                
+                  <td><a href="#" title="More">More +</a></td>
+                </tr>
+                <tr style="height:25px;"></tr>
+                <tr>
+                  <th>Category:</th>
+                  <td>Books</td>
+                  <td>Digital</td>
+                  <td>Music</td>
+                  <td>Movies</td>                
+                  <td>Clothing</td>
+                </tr>
+                <tr>
+                  <th></th>
+                  <td>CDs & Vinyl</td>
+                  <td>Kitchen & Home </td>
+                  <td>DVD & Blu-ray </td>
+                  <td>Toys & Games </td>                
+                  <td><a href="#" title="More">More +</a></td>
+                </tr>
+                <tr style="height:25px;"></tr>
+                <tr>
+                  <th>Condition:</th>
+                  <td>
+                      <span class="filters_checkbox left">
+                        <input type="checkbox" name='condition[]' value='new'>
+                        <span class="filters_checked"></span>
+                        <span class="filters_checked_text">New</span> 
+                      </span> 
+                  </td>
+                  <td>
+                    <span class="filters_checkbox left">
+                      <input type="checkbox" name='condition[]' value='used'>
+                      <span class="filters_checked"></span>
+                      <span class="filters_checked_text">Used</span> 
+                    </span> 
+                  </td>
+                  <td>
+                    <span class="filters_checkbox left">
+                      <input type="checkbox" name='condition[]' value="notspecified">
+                      <span class="filters_checked"></span>
+                      <span class="filters_checked_text">Not specified</span>
+                    </span> 
+                  </td>
+                </tr>
+                <tr style="height:25px;"></tr>
+                <tr>
+                  <th>Item location:</th>
+                  <td>
+                      <span class="filters_radio left">
+                        <input type="radio" name="location" value='uk'>
+                        <span class="filters_radio_checked"></span>
+                        <span class="filters_radio_checked_text">UK Only</span> 
+                      </span> 
+                  </td>
+                  <td>
+                    <span class="filters_radio left">
+                      <input type="radio" name="location" value='europe'>
+                      <span class="filters_radio_checked"></span>
+                      <span class="filters_radio_checked_text">European Union</span> 
+                    </span> 
+                  </td>
+                  <td colspan="3">
+                    <span class="filters_radio left">
+                      <input type="radio" name="other">
+                      <span class="filters_radio_checked"></span>
+                      <span class="filters_radio_checked_text">Within</span> 
+                    </span> 
+                    <select>
+                      <option>50Mils</option>
+                    </select>
+                    <span class="left of_text">of</span>
+                    <input type="text" name='locationcoordinates' value="SE20">
+                  </td>
+                </tr>
+              </table>
+              <div class="fewer_filters left">
+                <a class="right fewfilter" style="display:none" href="javascript:void(0)">Fewer filters -</a>
+
+              </div>
+            </div>
+          </div> 
+        </div> 
+        <% end %>
+
+        <div class="filters_search_feed left">
+          <div class="row">
+            <div class="large-12 columns">
+              <div class="search_result_most_relevant left">
+                <h2 class="left"><%= @count%> results for <a href="#">" <%= @q%>"</a>
+               </h2>
+                <button href="#" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" class="button dropdown right">most relevant</button>
+                <ul style="position: absolute; left: -99999px; top: 188px;" id="drop1" data-dropdown-content="" class="f-dropdown" aria-hidden="true">
+                    <li><a href="#">This is a link</a></li>
+                    <li><a href="#">This is another</a></li>
+                    <li><a href="#">Yet another</a></li>
+                  </ul>
+              </div>
+            </div>
+            <% @charity.each do |c| %>
+            <a href=<%="/charityusersquares/#{c.id}"%>>
+            <div class="large-4 medium-6 small-12 columns">
+              <div class="charity_feed_box left">
+                <div class="charity_box_img left">
+                </div>
+                <div class="charity_feed_box_contant left">
+                  <h1><%= c.description %></h1>
+                  <span class="charity_feed_box_contant_user">
+                    by 
+                  </span>
+                  <div class="charity_feed_box_user_detail left">
+                    <span class="charity_feed_box_user_img left"></span>
+
+                    <span class="charity_feed_box_time left">
+                      Time left <br><span class="charity_feed_box_day"><%= c.daysleft %> day</span>
+                    </span>
+
+                    <span class="charity_feed_box_ticket_price left">
+                      Ticket price <br><span class="charity_feed_box_price">£<%= c.price %></span>
+                    </span>
+
+                    <% if c.charitytype == "Auctions" %>
+                      <span class="charity_feed_box_buy right">
+                        <a href="#" title="Buy now">Buy now</a>
+                      </span>
+                    <% elsif c.charitytype == "Appeals" %>  
+                      <span class="charity_feed_box_donate right">
+                        <a href="#" title="Donate">Donate</a>
+                      </span>
+                    <% elsif c.charitytype == "Bid" %>
+                      <span class="charity_feed_box_Bid right">
+                        <a href="#" title="Bid now">Bid now</a>
+                      </span>
+                    <% elsif c.charitytype == "Bets" %> 
+                      <span class="charity_feed_box_place_bet right">
+                        <a href="#" title="Place bet">Place bet</a>
+                      </span> 
+                    <% elsif c.charitytype == "Lottery" %>  
+                      <span class="charity_feed_box_play_lottery right">
+                        <a href="#" title="Play lottery">Play lottery</a>
+                      </span>
+                    <% elsif c.charitytype == "Raffles" %>  
+                      <span class="charity_feed_box_play_raffle right">
+                        <a href="#" title="Play raffle">Play raffle</a>
+                      </span>
+                    <% else %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </a>
+            <% end %>
+          </div>
+        </div>
+        <%= render 'layouts/footer' %>
+    </div>
+
+<script type= "text/javascript">
+
+
+$(document).ready(function(){
+
+$('.catfilter').click(function(el){
+  var idd=el.target.id;
+  $('input:checkbox[id^="'+idd+'1"]').click();
+  if( $('input:checkbox[id^="'+idd+'1"]').hasClass('active'))
+  {
+    $('#'+idd).removeClass('active')
+  }
+  else
+  {
+  $('#'+idd).addClass('active')
+    
+  }
+
+});
+
+$('.morefilter').click(function(){
+$('.filters_tabel').slideDown();
+  $('.fewfilter').show();
+  $('.morefilter').hide();
+})
+$('.fewfilter').click(function(){
+$('.filters_tabel').slideUp();
+  $('.fewfilter').hide();
+  $('.morefilter').show();
+})
+})
+
+function searchform(){
+  console.log('searchform ')
+}
+</script>

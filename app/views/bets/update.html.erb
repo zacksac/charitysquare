@@ -1,0 +1,12 @@
+var _html="";
+_html+='<div data-alert class="alert-box success radius">';
+<% @bet.errors.messages.each do |key,value| %>
+_html+='<div>';
+_html+= "<%= key.capitalize %> ";
+_html+= "<%= value[0] %> ";
+_html+='</div>';
+<% end %>
+_html+='<a href="#" class="close">&times;</a> ';
+_html+='</div>'; 
+$("#errorExplanation").html(_html);
+$(document).foundation();

@@ -1,0 +1,363 @@
+<%= render 'layouts/navigation' %>
+
+        <section class="inner_grey_bg">
+          <div class="charity_feed left">
+            <div class="row">
+              <div class="large-12 medium-12 small-12 columns">
+                <ul class="Square_breadcrumb left">
+                  <li>
+                    <a href="#" title="breadcrumb ">breadcrumb</a>
+                  </li>
+                  <li>
+                    <a href="#" title="breadcrumb ">breadcrumb</a>
+                  </li>
+                  <li>
+                    <a href="#" title="breadcrumb ">breadcrumb</a>
+                  </li>
+                </ul>
+              </div>  
+              <div class="large-6 medium-6 small-12 columns">
+               <% unless @charitymedia.empty? %>
+                <div class="square_page_slider left">
+                  <div class="square_page_slider_big_img left"> 
+                    <%=image_tag(@charitymedia.first.picture)%>
+                  </div>
+                  <ul class="square_page_slider_thumb right">
+                     <% @charitymedia.each do |i|%>
+                     <li> <a href="#">
+                     <%=image_tag(i.picture)%>
+                       <li></a>
+                     <% end %>
+                  </ul>
+                </div>
+               <% end %> 
+              </div>
+              <div class="large-6 medium-6 small-12 columns">
+                <div class="square_page_about_pro_right left">
+                  <h1><%= @charityusersquare.name %></h1>
+                  <div class="about_square_page_user left">
+                    <span class="about_square_page_user_img_thumb left"></span>
+                    <span class="about_square_page_user_img_name left">
+                      by John 
+                      <span class="about_square_page_user_feedback left">Feedback 100%</span>
+                    </span>
+                  </div>
+                  <div class="about_square_page_time_price left">
+                    <span class="about_square_time left">
+                      Time left:
+                      <span class="time_price left"><%= @charityusersquare.daysleft%></span>
+                    </span>
+                    <span class="about_square_price text-right right">
+                      Price
+                      <span class="time_price left">£<%= @charityusersquare.price%></span>
+                    </span>
+                  </div>
+                  <div class="select_size_quantity right">
+                    <select class="right">
+                      <option>quantity</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                    </select>
+
+                    <select class="right">
+                      <option>size</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                    </select>
+                  </div>
+                  <div class="square_page_buy_watch_list right">
+                  <%= link_to "buy now", pay_path(:price => @charityusersquare.price, :charitytype => @charityusersquare.charitytype)  %>  <button class="right"></button>
+
+                  <a class="left text-center " href="#" title="add to watch list">add to watch list</a>
+                  </div>
+                  <ul class="sequre_address_list left">
+                    <li><span class="grey_color">Delivery:</span> Free delivery (UK only) or Pick-up from seller</li>
+                    <li><span class="grey_color">Location:</span> London, UK</li>
+                    <li><span class="grey_color">Payment:</span> Paypal, Debit and Credit cards</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="about_squre_charity left">
+              <div class="row">
+                <div class="large-12 medium-12 small-12 columns">
+                  <div class="squre_charity_follow_share_outer my_profile_share right">
+                            <div class="squre_charity_follow_share right">
+                              <!-- <a title="follow" href="#">follow</a> -->
+                              <%= link_to Charityusersquare.find_by_id(@charityusersquare.id).follow_status, follow_path(:id =>params[:id]), :id => "follow", :remote => true %>
+                              <a title="share" href="#">share</a>
+                              <div class="tooltip_share">
+                                 <!--  <ul class="social_share">
+                                    <li> <a class="instagram_share" href="#"> </a> </li>
+                                    <li> <a class="twitter_share" href="#"> </a> </li>
+                                    <li> <a class="you_tube_share" href="#"> </a> </li>
+                                    <li> <a class="facebook_share" href="#"> </a> </li>
+                                  </ul> -->
+
+                                  <ul class="social_share">
+                                   
+                                    <li><%= render_shareable :buttons=> ['twitter'] %> </li>
+                                
+                                    <li><%= render_shareable :buttons=> ['facebook'] %></li>
+                                  <!--    <li><%#= link_to(image_tag("instagram.png"), connect_path) %>
+                                    </li> 
+ -->
+
+
+
+
+                                  </ul>
+
+                             <!--     <a href="/oauth/connect"><img src="/assets/instagram.png"/> </a> -->
+
+                                </div>
+                            </div>
+                          </div>
+
+                  <div class="squre_charity_img left"></div>
+                  <div class="squre_charity_content left">
+                    <h1><%=@charityname%></h1>
+                    <span class="about_squre_charity_name left">
+                     <%= @charityuser%>
+                    </span>
+                    <p><%= @charitymission%></p>
+                  </div>
+                </div>  
+              </div>
+            </div>
+
+            <div class="squre_charity_product_info left">
+              <div class="row">
+                <div class="large-12 medium-12 small-12 columns">
+                  <ul role="tablist" data-tab="" class="tabs">
+                    <li role="presentational" class="tab-title active">
+                      <a controls="panel2-1" aria-selected="true" tabindex="0" role="tab" href="#panel2-1">
+                        Product information
+                      </a>
+                    </li>
+                    <li role="presentational" class="tab-title">
+                      <a controls="panel2-2" aria-selected="false" tabindex="-1" role="tab" href="#panel2-2">
+                        Delivery 
+                      </a>
+                    </li>
+                    <li role="presentational" class="tab-title">
+                      <a controls="panel2-3" aria-selected="false" tabindex="-1" role="tab" href="#panel2-3">
+                        Terms & Conditions
+                      </a>
+                    </li>
+                  </ul>
+               
+                  <div class="tabs-content">
+                    <section id="panel2-1" class="content active" aria-hidden="false" role="tabpanel">
+                      <div class="squre_charity_product_info_left left">
+                        <div class="squre_charity_product_info_all left">
+                          <span class="squre_charity_product_info_pro_title left">
+                            Brand: 
+                          </span>
+                          <span class="squre_charity_product_info_pro_value left">
+                            Unknown
+                          </span>
+                        </div>
+                        <div class="squre_charity_product_info_all left">
+                          <span class="squre_charity_product_info_pro_title left">
+                            Condition: 
+                          </span>
+                          <span class="squre_charity_product_info_pro_value left">
+                            New
+                          </span>
+                        </div> 
+                        <div class="squre_charity_product_info_all left">
+                          <span class="squre_charity_product_info_pro_title left">
+                            Type:  
+                          </span>
+                          <span class="squre_charity_product_info_pro_value left">
+                            Lorem ipsum
+                          </span>
+                        </div>  
+                      </div>
+
+                      <div class="squre_charity_product_info_middle left">
+                        <div class="squre_charity_product_info_all left">
+                          <span class="squre_charity_product_info_pro_title left">
+                            Main colour:  
+                          </span>
+                          <span class="squre_charity_product_info_pro_value left">
+                            Green
+                          </span>
+                        </div>
+                        <div class="squre_charity_product_info_all left">
+                          <span class="squre_charity_product_info_pro_title left">
+                            Material: 
+                          </span>
+                          <span class="squre_charity_product_info_pro_value left">
+                            plastic
+                          </span>
+                        </div> 
+                        <div class="squre_charity_product_info_all left">
+                          <span class="squre_charity_product_info_pro_title left">
+                            Size:   
+                          </span>
+                          <span class="squre_charity_product_info_pro_value left">
+                            8
+                          </span>
+                        </div>  
+                      </div>
+
+                      <div class="squre_charity_product_info_right left">
+                        <div class="squre_charity_product_info_all left">
+                          <span class="squre_charity_product_info_pro_title left">
+                            Description:  
+                          </span>
+                          <span class="squre_charity_product_info_pro_value left">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras egestas laoreet justo et eleifend. Integer vitae consequat ipsum.
+                          </span>
+                        </div>
+ 
+                        <div class="squre_charity_product_info_all left">
+                          <span class="squre_charity_product_info_pro_title left">
+                            Sizing info:    
+                          </span>
+                          <span class="squre_charity_product_info_pro_value left">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                          </span>
+                        </div>  
+                      </div>
+                    </section>
+
+                    <section id="panel2-2" class="content" aria-hidden="true" role="tabpanel" tabindex="-1">
+                      <h2>Second panel content goes here...</h2>
+                    </section>
+
+                    <section id="panel2-3" class="content" aria-hidden="true" role="tabpanel" tabindex="-1">
+                      <h2>Third panel content goes here...</h2>
+                    </section>
+
+                  </div>
+                </div> 
+              </div>  
+            </div>
+
+            <div class="row">
+              <div class="large-12 columns">
+                <h3>suggestions</h3>
+              </div>
+              <div class="large-4 medium-6 small-12 columns">
+                <div class="charity_feed_box left">
+                  <div class="charity_box_img left">
+                  </div>
+                  <div class="charity_feed_box_contant left">
+                    <h1>Lorem ipsum dolor sit amet</h1>
+                    <span class="charity_feed_box_contant_user">
+                      by username
+                    </span>
+                    <div class="charity_feed_box_user_detail left">
+                      <span class="charity_feed_box_user_img left"></span>
+
+                      <span class="charity_feed_box_time left">
+                        Time left <br><span class="charity_feed_box_day">1 day</span>
+                      </span>
+
+                      <span class="charity_feed_box_ticket_price left">
+                        Ticket price <br><span class="charity_feed_box_price">£20.00</span>
+                      </span>
+
+                      <span class="charity_feed_box_play_raffle right">
+                        <a href="#" title="Play raffle">Play raffle</a>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div> 
+
+              <div class="large-4 medium-6 small-12 columns">
+                <div class="charity_feed_box left">
+                  <div class="charity_box_img left">
+                  </div>
+                  <div class="charity_feed_box_contant left">
+                    <h1>Lorem ipsum dolor sit amet</h1>
+                    <span class="charity_feed_box_contant_user">
+                      by username
+                    </span>
+                    <div class="charity_feed_box_user_detail left">
+                      <span class="charity_feed_box_user_img left"></span>
+
+                      <span class="charity_feed_box_time left">
+                        Time left <br><span class="charity_feed_box_day">1 day</span>
+                      </span>
+
+                      <span class="charity_feed_box_ticket_price left">
+                        Ticket price <br><span class="charity_feed_box_price">£20.00</span>
+                      </span>
+
+                      <span class="charity_feed_box_play_lottery right">
+                        <a href="#" title="Play lottery">Play lottery</a>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div> 
+
+              <div class="large-4 medium-6 small-12 columns">
+                <div class="charity_feed_box left">
+                  <div class="charity_box_img left">
+                  </div>
+                  <div class="charity_feed_box_contant left">
+                    <h1>Lorem ipsum dolor sit amet</h1>
+                    <span class="charity_feed_box_contant_user">
+                      by username
+                    </span>
+                    <div class="charity_feed_box_user_detail left">
+                      <span class="charity_feed_box_user_img left"></span>
+
+                      <span class="charity_feed_box_time left">
+                        Time left <br><span class="charity_feed_box_day">1 day</span>
+                      </span>
+
+                      <span class="charity_feed_box_ticket_price left">
+                        Ticket price <br><span class="charity_feed_box_price">£20.00</span>
+                      </span>
+
+                      <span class="charity_feed_box_place_bet right">
+                        <a title="Place bet" href="#">Place bet</a>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>    
+          </div>  
+
+          <div class="for_charity_and_help left">
+            <div class="row">
+              <div class="large-12 columns">
+                <ul class="left listing">
+                  <li>
+                    <a href="#" title="For charities">For charities</a>
+                  </li>
+                  <li>
+                    <a href="#" title="For fundraisers">For fundraisers</a>
+                  </li>
+                  <li>
+                    <a href="#" title="For supporters">For supporters</a>
+                  </li>
+                </ul>
+                <ul class="right listing">
+                  <li>
+                    <a href="#" title="Help & FAQ ">Help & FAQ </a>
+                  </li>
+                  <li>
+                    <a href="#" title="About us">About us</a>
+                  </li>
+                  <li>
+                    <a href="#" title="Create a square">Create a square</a>
+                  </li>
+                </ul>
+              </div>  
+            </div>  
+          </div>
+        </section>
+
+
+<%= render 'layouts/footer' %>

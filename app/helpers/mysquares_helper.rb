@@ -1,0 +1,2 @@
+module MysquaresHelper
+end

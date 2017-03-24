@@ -1,0 +1,32 @@
+<br/><h3>Searching Results </h3><br/>
+<% @charity.each do |c| %>
+    <div class="pricing-table medium-4 columns">
+      <div class="panel callout radius">
+        <li>Types: <%= c.name %></li>
+        <li>Brand: <%= c.types %></li>
+        <li>Condition: <%= c.material %></li>
+      </div> 
+      <li class="title"><%= c.charitytype %></li>
+    </div>
+<% end %>	
+<% @users.each do |u| %>
+  <% if u.role == "charity" %>
+    <div class="pricing-table medium-4 columns">
+      <div class="panel callout radius">
+        <li>First Name: <%= u.firstname %></li>
+        <li>Last Name: <%= u.lastname %></li>
+        <li>Address: <%= u.address1 %></li>
+      </div> 
+      <li class="title"><%= u.charitytype %></li>
+    </div>
+  <% end %>  
+<% end %>
+
+<style>
+	.pricing-table {
+	    text-align : center;
+	    margin-top: 30px;
+	    margin-right:15px;
+	    width: 28%;
+	} 
+</style>

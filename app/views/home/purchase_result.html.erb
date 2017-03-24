@@ -1,0 +1,45 @@
+<div class="off-canvas-wrap docs-wrap" data-offcanvas="">
+  <div class="inner-wrap">
+    <!-- header section start here -->
+
+  <%= render 'layouts/header' %> 
+  <div class="my_squre_feed left">
+
+              <%if params[:charitytype] == "bets"%>
+              <h3>Purchase Result for: <%= Bet.find(params[:id]).description %> </h3>
+              <%else%>
+              <h3>Purchase Result for: <%= Appeal.find(params[:id]).description %> </h3>
+              <% end %>
+              <table id="example" class="display" cellspacing="0" width="100%">
+                <thead>
+                  <tr>
+                    <th>Username</th>
+                    <th>Sender Email</th>
+                    <th>Receiver Email</th>
+                    <th>Payment</th>
+                  </tr>
+                </thead>
+ 
+                <tbody>
+                  <%if params[:charitytype] == "bets"%>
+                    <%@payments=PaymentDetail.where(:bet_id => params[:id]) %>
+                  <% else %>  
+                    <%@payments=PaymentDetail.where(:appeal_id => params[:id]) %>
+                  <% @payments.each do |b| %>
+                  <tr>
+                    <td><%= User.find(b.user_id).firstname %></td>
+                    <td><%= b.sender_email %></td>
+                    <td><%= b.receiver_email %></td>
+                    <td><%=b.amount%></td>
+                     
+                  </tr> 
+                  <% end %>
+                </tbody>
+              </table>
+
+
+<%= render 'layouts/footer' %>
+
+
+</div>
+</div>

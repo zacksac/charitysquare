@@ -1,0 +1,32 @@
+<% page_header "Start Conversation" %>
+<%= form_tag messages_path, method: :post do %>
+  <div class="form-group">
+    <%= label_tag 'message[subject]', 'Subject' %>
+    <%= text_field_tag 'message[subject]', nil, class: 'form-control', required: true, :style => "height:34px;border-radius: 4px;" %>
+  </div>
+
+  <div class="form-group">
+    <%= label_tag 'message[body]', 'Message' %>
+    <%= text_area_tag 'message[body]', nil, cols: 3, class: 'form-control', required: true, :style => "height:auto" %>
+  </div>
+
+  <div class="form-group">
+   <%= label_tag 'recipients', 'Choose recipients' %>
+   <%= select_tag 'recipients', recipients_options, multiple: true, class: 'form-control chosen-it' %>
+  </div><br/>
+  <%= submit_tag 'Send', class: 'btn btn-primary alert_popup' %>
+<% end %>
+
+<script type="text/javascript">
+  $("document").ready(function(){
+    $('.chosen-it').chosen();
+  });
+</script>
+
+<style>
+ input {
+  width:200px !important;
+  padding: 0 5px !important;
+  height: 31px !important;
+ }
+</style>

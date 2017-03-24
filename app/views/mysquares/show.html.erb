@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @mysquare.name %>
+</p>
+
+<p>
+  <strong>Square raiser:</strong>
+  <%= @mysquare.square_raiser_id %>
+</p>
+
+<p>
+  <strong>Info:</strong>
+  <%= @mysquare.info %>
+</p>
+
+<p>
+  <strong>Lat:</strong>
+  <%= @mysquare.lat %>
+</p>
+
+<p>
+  <strong>Long:</strong>
+  <%= @mysquare.long %>
+</p>
+
+
+<p>
+  <strong>attachemnet:</strong>
+  <%= image_tag(@mysquare.squarephoto) %>
+</p>
+<%= link_to 'Edit', edit_mysquare_path(@mysquare) %> |
+<%= link_to 'Back', mysquares_path %>

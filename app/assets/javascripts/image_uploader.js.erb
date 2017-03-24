@@ -1,0 +1,49 @@
+
+$(document).ready(function(){
+  var array_images_bet=[];
+      var id_generated='';
+    $("#file").change(function(event){
+      // console.log("check_calling_fn");
+       id_generated=id_generator("imagefield1");
+       var input = $(event.currentTarget);
+       var file = input[0].files[0];
+       var reader = new FileReader();
+       reader.onload = function(e){
+           image_base64 = e.target.result;
+          
+           $(".upload-preview").append("<div class='image_preview_div'><img style='width:100px;height:100px;' src="+image_base64+"><input class='"+id_generated+"' type='hidden' name='image_array[]' value='"+image_base64+"'><span  class='delete_image_bit "+id_generated+"'></span></div>")
+           //$(".upload-preview").append("")
+         
+       };
+       reader.readAsDataURL(file);
+    });
+
+
+$(document).on('click','.delete_image_bit',function(e){
+
+// console.log("delete_image_bit");
+var class_array= $(this).attr("class").split(" ");
+console.log(class_array[1]);
+$(this).parent("div").remove();
+$('.'+class_array[1]).remove();
+});
+
+function id_generator(positionname){
+// console.log("id_generator");
+    var positionint=positionname.replace(/[a-zA-Z]/g, "");
+    var newposition_int = parseInt(positionint)+1;
+    var newposition="imagefield"+newposition_int;
+    // var check_already_position=$( "body" ).hasClass( newposition );
+    var check_already_position=$('body').find('.'+newposition).length;
+    // console.log(newposition);
+    // console.log(check_already_position);
+      if(check_already_position > 0){
+        // console.log("alraedy have postion");
+      return id_generator(newposition);
+      }
+      return newposition;
+  
+}
+
+
+});

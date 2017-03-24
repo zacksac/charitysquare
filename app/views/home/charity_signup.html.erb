@@ -1,0 +1,103 @@
+<div class="off-canvas-wrap docs-wrap" data-offcanvas="">
+      <div class="inner-wrap">
+
+      <!-- header section start here -->
+
+        <%= render 'layouts/header' %>
+        <div class="register_banner_section">   
+        </div>
+        <!-- Charity list section start here -->
+
+        <section class="register_section">
+          <div class="row">
+            <div class="large-12 columns">
+              <div class="large-9 medium-12 small-12 columns large-centered medium-centered small-centered">
+               <%= form_for(:user, :remote=>true,:url => user_registration_path  ,:html => { :id =>'charity_form', :multipart => true }) do |f| %>
+                 <div class="register_as_charity left">
+                  <h1>Register as a charity</h1>
+
+                   
+                      <div id="errorExplanation">  
+                     </div>
+
+                  <div class="large-6 medium-6 small-12 columns">
+                    <%= f.email_field :email, :placeholder => "Email address", :required=>true %>
+                    <%= f.text_field :firstname, :placeholder => "First name", autocomplete: "off" %>
+                    <%= f.password_field :password, :placeholder => "Password", :required=>true, autocomplete: "off" %>
+                    <div class="divider left"></div>
+                    <%= f.text_field :charityname, :placeholder => "Charity name"%>
+                    <%= f.text_field :charitytype, :placeholder => "Charity type"  %>
+                    <%= f.text_field :category, :placeholder => "Category" %>
+                    <div class="divider left"></div>
+                      <%= f.select :country, ["Select country","India","UK","US","NZ","CN"] %>
+                      <%= f.text_field :address1, :placeholder => "Address line 1"%>
+                      <%= f.text_field :address2, :placeholder => "Address line 2"%>
+                      <%= f.text_field :town, :placeholder => "Town/City"%>
+                      <%= f.text_field :postcode, autocomplete: "off" ,placeholder: "Postcode" %>
+                    <div class="divider left"></div>
+                    
+                     <%= f.text_field :webaddress, autocomplete: "off", placeholder:"Webaddress" %>
+                    <%= f.text_area :mission, autocomplete: "off" ,placeholder:"Mission Statement"%>
+                  </div>
+                  <div class="large-6 medium-6 small-12 columns">
+                    <%= f.text_field :phone_number, placeholder: "Phone number"%>
+                    <%= f.text_field :lastname, placeholder: "Last name"%>
+                    <div class="divider left"></div>
+                    <div class="divider left"></div>
+                    <div class="divider left"></div>
+                    <%= f.text_field :charitynumber,  :placeholder => "Charity number"%>
+                    <p class="left right_p">
+                      If you have one, enter your Charity Commission Number, HMRC Tax Reference Number or Scottish Charity Number in the above field. For Scottish charities, the number is prefixed by SC-. Learn more about these numbers.
+                    </p>
+                    <div class="upload_picture text-center left"><img id="adjust"/>
+                      Upload profile <br>picture
+                       <%= f.file_field :picture, autocomplete: "off" ,placeholder:"Picture" %>
+                    </div>
+                      
+                  </div>
+                  <div class="large-12 columns text-center">
+                    <div class="divider"></div>
+                    <div class="check_and_text text-left left">
+                      <span class="checkbox_text"> 
+                      <%= f.check_box :opt1, autocomplete: "off" %> Send us a letter instructing us to register to your charity.</span>
+                    </div>
+                    <div class="check_and_text text-left left">
+                      <span class="checkbox_text">  
+                      <%= f.check_box :opt2, autocomplete: "off" %> Send us a voided organisation cheque or paying in slip from your organisation's bank account .</span>
+                    </div>
+                    <%= f.hidden_field :formtype, :value => "charityform" %>
+                    <%= f.submit "register charity" ,:class=>"reg_as_charity" %>
+                    <div class="accept_term_register_text text-left left">
+                      <p>
+                        By registering you accept the <a href="#">terms & conditions</a> and <a href="#">privacy policy</a>. You are an authorised representative of the organisation listed above.
+                      </p>
+                    </div>  
+                  </div>
+                </div> 
+                <%end%> 
+              </div>
+            </div>  
+          </div>  
+          <%= render 'layouts/footer' %>
+      </div>   
+    </div>
+
+  <script type= "text/javascript">
+       function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function (e) {
+                $('#adjust').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    
+    $("#user_picture").change(function(){
+        readURL(this);
+    });
+
+
+  </script>

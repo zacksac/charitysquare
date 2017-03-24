@@ -1,0 +1,80 @@
+<html lang="en">
+ <head>
+   <meta charset="utf-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+   <title><%= content_for?(:title) ? yield(:title) : "Charity Square" %></title>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => false %>
+
+    <%= javascript_include_tag 'vendor/jquery' %>
+
+    <%= javascript_include_tag 'vendor/modernizr' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => false %>
+    <%= javascript_include_tag 'foundation.min.js' %>
+    <%= javascript_include_tag "chosen-jquery" %> 
+    <%= javascript_include_tag 'jquery.datetimepicker.js' %> 
+    <%= javascript_include_tag 'jquery.raty.js' %> 
+    <%= javascript_include_tag 'letsrate.js' %>
+    <%= javascript_include_tag 'jquery.countdown.js' %>
+    <%= javascript_include_tag 'tagmanager.js' %>
+    <%= csrf_meta_tags %>
+ 
+  </head>
+
+  <body>
+   <% if notice %>
+    <div class="alert green_message">
+      <div class="row">
+        <div class="large-12 columns">
+          <p class="left"><%= notice %></p>
+          <a class="right" href="#" title="close message">
+            <%= image_tag("close_message.png") %>
+          </a>
+        </div>
+      </div>
+    </div>
+   <% end %>
+
+   <% if alert %>
+    <div class="alert red_message">
+      <div class="row">
+        <div class="large-12 columns">
+          <p class="left"><%= alert %></p>
+          <a class="right" href="#" title="close message">
+            <%= image_tag("close_message.png", :class=>"close") %>
+        </div>
+      </div>
+    </div>
+   <% end %> 
+  <!--  <div data-alert class="alert-box success radius">
+      <div class="row">
+        <div class="large-12 columns">
+          <p class="left"><%#= alert %></p>
+          <a href="#" class="close">&times;</a>
+        </div>
+      </div>
+    </div> -->
+  
+
+    <%= yield %>
+
+ </body>
+</html>
+
+<script type='text/javascript'>
+  $('.alert').fadeOut(5000);
+  $('.alert-box').fadeOut(5000);
+  $(document).foundation();
+</script>
+
+
+<script>
+  $(document).foundation();
+  $('.discov').click(function(){
+  $('.descover_hover').slideToggle()
+  })
+  $('.logedin').click(function(){
+  $('.logedin_hover').slideToggle()
+  })
+</script>
+

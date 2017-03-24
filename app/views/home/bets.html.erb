@@ -1,0 +1,25 @@
+<h3>Bets</h3>
+<br/><br/>
+      <% if @bets != nil %>
+        <% @bets.each do |b| %>
+        <div class="pricing-table medium-4 columns">
+          <div class="panel callout radius">
+           <li>Types: <%= b.name %></li>
+           <li>Brand: <%= b.material %></li>
+           <li>Condition: <%= b.types %></li>
+          </div> 
+          <li class="title"><%= b.charitytype %></li>
+        </div>  
+        <% end %> 
+      <% else %> 
+      <div class="pricing-table medium-4 columns">
+      	<div class="panel callout radius">
+          <li>Types: Yet to add </li>
+          <li>Brand: Yet to add </li>
+          <li>Condition: Yet to add</li>
+        </div> 
+        <li class="title">Please Add Charity</li> 
+       </div> 
+      <% end %>
+      <br/><br/><br/><br/><br/><br/><br/><br/>
+<%= link_to 'Back', root_path %>

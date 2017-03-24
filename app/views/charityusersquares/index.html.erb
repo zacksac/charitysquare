@@ -1,0 +1,26 @@
+  <%= render 'layouts/navigation' %>
+<h1>Listing charityusersquares</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @charityusersquares.each do |charityusersquare| %>
+      <tr>
+        <td><%= link_to 'Show', charityusersquare %></td>
+        <td><%= link_to 'Edit', edit_charityusersquare_path(charityusersquare) %></td>
+        <td><%= link_to 'Destroy', charityusersquare, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Charityusersquare', new_charityusersquare_path %>
+
+

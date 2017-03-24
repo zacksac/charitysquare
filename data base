@@ -1,0 +1,64 @@
+  USER 
+  id 
+  email
+  encrypted_password 
+  reset_password_token 
+  reset_password_sent_at 
+  remember_created_at 
+  sign_in_count 
+  current_sign_in_at 
+  last_sign_in_at 
+  current_sign_in_ip
+  last_sign_in_ip
+  created_at 
+  updated_at 
+  role 
+  address 
+  firstname 
+  lastname 
+  charityname 
+  charitytype 
+  charitynumber 
+  category 
+  country
+  town
+  postcode
+  webaddress 
+  picture 
+  mission
+  opt1 
+  opt2 
+  address1 
+  address2
+  confirmed 
+  formtype
+  
+
+
+  CHARITY
+  id 
+  created_at 
+  updated_at 
+  user_id 
+  brand
+  condition
+  types 
+  color
+  size
+  description 
+  sizeinfo 
+  charitycategory 
+  name
+  material 
+  charitytype
+
+
+  CHARITY CHILD
+  id 
+  name 
+  email 
+  address
+  active 
+  user_id 
+  created_at
+  updated_at 

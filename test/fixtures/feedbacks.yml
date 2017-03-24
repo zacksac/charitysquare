@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  feed: MyText
+  rating: MyString
+  arrival: false
+
+two:
+  feed: MyText
+  rating: MyString
+  arrival: false

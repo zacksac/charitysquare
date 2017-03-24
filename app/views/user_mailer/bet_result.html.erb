@@ -1,0 +1,33 @@
+<% if @answer == @bet_result %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>Congrats..... You have won the bet</h1>
+    <p>
+
+    </p>
+    <p>
+  
+    </p>
+  </body>
+</html>
+<% else %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h1>HI, Sorry, You have lost the bet.</h1>
+    <p>
+      Please Pay the bet amount:
+    </p>
+    <p>
+      Visit <%= link_to "Click here to pay the amount",                      checkout_url(:bet_id => @bet_id, :amount => @amount, :user_id => @userid) %>.
+    </p>
+  </body>
+</html>
+<% end %>

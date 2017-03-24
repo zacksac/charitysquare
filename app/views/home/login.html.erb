@@ -1,0 +1,35 @@
+<div class="off-canvas-wrap docs-wrap" data-offcanvas="">
+      <div class="inner-wrap">
+        <%= render 'layouts/header' %>
+        <div class="register_banner_section">   
+        </div>
+  
+      <!-- header section start here -->
+      </div>
+
+      <!-- Charity list section start here -->
+
+      <section class="register_section">
+        <div class="row">
+          <div class="large-12 columns">
+
+           <%= form_for(:user, :url =>   user_session_path  ) do |f| %>
+            <div class="register log_in text-center">
+              <h1>
+                Sign in
+              </h1>
+              <%= f.email_field :email, :placeholder => "Email address" %>
+              <%= f.password_field :password, :placeholder => "Password" %>
+              <%= f.submit "Login", :class=>"reg" %>
+              <div class="register_as_chirty">
+                <span class="allready_account left">
+                  <a href="/users/password/new" title="Forgotten password or email address?">Forgotten password or email address?</a>
+                  <a href="/sign_up" title="Are you not Registered yet">Are you not Registered yet?</a>
+                </span>
+              </div>
+            </div>
+           <% end %> 
+          </div>  
+        </div>  
+        <%= render "layouts/footer" %>
+    </div>

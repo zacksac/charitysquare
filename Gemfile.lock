@@ -1,0 +1,410 @@
+GIT
+  remote: git://github.com/Compass/compass-rails.git
+  revision: 3e88f991150ffa39b0a539dffb3326248d18e6ad
+  specs:
+    compass-rails (2.0.4)
+      compass (~> 1.0.0)
+      sass-rails (< 5.1)
+      sprockets (< 2.13)
+
+GIT
+  remote: git://github.com/galetahub/ckeditor.git
+  revision: eccdecd24bd2a0e4e9c32e919f53737e6e2911c2
+  specs:
+    ckeditor (4.1.2)
+      cocaine
+      orm_adapter (~> 0.5.0)
+
+GIT
+  remote: git://github.com/iammyr/letsrate.git
+  revision: 15991d57865eab3fe6272b2b22a7552b7c1aab8c
+  specs:
+    letsrate (1.0.9)
+
+GIT
+  remote: git://github.com/konjoot/rails_admin_flatly_theme.git
+  revision: 1156afdb42832c58c84b796ee182892604fe7a5f
+  specs:
+    rails_admin_flatly_theme (1.1.0)
+      rails (> 3.1.3)
+      rails_admin (< 0.6.6)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    actionmailer (4.1.7)
+      actionpack (= 4.1.7)
+      actionview (= 4.1.7)
+      mail (~> 2.5, >= 2.5.4)
+    actionpack (4.1.7)
+      actionview (= 4.1.7)
+      activesupport (= 4.1.7)
+      rack (~> 1.5.2)
+      rack-test (~> 0.6.2)
+    actionview (4.1.7)
+      activesupport (= 4.1.7)
+      builder (~> 3.1)
+      erubis (~> 2.7.0)
+    active_paypal_adaptive_payment (0.3.16)
+      activemerchant (>= 1.5.1)
+      hashie (>= 1.2.0)
+      mocha (>= 0.10.0)
+      money (>= 3.6.0)
+      multi_json (>= 1.0.0)
+    activemerchant (1.52.0)
+      activesupport (>= 3.2.14, < 5.0.0)
+      builder (>= 2.1.2, < 4.0.0)
+      i18n (>= 0.6.9)
+      nokogiri (~> 1.4)
+    activemodel (4.1.7)
+      activesupport (= 4.1.7)
+      builder (~> 3.1)
+    activerecord (4.1.7)
+      activemodel (= 4.1.7)
+      activesupport (= 4.1.7)
+      arel (~> 5.0.0)
+    activesupport (4.1.7)
+      i18n (~> 0.6, >= 0.6.9)
+      json (~> 1.7, >= 1.7.7)
+      minitest (~> 5.1)
+      thread_safe (~> 0.1)
+      tzinfo (~> 1.1)
+    arel (5.0.1.20140414130214)
+    bcrypt (3.1.10)
+    builder (3.2.2)
+    cancan (1.6.10)
+    carmen (1.0.2)
+      activesupport (>= 3.0.0)
+    carmen-rails (1.0.1)
+      carmen (~> 1.0.0)
+      rails
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
+    chosen-rails (1.4.2)
+      coffee-rails (>= 3.2)
+      compass-rails (>= 2.0.4)
+      railties (>= 3.0)
+      sass-rails (>= 3.2)
+    chunky_png (1.3.4)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.7)
+      climate_control (>= 0.0.3, < 1.0)
+    coderay (1.1.0)
+    coffee-rails (4.0.1)
+      coffee-script (>= 2.2.0)
+      railties (>= 4.0.0, < 5.0)
+    coffee-script (2.4.1)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.9.1.1)
+    commonjs (0.2.7)
+    compass (1.0.3)
+      chunky_png (~> 1.2)
+      compass-core (~> 1.0.2)
+      compass-import-once (~> 1.0.5)
+      rb-fsevent (>= 0.9.3)
+      rb-inotify (>= 0.9)
+      sass (>= 3.3.13, < 3.5)
+    compass-core (1.0.3)
+      multi_json (~> 1.0)
+      sass (>= 3.3.0, < 3.5)
+    compass-import-once (1.0.5)
+      sass (>= 3.2, < 3.5)
+    daemons (1.2.3)
+    delayed_job (4.0.6)
+      activesupport (>= 3.0, < 5.0)
+    delayed_job_active_record (4.0.3)
+      activerecord (>= 3.0, < 5.0)
+      delayed_job (>= 3.0, < 4.1)
+    devise (3.5.1)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      responders
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
+    ejs (1.1.1)
+    erubis (2.7.0)
+    execjs (2.5.2)
+    faraday (0.9.1)
+      multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.9.2)
+      faraday (>= 0.7.4, < 0.10)
+    ffi (1.9.10)
+    font-awesome-rails (4.3.0.0)
+      railties (>= 3.2, < 5.0)
+    foreigner (1.7.4)
+      activerecord (>= 3.0.0)
+    foundation-rails (5.5.1.2)
+      railties (>= 3.1.0)
+      sass (>= 3.3.0, < 3.5)
+    geocoder (1.2.9)
+    gmaps4rails (2.1.2)
+    gravatar_image_tag (1.2.0)
+    haml (4.0.6)
+      tilt
+    hashie (3.4.2)
+    hike (1.2.3)
+    i18n (0.7.0)
+    instagram (1.1.5)
+      faraday (>= 0.7, < 0.10)
+      faraday_middleware (>= 0.8, < 0.10)
+      hashie (>= 0.4.0)
+      multi_json (~> 1.0, >= 1.0.3)
+    jbuilder (2.3.1)
+      activesupport (>= 3.0.0, < 5)
+      multi_json (~> 1.2)
+    jquery-countdown-rails (2.0.2)
+    jquery-fileupload-rails (0.4.5)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
+      sass (>= 3.2)
+    jquery-rails (3.1.3)
+      railties (>= 3.0, < 5.0)
+      thor (>= 0.14, < 2.0)
+    jquery-ui-rails (5.0.5)
+      railties (>= 3.2.16)
+    json (1.8.3)
+    jsonschema (2.0.2)
+    kaminari (0.16.3)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+    less (2.6.0)
+      commonjs (~> 0.2.7)
+    less-rails (2.7.0)
+      actionpack (>= 4.0)
+      less (~> 2.6.0)
+      sprockets (> 2, < 4)
+      tilt
+    libv8 (3.16.14.11)
+    mail (2.6.3)
+      mime-types (>= 1.16, < 3)
+    mailboxer (0.13.0)
+      carrierwave (>= 0.5.8)
+      foreigner (>= 0.9.1)
+      rails (>= 3.2.0)
+    metaclass (0.0.4)
+    method_source (0.8.2)
+    mime-types (2.6.1)
+    mini_magick (4.2.7)
+    mini_portile (0.6.2)
+    minitest (5.7.0)
+    mocha (1.1.0)
+      metaclass (~> 0.0.1)
+    money (6.6.0)
+      i18n (>= 0.6.4, <= 0.7.0)
+    mono_logger (1.1.0)
+    multi_json (1.11.2)
+    multipart-post (2.0.0)
+    mysql2 (0.3.18)
+    nested_form (0.3.2)
+    nokogiri (1.6.6.2)
+      mini_portile (~> 0.6.0)
+    orm_adapter (0.5.0)
+    paypal_adaptive (0.3.9)
+      json (~> 1.0)
+      jsonschema (~> 2.0.0)
+    polyamorous (1.2.0)
+      activerecord (>= 3.0)
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    rack (1.5.5)
+    rack-pjax (0.8.0)
+      nokogiri (~> 1.5)
+      rack (~> 1.1)
+    rack-protection (1.5.3)
+      rack
+    rack-test (0.6.3)
+      rack (>= 1.0)
+    rails (4.1.7)
+      actionmailer (= 4.1.7)
+      actionpack (= 4.1.7)
+      actionview (= 4.1.7)
+      activemodel (= 4.1.7)
+      activerecord (= 4.1.7)
+      activesupport (= 4.1.7)
+      bundler (>= 1.3.0, < 2.0)
+      railties (= 4.1.7)
+      sprockets-rails (~> 2.0)
+    rails-backbone (1.2.0)
+      coffee-rails
+      ejs
+      jquery-rails
+      railties
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_admin (0.6.4)
+      builder (~> 3.1)
+      coffee-rails (~> 4.0)
+      font-awesome-rails (>= 3.0)
+      haml (~> 4.0)
+      jquery-rails (~> 3.0)
+      jquery-ui-rails (~> 5.0)
+      kaminari (~> 0.14)
+      nested_form (~> 0.3)
+      rack-pjax (~> 0.7)
+      rails (~> 4.0)
+      remotipart (~> 1.0)
+      safe_yaml (~> 1.0)
+      sass-rails (>= 4.0)
+    rails_layout (1.0.26)
+    rails_serve_static_assets (0.0.4)
+    rails_stdout_logging (0.0.3)
+    railties (4.1.7)
+      actionpack (= 4.1.7)
+      activesupport (= 4.1.7)
+      rake (>= 0.8.7)
+      thor (>= 0.18.1, < 2.0)
+    rake (10.4.2)
+    ransack (1.6.6)
+      actionpack (>= 3.0)
+      activerecord (>= 3.0)
+      activesupport (>= 3.0)
+      i18n
+      polyamorous (~> 1.2)
+    rb-fsevent (0.9.5)
+    rb-inotify (0.9.5)
+      ffi (>= 0.5.0)
+    rdoc (4.2.0)
+      json (~> 1.4)
+    redis (3.2.1)
+    redis-namespace (1.5.2)
+      redis (~> 3.0, >= 3.0.4)
+    ref (2.0.0)
+    remotipart (1.2.1)
+    responders (1.1.2)
+      railties (>= 3.2, < 4.2)
+    resque (1.25.2)
+      mono_logger (~> 1.0)
+      multi_json (~> 1.0)
+      redis-namespace (~> 1.3)
+      sinatra (>= 0.9.2)
+      vegas (~> 0.1.2)
+    resque-scheduler (4.0.0)
+      mono_logger (~> 1.0)
+      redis (~> 3.0)
+      resque (~> 1.25)
+      rufus-scheduler (~> 3.0)
+    rufus-scheduler (3.1.3)
+    safe_yaml (1.0.4)
+    sass (3.4.16)
+    sass-rails (5.0.3)
+      railties (>= 4.0.0, < 5.0)
+      sass (~> 3.1)
+      sprockets (>= 2.8, < 4.0)
+      sprockets-rails (>= 2.0, < 4.0)
+      tilt (~> 1.1)
+    sdoc (0.4.1)
+      json (~> 1.7, >= 1.7.7)
+      rdoc (~> 4.0)
+    shareable (1.1.4)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+    sinatra (1.4.6)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (>= 1.3, < 3)
+    slop (3.6.0)
+    socialization (1.1.0)
+      activerecord
+    socket.io-rails (1.3.6)
+      railties (>= 3.1)
+    spring (1.3.6)
+    sprockets (2.11.0)
+      hike (~> 1.2)
+      multi_json (~> 1.0)
+      rack (~> 1.0)
+      tilt (~> 1.1, != 1.3.0)
+    sprockets-rails (2.3.2)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      sprockets (>= 2.8, < 4.0)
+    tagmanager-rails (3.0.1.0)
+      railties (>= 3.0, < 5.0)
+    therubyracer (0.12.2)
+      libv8 (~> 3.16.14.0)
+      ref
+    thor (0.19.1)
+    thread_safe (0.3.5)
+    tilt (1.4.1)
+    timezone_local (0.1.5)
+      tzinfo (>= 0.3.24)
+    turbolinks (2.5.3)
+      coffee-rails
+    tzinfo (1.2.2)
+      thread_safe (~> 0.1)
+    uglifier (2.7.1)
+      execjs (>= 0.3.0)
+      json (>= 1.8.0)
+    underscore-rails (1.8.3)
+    vegas (0.1.11)
+      rack (>= 1.0.0)
+    warden (1.2.3)
+      rack (>= 1.0)
+    will_paginate (3.0.7)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  active_paypal_adaptive_payment
+  activemerchant
+  cancan
+  carmen-rails (~> 1.0.0)
+  carrierwave
+  chosen-rails
+  ckeditor!
+  coffee-rails (~> 4.0.0)
+  compass-rails!
+  daemons
+  delayed_job_active_record (~> 4.0.0)
+  devise
+  execjs
+  foundation-rails (~> 5.5.1.2)
+  geocoder
+  gmaps4rails
+  gravatar_image_tag
+  haml
+  instagram
+  jbuilder (~> 2.0)
+  jquery-countdown-rails
+  jquery-fileupload-rails
+  jquery-rails
+  jquery-ui-rails (~> 5.0.5)
+  less-rails
+  letsrate!
+  mailboxer
+  mini_magick
+  mysql2
+  paypal_adaptive
+  pry
+  rails (= 4.1.7)
+  rails-backbone
+  rails_12factor
+  rails_admin
+  rails_admin_flatly_theme!
+  rails_layout
+  ransack
+  redis
+  resque-scheduler
+  sass-rails (~> 5.0.3)
+  sdoc (~> 0.4.0)
+  shareable
+  socialization
+  socket.io-rails
+  spring
+  sprockets (= 2.11.0)
+  tagmanager-rails
+  therubyracer
+  timezone_local (~> 0.1.5)
+  turbolinks
+  uglifier (>= 1.3.0)
+  underscore-rails
+  will_paginate

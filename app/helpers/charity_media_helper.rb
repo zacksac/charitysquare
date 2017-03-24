@@ -1,0 +1,2 @@
+module CharityMediaHelper
+end

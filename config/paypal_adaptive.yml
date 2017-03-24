@@ -1,0 +1,25 @@
+development:
+  environment: "sandbox"
+  username: "aman_katoch_api1.esferasoft.com"
+  password: "1400229284"
+  signature: "AiPC9BjkCyDFQXbSkoZcgqH3hpacAl.3tTtLg-fGu8jSVrnuFLe09qfh"
+  application_id: "APP-80W284485P519543T"
+  api_cert_file: 
+
+test:
+  environment: "sandbox"
+  username: "aman_katoch_api1.esferasoft.com"
+  password: "1400229284"
+  signature: "AiPC9BjkCyDFQXbSkoZcgqH3hpacAl.3tTtLg-fGu8jSVrnuFLe09qfh"
+  application_id: "APP-80W284485P519543T"
+  api_cert_file: 
+
+production:
+  environment: "sandbox"
+  username: "aman_katoch_api1.esferasoft.com"
+  password: "1400229284"
+  signature: "AiPC9BjkCyDFQXbSkoZcgqH3hpacAl.3tTtLg-fGu8jSVrnuFLe09qfh"
+  application_id: "APP-80W284485P519543T"
+  api_cert_file: 
+
+

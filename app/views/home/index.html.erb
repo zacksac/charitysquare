@@ -1,0 +1,139 @@
+
+    <div class="off-canvas-wrap docs-wrap" data-offcanvas="">
+      <div class="inner-wrap">
+
+      <!-- header section start here -->
+
+      <%= render 'layouts/navigation' %>
+        <!-- banner section start here -->
+
+        <section class="banner-section">
+          <% if notice %>
+            <p class="alert alert-success"><%= notice %></p>
+          <% end %>
+          <% if alert %>
+            <p class="alert alert-danger"><%= alert %></p>
+          <% end %> 
+            <div class="row">
+              <div class="large-12 column">
+                <div class="search_categories">
+                  <%= form_tag filter_path, method: :post do %>
+                    <%= text_field_tag :q, nil, :placeholder => 'search ...' %>
+                  <input type="submit" class="search" value=""/> 
+                     
+                        <select name='category' value='categories'>
+                        <option selected='selected'>Categories</option>
+                        <option>Lottery</option>
+                        <option>Raffles</option>
+                        <option>Auctions</option>
+                        <option>Appeals</option>
+                        <option>Bets</option>
+                      </select>
+                    <% end %>   
+                  </div>
+              </div>  
+            </div>  
+        </section>
+      
+
+      <!-- Charity list section start here -->
+
+      <section class="charity_list">
+        <div class="row">
+          <div class="large-4 medium-6 small-12 columns">
+            <div class="charity_box left">
+              <a href=<%="/charity_squares"%>><div class="charity_box_img left">
+              </div></a>
+              <div class="charity_box_contant left">
+                <h1>Charity Squares</h1>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras egestas laoreet justo et eleifend. Integer vitae consequat ipsum. 
+                  <a href="#"> For charities, for fundraisers, and for their supporters.</a>
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="large-4 medium-6 small-12 columns">
+            <div class="charity_box left">
+              <a href=<%="/appeals"%>><div class="charity_box_img left">
+              </div></a>
+              <div class="charity_box_contant left">
+                <h1>Appeals</h1>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras egestas laoreet justo et eleifend. Integer vitae consequat ipsum.
+                </p>
+                <span class="discover text-right left">
+                  <a href="/appeals">Discover</a>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="large-4 medium-6 small-12 columns">
+            <div class="charity_box left">
+              <a href=<%="/auctions"%>><div class="charity_box_img left">
+              </div></a>
+              <div class="charity_box_contant left">
+                <h1>Auctions</h1>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras egestas laoreet justo et eleifend. Integer vitae consequat ipsum.
+                </p>
+                <span class="discover text-right left">
+                  <a href="/auctions">Discover</a>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="large-4 medium-6 small-12 columns">
+            <div class="charity_box left">
+              <a href=<%="/buy_now"%>><div class="charity_box_img left">
+              </div></a>
+              <div class="charity_box_contant left">
+                <h1>Buy now</h1>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras egestas laoreet justo et eleifend. Integer vitae consequat ipsum.
+                </p>
+                <span class="discover text-right left">
+                  <a href="/buy_now">Discover</a>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="large-4 medium-6 small-12 columns">
+            <div class="charity_box left">
+              <a href=<%="/raffle_n_lottery"%>><div class="charity_box_img left">
+              </div></a>
+              <div class="charity_box_contant left">
+                <h1>Raffle & Lottery</h1>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras egestas laoreet justo et eleifend. Integer vitae consequat ipsum.
+                </p>
+                <span class="discover text-right left">
+                  <a href="/raffle_n_lottery">Discover</a>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="large-4 medium-6 small-12 columns">
+            <div class="charity_box left">
+              <a href=<%="/bets"%>><div class="charity_box_img left">
+              </div></a>
+              <div class="charity_box_contant left">
+                <h1>Celebrity bets</h1>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras egestas laoreet justo et eleifend. Integer vitae consequat ipsum.
+                </p>
+                <span class="discover text-right left">
+                  <a href="/bets">Discover</a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div> 
+        <%= render 'layouts/footer' %>
+ 
+

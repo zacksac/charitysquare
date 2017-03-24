@@ -1,0 +1,32 @@
+      <nav class="tab-bar show-for-small">
+          <section class="right-small">
+            <a aria-expanded="false" class="right-off-canvas-toggle menu-icon"><span></span></a>
+          </section>
+
+          <section class="left tab-bar-section">
+            <h1 class="title">
+              <a class="left" href="#">Logo</a>
+            </h1>
+          </section>
+        </nav>
+        <aside class="right-off-canvas-menu">
+          <ul class="off-canvas-list">
+            <li><label>discover</label></li>
+            <li><a href="#">Demo</a></li>
+            <li><a href="#">Demo</a></li>
+            <li><a href="#">Demo</a></li>
+            <li><a href="#">Demo</a></li>
+            <li><label>Register and Login</label></li>
+            <% if user_signed_in? %>
+              <li><%= link_to current_user.email %></li>
+              <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+              <li><label>launch a square</label></li>
+              <li><a href="/create_square">launch a square</a></li>
+            <% else %>     
+              <li><a href="/users/sign_up">Register</a></li>
+              <li><a href="/home/login">Login</a></li>
+              <li><label>launch a square</label></li>c
+              <li><a href="/home/login">launch a square</a></li>
+            <% end %>  
+          </ul>
+        </aside>

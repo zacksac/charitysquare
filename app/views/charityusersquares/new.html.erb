@@ -1,0 +1,152 @@
+<div class="off-canvas-wrap docs-wrap" data-offcanvas="">
+  <div class="inner-wrap">
+    <%= render 'layouts/header' %>
+      <div class="inner_grey_bg">
+        <div class='row'>
+          <div class="create_squar_bet  create_squar left">
+            <% if notice %>
+              <p class="alert alert-success"><%= notice %></p>
+            <% end %>
+            <% if alert %>
+              <div data-alert class="alert-box success radius">
+                <%= alert %>
+                <a href="#" class="close">&times;</a>
+              </div>
+            <% end %>
+
+            <div class="select_type">
+              <div class="small-12 columns">
+                <h1>Select a square you want to create</h1>
+              </div>
+              <div class='field large-6 columns select_square'>
+                <!-- <label>Select Square type</label>
+                <select name="mydropdown">
+                  <option value="lottery">Lottery</option>
+                  <option value="bet">Bet</option>
+                  <option value="appeal">Appeal</option>
+                  <option value="auction">Auction</option>
+                  <option value="bid">Bid</option>
+                  <option value="raffles">Raffles</option>
+                </select> -->
+                <%= form_tag select_path, method: :post do %>
+                  <%= select_tag "square", options_for_select(["Select Square", "Lottery", "Bet", "Auction", "Appeal", "Bid", "Raffles"], :selected => params[:square]), :onchange => "this.form.submit();" %>
+                <% end %>
+              </div>
+            </div>
+
+            <% if params[:square] == "Bet" %>
+              <%= render "charityusersquares/bet" %>
+            <% elsif params[:square] == "Appeal" %>  
+              <%= render "charityusersquares/appeal" %>
+            <%else%>  
+            <% end %>  
+          </div>
+      </div>
+  </div>
+</div>
+<%= render 'layouts/footer' %>
+
+<script>
+$(document).ready(function(){
+
+$(".upload-preview").sortable({
+    placeholder: "ui-state-highlight",
+    helper: 'clone',
+    sort: function(e, ui) {
+        //$(ui.placeholder).html(Number($("#sortable_nav > li:visible").index(ui.placeholder)) + 1);
+    },
+    update: function(event, ui) {
+        var $lis = $(this).children('div');
+        $lis.each(function() {
+            var $li = $(this);
+            var newVal = $(this).index() + 1;
+            $(this).attr("val",newVal);
+            $(this).children('#item_display_order').val(newVal);
+        });
+    }
+});
+$(".upload-preview").disableSelection();
+
+
+  // alert("on load");
+$('.th').click(function(){
+ var id= $(this).attr('id');
+ $('.'+id).fadeIn(); 
+})
+
+$('.datetimepicker').datetimepicker();
+
+
+jQuery(".tm-input").tagsManager();
+$('.chosen-it').chosen();
+
+
+
+  $('.invite_btn').click(function(e){
+    e.preventDefault();
+    $('.invite_sub').toggle();
+
+  });
+
+
+/* validations for the form  */
+$('.button.success').click(function(e){
+  
+   
+        //e.preventDefault();
+
+            //form validation rules
+            $("#new_bet").validate({
+                rules: {
+                    'bet[description]': "required",
+                    'bet[amount]': "required",
+                    'bet[subject]': "required",
+                    'bet[objective]':"required"
+
+                   
+                },
+                messages: {
+                    'bet[description]': "Please enter bet description *",
+                    'bet[amount]': "Please enter bet amount ",
+                    'bet[subject]': "Please enter bet subject ",
+                    'bet[objective]':"Please enter bet objective"
+                    
+                },
+                submitHandler: function(form) {
+                    console.log('submit');
+                    form.submit();
+                }
+            });
+
+
+})
+
+  });
+/* end */
+
+</script>
+
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+<script src="https://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+
+<style>
+  button.success, .button.success {
+    background-color: #43ac6a;
+    border-color: #368a55;
+    color: #ffffff;
+    margin: 19px 19px 19px 0;
+  }
+  /* Error container for form C */
+
+        #error-container div {
+            color: red;
+            line-height: 140%;
+        }
+
+        #error-container div:last-child {
+            padding-bottom: 10px;
+        }
+        h1{
+          font-family: "dinmedium";
+        }
+</style>

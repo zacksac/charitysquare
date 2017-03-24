@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  charityusersquare_id: 1
+  types: MyString
+  desc: MyString
+  picture: MyString
+
+two:
+  charityusersquare_id: 1
+  types: MyString
+  desc: MyString
+  picture: MyString

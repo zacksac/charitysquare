@@ -1,0 +1,173 @@
+<br/>
+<b><%= link_to 'All', search_filter_path(:type => "") %></b>&nbsp;&nbsp;&nbsp;
+<b><%= link_to 'Lottery', search_filter_path(:type => "lottery") %></b>&nbsp;&nbsp;&nbsp;
+<b><%= link_to 'Raffles', search_filter_path(:type => "raffles") %></b>&nbsp;&nbsp;&nbsp;
+<b><%= link_to 'Bets', search_filter_path(:type => "bets") %></b>&nbsp;&nbsp;&nbsp;
+<b><%= link_to 'Bid', search_filter_path(:type => "bid") %></b>&nbsp;&nbsp;&nbsp;
+<b><%= link_to 'Auctions', search_filter_path(:type => "auctions") %></b>&nbsp;&nbsp;&nbsp;
+<b><%= link_to 'Appeals', search_filter_path(:type => "appeals") %></b>&nbsp;&nbsp;&nbsp;
+<br/><br/>
+<table style="width:100%">
+  <tr>
+    <td>Charity Type:</td>
+    <td>Category:</td> 
+    <td>Condition:</td>
+  </tr>
+  <%= form_tag(search_filter_path) do %>
+    <tr>
+    <td>
+       <% @usr.uniq.each do |w| %>
+		  <%= check_box_tag  "charitytype", w.charitytype %> <%= w.charitytype %><br/>
+       <% end %>
+    </td>
+      <td><% User.select(:category).uniq.each do |u| %>
+      <% unless u.category.nil? %>
+        <%= check_box_tag  "category", u.category %> <%= u.category %><br/>
+      <% end %>  
+      <% end %> </td>
+      <td><% Charityusersquare.select(:condition).uniq.each do |c| %>
+        <%= check_box_tag  "condition", c.condition %> <%= c.condition %><br/>
+        <% end %> 
+      </td>
+      <tr><td><%= submit_tag "Search", :class => "tiny button" %></td></tr>
+    </tr>
+   
+  <% end %>  
+</table>
+
+<br/><h3>Searching Results </h3>
+
+  <% @charity.each do |c| %>
+    <div class="pricing-table medium-4 columns">
+      <div class="panel callout radius">
+        <li>Types: <%= c.name %></li>
+        <li>Brand: <%= c.types %></li>
+        <li>Condition: <%= c.material %></li>
+      </div> 
+      <li class="title"><%= c.charitytype %></li>
+    </div>
+  <% end %>	
+
+  <% @users.each do |u| %>
+    <% if u.role == "charity" %>
+      <div class="pricing-table medium-4 columns">
+        <div class="panel callout radius">
+          <li>First Name: <%= u.firstname %></li>
+          <li>Last Name: <%= u.lastname %></li>
+          <li>Address: <%= u.address1 %></li>
+        </div> 
+        <li class="title"><%= u.charitytype %></li>
+      </div>
+    <% end %>  
+  <% end %>
+
+
+<% if params[:category].present? && params[:charitytype].present? && !params[:condition].present?%>
+  <%unless @ush.nil?%>
+    <% @ush.each do |u| %>
+      <div class="pricing-table medium-4 columns">
+        <div class="panel callout radius">
+          <li>First Name: <%= u.firstname %></li>
+          <li>Last Name: <%= u.lastname %></li>
+          <li>Address: <%= u.address1 %></li>
+        </div> 
+        <li class="title"><%= u.charitytype %></li>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% if params[:category].present? && !params[:charitytype].present? && !params[:condition].present?%>
+  <%unless @cat.nil?%>
+    <% @cat.each do |u| %>
+      <div class="pricing-table medium-4 columns">
+        <div class="panel callout radius">
+          <li>First Name: <%= u.firstname %></li>
+          <li>Last Name: <%= u.lastname %></li>
+          <li>Address: <%= u.address1 %></li>
+        </div> 
+        <li class="title"><%= u.charitytype %></li>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% if !params[:category].present? && params[:charitytype].present? && !params[:condition].present?%>
+  <%unless @cht.nil?%>
+    <% @cht.each do |u| %>
+      <div class="pricing-table medium-4 columns">
+        <div class="panel callout radius">
+          <li>First Name: <%= u.firstname %></li>
+          <li>Last Name: <%= u.lastname %></li>
+          <li>Address: <%= u.address1 %></li>
+        </div> 
+        <li class="title"><%= u.charitytype %></li>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% if params[:category].present? && params[:charitytype].present? && params[:condition].present?%>
+  <% unless @cus.nil? %>
+    <% @cus.each do |c| %>
+    <div class="pricing-table medium-4 columns">
+      <div class="panel callout radius">
+        <li>Types: <%= c.name %></li>
+        <li>Brand: <%= c.types %></li>
+        <li>Condition: <%= c.material %></li>
+      </div> 
+      <li class="title"><%= c.charitytype %></li>
+    </div>
+    <% end %>
+  <% end %>
+<% end %>  
+
+<% if params[:category].present? && !params[:charitytype].present? && params[:condition].present?%>
+  <% unless @cc.nil? %>
+    <% @cc.each do |c| %>
+    <div class="pricing-table medium-4 columns">
+      <div class="panel callout radius">
+        <li>Types: <%= c.name %></li>
+        <li>Brand: <%= c.types %></li>
+        <li>Condition: <%= c.material %></li>
+      </div> 
+      <li class="title"><%= c.charitytype %></li>
+    </div>
+    <% end %>
+  <% end %>
+<% end %>  
+
+<% if params[:charitytype].present? && params[:condition].present? && !params[:category].present?%>
+  <% @chr.each do |c| %>
+    <div class="pricing-table medium-4 columns">
+      <div class="panel callout radius">
+        <li>Types: <%= c.name %></li>
+        <li>Brand: <%= c.types %></li>
+        <li>Condition: <%= c.material %></li>
+      </div> 
+      <li class="title"><%= c.charitytype %></li>
+    </div>
+  <% end %>
+<% end %>  
+
+<% unless @con.nil? %>
+  <% @con.each do |c| %>
+    <div class="pricing-table medium-4 columns">
+      <div class="panel callout radius">
+        <li>Types: <%= c.name %></li>
+        <li>Brand: <%= c.types %></li>
+        <li>Condition: <%= c.material %></li>
+      </div> 
+      <li class="title"><%= c.charitytype %></li>
+    </div>
+  <% end %>
+<% end %>
+
+<style>
+	.pricing-table {
+	    text-align : center;
+	    margin-top: 30px;
+	    margin-right:15px;
+	    width: 28%;
+	} 
+</style>

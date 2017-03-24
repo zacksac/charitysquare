@@ -1,0 +1,97 @@
+  <%= render 'layouts/header' %>
+<div class='row'>
+
+<h1>Select a square you want to create</h1>
+
+
+
+<div class='bet hide large-10 large-offset-1 columns' >
+<%= form_for(:bet, :url =>  bets_new_path,:remote=>true, :html => { :multipart => true} )  do |f| %>
+ <div class="images_url row">
+     
+
+  </div> 
+
+  </div>
+   <div id="errorExplanation">  
+  </div>
+  <div class='field'>
+   <%= f.select :charitytype, ["Lottery","Raffles","Bets","Appeals","Auctions", "Bid"] %>
+  </div>
+
+
+  
+<div id="holder">
+  </div> 
+<!--   <p id="upload" class="hidden"><label>Drag & drop not supported, but you can still upload via this input field:<br><input type="file"></label></p>
+  <p id="filereader">File API & FileReader API not supported</p>
+  <p id="formdata">XHR2's FormData is not supported</p>
+  <p id="progress">XHR2's upload progress isn't supported</p>
+  <p>Upload progress: <progress id="uploadprogress" min="0" max="100" value="0">0</progress></p>
+  <p>Drag an image from your desktop on to the drop zone above to see the browser both render the preview, but also upload automatically to this server.</p>
+</article>
+ -->
+  <div class="upload-preview row"></div>
+  
+  <input id="file" name="bet[logo]" type="file">    
+  
+  <div class="hide">
+  <%=f.number_field :user_id %>
+  </div>
+
+  <div class='field'>
+   <%= f.label "Select a charity" %><br>
+   <%= f.select :charityusersquare_id , @list %>
+  </div>
+
+  <div class="row">
+    <%= f.label "Name" %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="row">
+    <%= f.label "Description" %><br>
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="row">
+    <%= f.label "Start date" %><br>
+    <%= f.text_field :startdate, value: Time.now.to_s %>%>
+  </div>
+
+  <div class="row">
+   <%= f.label "Ending date" %><br>
+   <%= f.text_field :enddate ,{:class => 'datetimepicker'} %>
+  </div>
+
+  <div class="field" >
+  <%= f.label "Bet Amount" %><br>
+  <%= f.number_field :amount %>
+  </div>
+
+  <div class="row">
+    <%= f.label 'Plese type your bet question' %><br>
+    <%= f.text_area :question %>
+  </div>
+
+    <%= f.submit  %>
+  </div>
+<% end %> <br>
+
+</div>
+
+<div class='row'>
+  <%= link_to 'Back', charity_path ,:class=>'button' %>
+</div>
+
+<script>
+  $(document).ready(function(){
+  $('.th').click(function(){
+    var id= $(this).attr('id');
+    $('.'+id).fadeIn(); 
+  })
+  $('.datetimepicker').datetimepicker();
+  })
+</script>
+
+

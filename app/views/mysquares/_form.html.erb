@@ -1,0 +1,38 @@
+<%= form_for(@mysquare) do |f| %>
+  <% if @mysquare.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@mysquare.errors.count, "error") %> prohibited this mysquare from being saved:</h2>
+
+      <ul>
+      <% @mysquare.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :square_raiser_id %><br>
+    <%= f.number_field :square_raiser_id %>
+  </div>
+  <div class="field">
+    <%= f.label :info %><br>
+    <%= f.text_field :info %>
+  </div>
+  <div class="field">
+    <%= f.label :lat %><br>
+    <%= f.text_field :lat %>
+  </div>
+  <div class="field">
+    <%= f.label :long %><br>
+    <%= f.text_field :long %>
+  </div>
+   <%= f.file_field :squarephoto %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,236 @@
+
+    <div class="off-canvas-wrap docs-wrap" data-offcanvas="">
+      <div class="inner-wrap">
+
+      <!-- header section start here -->
+        <%= render 'layouts/header'%>
+        <section class="filter_banner">
+          <div class="row">
+            <div class="large-12 column">
+              <div class="order_confirmation_banner left text-center">
+                <h1>Thank you for supporting the work of</h1>
+                <h2><%=User.find(params[:user_id]).firstname%></h2>
+              </div>
+            </div>  
+          </div>  
+        </section>
+
+        <section class="inner_grey_bg">
+          <% if params[:bet_id].present? %>
+          <div class="row">
+            <div class="checkout_section order_confirmation left">
+              <div class="large-8 medium-7 small-12 columns">
+                <div class="checkout_left_section left">
+                  <div class="checkout_pro_info left">
+                    <span class="checkout_pro_img"><img src="/images/<%=CharityMedia.find_by_charityusersquare_id(params[:bet_id]).picture%>.jpg" style="height:70px;width:70px;"></span>
+                    <h1><%=Bet.find(params[:bet_id]).description%></h1>
+                    <!-- <span class="checkout_pro_size">Size: </span>
+                    <span class="checkout_pro_Quantity">Quantity: </span> -->
+                  </div>
+                  <div class="checkout_sold_out left">
+                    <div class="checkout_sold_out_list left">
+                      <span class="sold_by_check_out left">Sold by</span>
+                      <span class="charity_check_out left"><%=User.find(Bet.find(params[:bet_id]).user_id).firstname%>
+                        <span style="margin-left:10px;"><%= mail_to User.find(Bet.find(params[:bet_id]).user_id).email, image_tag("/assets/email_icon.png") %></span>  
+                      </span>
+                    </div> 
+
+                    <div class="checkout_sold_out_list checkout_sold_out_list_price text-right right">
+                      <span class="sold_by_check_out left">Item price</span>
+                      <span class="charity_check_out left">£<%= params[:price]%></span>
+                    </div>  
+                  </div> 
+                  <div class="checkout_delivery_outer order_confirmation_delivery_outer left">
+                    <div class="large-6 medium-6 small-12 left">
+                     <!-- <h1>Delivery item to</h1> -->
+                      <!-- <p>
+                        John Doe<br>
+                        1 Street<br>
+                        London<br>
+                        123 ABC<br>
+                        UK
+                      </p> -->
+                    </div>
+                    <div class="checkout_sold_out left">
+                      <div class="checkout_sold_out_list checkout_estimated left">
+                    <!--     <span class="sold_by_check_out left">Estimated arrival between</span>
+                        <span class="charity_check_out left">Mon. 1 June — Wed. 3 June</span> -->
+                      </div> 
+
+                      <div class="checkout_sold_out_list checkout_sold_out_list_price checkout_estimated_elivery text-right right">
+                        <!-- <span class="sold_by_check_out left">Delivery</span> -->
+<!--                         <span class="charity_check_out left">£3.00</span>
+ -->                      </div>  
+                    </div>
+                  </div>
+                    <div class="supporting_charity_outer left">
+                      <span class="my_squre_charity_img supporting_charity left" style="background-image:url('<%=User.find(Bet.find(params[:bet_id]).user_id).picture%>');background-size:cover;"></span>
+                      <span class="color_grey font-size_supporting left">Supporting Charity</span>
+                      <span class="grey_dark_color font-size_charity left"><%=User.find(Bet.find(params[:bet_id]).user_id).firstname%></span>
+                    </div>     
+                </div>
+              </div>
+              <div class="large-4 medium-5 small-12 columns">
+                <div class="checkout_section_right order_confirmation_right left">
+                  <h1>Order confirmation</h1>
+                  <span class="order_confirmation_right_order_no"></span>
+                  <table>
+                    <tr>
+                      <td>Subtotal:</td>
+                      <td class="text-right">£<%=params[:price]%></td>
+                    </tr>
+                    <tr>
+                      <td>Delivery:</td>
+                      <!-- <td class="text-right">£3.00</td> -->
+                    </tr>
+                    <tr>
+                      <td>Promotion:</td>
+                      <td class="text-right">£0.00</td>
+                    </tr>
+                    <tr style="height:20px;"></tr>
+                    <tr>
+                     <!--  <td>
+                        Giftaid
+                      </td>
+                      <td class="text-right">£0.00</td> -->
+                    </tr>
+                    <tr style="height:20px;"></tr>
+                    <tr>
+                      <td colspan="2" class="text-right">
+                        <span class="checkout_summery_total left">Total:</span>
+                        <span class="checkout_summery_total_price left">£<%=params[:price]%></span>
+                      </td>
+                    </tr>
+                  </table>
+                  <div class="checkout_summery_button">
+                    <span class="left checkout_summery_button_img">
+                      <%= image_submit_tag("paypal.png") %>
+                    </span>
+                    <!-- <button class="right">  -->
+                    <%= link_to "view transaction", view_transaction_url(:bet_id => params[:bet_id].to_i, :user_id => params[:user_id]), :class=> "right", :class=> "view_transaction right" %>  
+                    <!-- </button> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> 
+
+          <%else%>
+
+          <div class="row">
+            <div class="checkout_section order_confirmation left">
+              <div class="large-8 medium-7 small-12 columns">
+                <div class="checkout_left_section left">
+                  <div class="checkout_pro_info left">
+                    <span class="checkout_pro_img"><img src="/images/<%=CharityMedia.find_by_charityusersquare_id(params[:appeal_id]).picture%>.jpg" style="height:70px;width:70px;"></span>
+                    <h1><%=Appeal.find(params[:appeal_id]).description%></h1>
+                    <!-- <span class="checkout_pro_size">Size: </span>
+                    <span class="checkout_pro_Quantity">Quantity: </span> -->
+                  </div>
+                  <div class="checkout_sold_out left">
+                    <div class="checkout_sold_out_list left">
+                      <span class="sold_by_check_out left">Sold by</span>
+                      <span class="charity_check_out left"><%=User.find(Appeal.find(params[:appeal_id]).user_id).firstname%>
+                        <span style="margin-left:10px;"><%= mail_to User.find(Appeal.find(params[:appeal_id]).user_id).email, image_tag("/assets/email_icon.png") %></span>  
+                      </span>
+                    </div> 
+
+                    <div class="checkout_sold_out_list checkout_sold_out_list_price text-right right">
+                      <span class="sold_by_check_out left">Item price</span>
+                      <span class="charity_check_out left">£<%= params[:price]%></span>
+                    </div>  
+                  </div> 
+                  <div class="checkout_delivery_outer order_confirmation_delivery_outer left">
+                    <div class="large-6 medium-6 small-12 left">
+                     <!-- <h1>Delivery item to</h1> -->
+                      <!-- <p>
+                        John Doe<br>
+                        1 Street<br>
+                        London<br>
+                        123 ABC<br>
+                        UK
+                      </p> -->
+                    </div>
+                    <div class="checkout_sold_out left">
+                      <div class="checkout_sold_out_list checkout_estimated left">
+                    <!--     <span class="sold_by_check_out left">Estimated arrival between</span>
+                        <span class="charity_check_out left">Mon. 1 June — Wed. 3 June</span> -->
+                      </div> 
+
+                      <div class="checkout_sold_out_list checkout_sold_out_list_price checkout_estimated_elivery text-right right">
+                        <!-- <span class="sold_by_check_out left">Delivery</span> -->
+<!--                         <span class="charity_check_out left">£3.00</span>
+ -->                      </div>  
+                    </div>
+                  </div>
+                    <div class="supporting_charity_outer left">
+                      <span class="my_squre_charity_img supporting_charity left" style="background-image:url('<%=User.find(Appeal.find(params[:appeal_id]).user_id).picture%>');background-size:cover;"></span>
+                      <span class="color_grey font-size_supporting left">Supporting Charity</span>
+                      <span class="grey_dark_color font-size_charity left"><%=User.find(Appeal.find(params[:appeal_id]).user_id).firstname%></span>
+                    </div>     
+                </div>
+              </div>
+              <div class="large-4 medium-5 small-12 columns">
+                <div class="checkout_section_right order_confirmation_right left">
+                  <h1>Order confirmation</h1>
+                  <span class="order_confirmation_right_order_no"></span>
+                  <table>
+                    <tr>
+                      <td>Subtotal:</td>
+                      <td class="text-right">£<%=params[:price]%></td>
+                    </tr>
+                    <tr>
+                      <td>Delivery:</td>
+                      <!-- <td class="text-right">£3.00</td> -->
+                    </tr>
+                    <tr>
+                      <td>Promotion:</td>
+                      <td class="text-right">£0.00</td>
+                    </tr>
+                    <tr style="height:20px;"></tr>
+                    <tr>
+                     <!--  <td>
+                        Giftaid
+                      </td>
+                      <td class="text-right">£0.00</td> -->
+                    </tr>
+                    <tr style="height:20px;"></tr>
+                    <tr>
+                      <td colspan="2" class="text-right">
+                        <span class="checkout_summery_total left">Total:</span>
+                        <span class="checkout_summery_total_price left">£<%=params[:price]%></span>
+                      </td>
+                    </tr>
+                  </table>
+                  <div class="checkout_summery_button">
+                    <span class="left checkout_summery_button_img">
+                      <%= image_submit_tag("paypal.png") %>
+                    </span>
+                    <!-- <button class="right">  -->
+                    <%= link_to "view transaction", view_transaction_url(:appeal_id => params[:appeal_id].to_i, :user_id => params[:user_id]), :class=> "right", :class=> "view_transaction right" %>  
+                    <!-- </button> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> 
+          <%end%> 
+          <%= render "layouts/footer" %>       
+      </div>
+    </div>
+
+
+<style>
+ .view_transaction {
+    background-color: transparent !important;
+    border: 1px solid #0000ff !important;
+    border-radius: 4px !important;
+    color: #0000ff !important;
+    float: left !important;
+    font-family: "dinmedium" !important;
+    font-size: 18px !important;
+    margin-left: -1px !important;
+    margin-top: 20px !important;
+    padding: 12px 20px 13px !important;
+}
+</style>

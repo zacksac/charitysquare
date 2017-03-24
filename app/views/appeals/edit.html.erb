@@ -1,0 +1,205 @@
+<div class="off-canvas-wrap docs-wrap" data-offcanvas="">
+<div class="inner-wrap">
+<%= render 'layouts/header' %>
+<div class="inner_grey_bg">
+<div class='row'>
+<div class="create_squar_bet  create_squar left">
+  <% if notice %>
+    <p class="alert alert-success"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+    <div data-alert class="alert-box success radius">
+      <%= alert %>
+      <a href="#" class="close">&times;</a>
+    </div>
+  <% end %>
+
+<div class='appeal' >
+  <div class="small-12 columns">
+    <h1>Select a square you want to create</h1>
+  </div>
+<%= form_for(:appeal, :url =>  update_appeal_path, :html => { :multipart => true ,:id=>"new_appeal"} )  do |f| %>
+ <div class="images_url row">
+     
+
+  </div> 
+
+   <div id="errorExplanation">
+
+      <%= flash["error"] %>
+   </div>
+  <!-- <div class='field large-6 columns'> -->
+  <!-- <label>Select Square type</label> -->
+    <%#= f.select :charitytype, ["Lottery","Raffles","Bets","Appeals","Auctions", "Bid"],:selected => @crtrlr.capitalize %>
+  <!-- </div> -->
+
+  <div class="hide">
+
+
+  <%=f.number_field :user_id , :value=>current_user.id %>
+  <%=f.number_field :id , :value=>@appeal.id %>
+  <%=f.hidden_field :charitytype , :value => "appeal" %>
+
+  </div>
+
+  <% if !@list.nil? %>
+    <div class='field large-6 columns'>
+      <%= f.label "Select a charity" %>
+      <%= f.select :charityusersquare_id , @list , :selected => @appeal.charityusersquare_id%>
+    </div>
+  <% end %>  
+
+<!--   <div class="field large-6 columns">
+    <%#= f.label "Name" %>
+    <%#= f.text_field :name %>
+  </div> -->
+
+
+  <div class="field large-12 columns form-group"> 
+    <%= f.label "Description" %>
+    <%= f.text_area :description,:placeholder => "Enter description" %>
+  </div>
+  <div class='field large-6 columns'>
+    <%= f.label "Type" %> 
+    <%= f.select :appeal_type, ["General", "Specific"],:selected =>@appeal.appeal_type %>
+  </div>
+
+  <div class="field large-6 columns">
+    <%= f.label "Ending date" %>
+    <%= f.text_field :enddate ,{:class => 'datetimepicker', :placeholder => 'Appeal end date ',:required => true} %>
+  </div>
+
+    <div class='field large-6 columns specific'>
+      <%= f.label :specific_appeal_description, "Appeal Description" %>
+      <%= f.text_field :specific_appeal_description %>
+    </div>
+
+  <div class="create_squar_upload_image left">
+    <div class="large-3 medium-4 small-12 columns">
+       <div id="holder"></div> 
+       <label> Add Photos </label>
+        <div class="upload_image_squar text-center">
+          <p>Click here or <br> drag &amp; drop</p>
+          <input id="file" name="appeal[logo]" type="file" >
+        </div>
+    </div>
+    <div class="large-9 medium-8 small-12 columns">
+      <label>Delete or rearrange your images</label>
+      <div class="upload-preview">
+         <%@charitypics.each do |c|%>
+     <div class="image_preview_div pic<%=c.id%>">
+     <img src='/images/<%=c.picture%>.jpg' style="height:100px;width:100px;">
+     <span class="delete_image_bit1 imagefield2 " onClick=removediv('<%=c.id%>')></span>
+   </div>
+   
+   <%end%>
+        
+      </div>
+    </div>    
+  </div>   
+
+
+  <div class="field bottom_ceate_bet_btn large-12 columns">
+
+  <%= f.submit "Update Appeal " , :class=>'button success' %>
+  </div>
+
+<% end %>
+
+
+</div>
+  </div>
+</div>
+
+  </div>
+  </div>
+
+
+
+
+
+<%= render 'layouts/footer' %>
+
+<script>
+$(document).ready(function(){
+  // alert("on load");
+$('.th').click(function(){
+ var id= $(this).attr('id');
+ $('.'+id).fadeIn(); 
+})
+
+$('.datetimepicker').datetimepicker();
+
+/* validations for the form  */
+$('.button.success').click(function(e){
+  
+   
+        //e.preventDefault();
+
+            //form validation rules
+            $("#new_appeal").validate({
+                rules: {
+                    'appeal[description]': "required"
+                },
+                messages: {
+                    'appeal[description]': "Please enter description *"
+                },
+                submitHandler: function(form) {
+                    console.log('submit');
+                    form.submit();
+                }
+            });
+
+
+})
+
+$('#appeal_appeal_type').change(function() {
+      location.reload();
+  });  
+  if ($("#appeal_appeal_type :selected").text() == "Specific")
+  {
+    $(".specific").show();
+  }
+  else {
+    $(".specific").hide();
+  }
+ 
+  });
+
+function removediv(divid)
+{   console.log('remove pic ..')
+   $.ajax({
+           type:'POST', 
+           url: '/appeal_removepic', 
+           data: $.param({ pic: divid  })
+      });
+  $('.pic'+divid).remove();
+}
+/* end */
+
+
+
+  
+</script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+<style>
+  button.success, .button.success {
+    background-color: #43ac6a;
+    border-color: #368a55;
+    color: #ffffff;
+    margin: 19px 19px 19px 0;
+  }
+  /* Error container for form C */
+
+        #error-container div {
+            color: red;
+            line-height: 140%;
+        }
+
+        #error-container div:last-child {
+            padding-bottom: 10px;
+        }
+        h1{
+          font-family: "dinmedium";
+        }
+</style>

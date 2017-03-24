@@ -1,0 +1,248 @@
+<div class="off-canvas-wrap docs-wrap" data-offcanvas="">
+  <div class="inner-wrap">
+    <%= render 'layouts/header' %>
+      <div class="inner_grey_bg">
+        <div class='row'>
+          <div class="create_squar_bet  create_squar left">
+            <% if notice %>
+              <p class="alert alert-success"><%= notice %></p>
+            <% end %>
+            <% if alert %>
+              <div data-alert class="alert-box success radius">
+                <%= alert %>
+                <a href="#" class="close">&times;</a>
+              </div>
+            <% end %>
+
+            <div class="select_type">
+              <div class="small-12 columns">
+                <h1>Enter Details for your Bet</h1>
+              </div>
+              <div class='field large-6 columns select_square'>
+                <!-- <label>Select Square type</label>
+                <select name="mydropdown">
+                  <option value="lottery">Lottery</option>
+                  <option value="bet">Bet</option>
+                  <option value="appeal">Appeal</option>
+                  <option value="auction">Auction</option>
+                  <option value="bid">Bid</option>
+                  <option value="raffles">Raffles</option>
+                </select> -->
+              </div>
+            </div>
+
+            <div class='bet'>
+              <%= form_for(@bet, :url =>  bets_create_path, :html => { :multipart => true ,:novalidate=>"novalidate"} )  do |f| %>
+                <div class="images_url row">
+                </div> 
+
+                <div id="errorExplanation">
+                  <%= flash["error"] %>
+                </div>
+
+                <!-- <div class='field large-6 columns'> -->
+                <!-- <label>Select Square type</label> -->
+                 <%#= f.select :charitytype, ["Lottery","Raffles","Bets","Appeals","Auctions", "Bid"] %>
+                <!-- </div> -->
+
+                <div class="hide">
+                  <%=f.number_field :user_id , :value=>current_user.id %>
+                </div>
+
+                <% if !@list.nil? %>
+                  <div class='field large-6 columns'>
+                    <%= f.label "Select a charity" %>
+                    <%= f.select :charityusersquare_id , @list %>
+                  </div>
+                <% end %>  
+
+                <!--<div class="field large-6 columns">
+                  <%#= f.label "Name" %>
+                  <%#= f.text_field :name %>
+                </div> -->
+
+                <div class="field large-12 columns form-group"> 
+                  <%= f.label "Description" %>
+                  <%= f.text_area :description,:placeholder => "Enter bet description" %>
+                </div>
+
+                <div class="field large-6 columns">
+                  <%= f.label "Ending date" %>
+                  <%= f.text_field :enddate ,{:class => 'datetimepicker', :placeholder => 'Bet end date ',:required => true            } %>
+                </div>
+                
+                <%= f.hidden_field :charitytype, :value => params[:charitytype]%>
+
+                <div class='field large-6 columns'>
+                  <%= f.label "I bet" %> 
+                  <%= f.number_field :amount ,:placeholder=>'Enter amount in $', :min=> 1  %>
+                </div>
+
+                <div class='field large-6 columns'>
+                  <label>that</label> 
+                  <%= f.text_field :subject, :placeholder =>'Please enter the bet subject' ,:required => true %>
+                </div>
+
+                <div class='field large-6 columns'>
+                  <label>will</label>  
+                  <%= f.text_field :objective, :placeholder =>'Please enter the bet objective', :required => true %>
+                </div>
+
+	              <div class="create_squar_upload_image left">
+	              	<div class="large-3 medium-4 small-12 columns">
+	              	   <div id="holder"></div> 
+	              	   <label> Add Photos </label>
+	              	   	<div class="upload_image_squar text-center">
+	              	   		<p>Click here or <br> drag &amp; drop</p>
+	              	   		<input id="file" name="bet[logo]" type="file" required>
+	              	   	</div>
+	              	</div>
+	              	<div class="large-9 medium-8 small-12 columns">
+	              		<label>Delete or rearrange your images</label>
+	              		<div class="upload-preview"></div>
+	              	</div>    
+	              </div>   
+
+                <div class="invite large-12 left">         
+                  <%#= form_tag invite_path, method: :post do %>
+                  	<div class="small-12 columns">
+                    		<%= label_tag 'recipients', 'Invite users to bet' %>
+                    	</div> 
+                    	<div class="large-6 medium-6 small-12 columns"> 
+	                    <p><%= select_tag 'recipients', recipients_options, multiple: true, :required => true, class: 'form-control chosen-it', data: { placeholder: "Select Registered Users" } %></p>
+	                    <div class='invite_btn left' >Invite more users</div>
+	                </div> 
+	                  <div class="large-6 medium-6 small-12 columns"> 
+	                    <div class='invite_sub' style='display:none'>
+	                      <p><%= text_field_tag 'custom_recipients', nil, :placeholder => 'Add email and press enter', :class => "tm-input"  %></p>
+	                      <p><%= hidden_field_tag 'url', request.original_url %></p>
+	                      <p><%= hidden_field_tag 'bet_id', params[:id].to_i %></p>
+	                    </div>
+	                  </div> 
+                    <p><%#= submit_tag 'Send', class: 'tiny button' %></p>
+                  <%# end %> 
+                  <div class="msg large-12 columns">
+                  </div>                
+                </div> 
+
+                <div class="field bottom_ceate_bet_btn large-12 columns">
+                  <%= f.submit "Create Bet " , :class=>'button success' %>
+                </div>
+
+              <% end %>
+            </div>
+
+          </div>
+      </div>
+  </div>
+</div>
+<%= render 'layouts/footer' %> 
+
+<script>
+$(document).ready(function(){
+  // alert("on load");
+
+$(".upload-preview").sortable({
+    placeholder: "ui-state-highlight",
+    helper: 'clone',
+    sort: function(e, ui) {
+        //$(ui.placeholder).html(Number($("#sortable_nav > li:visible").index(ui.placeholder)) + 1);
+    },
+    update: function(event, ui) {
+        var $lis = $(this).children('div');
+        $lis.each(function() {
+            var $li = $(this);
+            var newVal = $(this).index() + 1;
+            $(this).attr("val",newVal);
+            $(this).children('#item_display_order').val(newVal);
+        });
+    }
+});
+$(".upload-preview").disableSelection();
+
+$('.th').click(function(){
+ var id= $(this).attr('id');
+ $('.'+id).fadeIn(); 
+})
+
+$('.datetimepicker').datetimepicker();
+
+
+jQuery(".tm-input").tagsManager();
+$('.chosen-it').chosen();
+
+
+
+  $('.invite_btn').click(function(e){
+    e.preventDefault();
+    $('.invite_sub').toggle();
+
+  });
+
+
+/* validations for the form  */
+$('.button.success').click(function(e){
+  
+   
+        //e.preventDefault();
+
+            //form validation rules
+            $("#new_bet").validate({
+                rules: {
+                    'bet[description]': "required",
+                    'bet[amount]': "required",
+                    'bet[subject]': "required",
+                    'bet[objective]':"required"
+
+                   
+                },
+                messages: {
+                    'bet[description]': "Please enter bet description *",
+                    'bet[amount]': "Please enter bet amount ",
+                    'bet[subject]': "Please enter bet subject ",
+                    'bet[objective]':"Please enter bet objective"
+                    
+                },
+                submitHandler: function(form) {
+                    console.log('submit');
+                    form.submit();
+                }
+            });
+
+
+})
+
+  });
+/* end */
+
+</script>
+
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"></script>
+
+<script src="https://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
+
+
+<style>
+  button.success, .button.success {
+    background-color: #43ac6a;
+    border-color: #368a55;
+    color: #ffffff;
+    margin: 19px 19px 19px 0;
+  }
+  /* Error container for form C */
+
+        #error-container div {
+            color: red;
+            line-height: 140%;
+        }
+
+        #error-container div:last-child {
+            padding-bottom: 10px;
+        }
+        h1{
+          font-family: "dinmedium";
+        }
+</style>
+
+
+            

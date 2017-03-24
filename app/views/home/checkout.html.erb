@@ -1,0 +1,330 @@
+    <div class="off-canvas-wrap docs-wrap" data-offcanvas="">
+      <div class="inner-wrap">
+
+      <!-- header section start here -->
+
+        <nav data-topbar="" class="top-bar docs-bar hide-for-small">
+          <%= render 'layouts/logo' %>
+
+          <section class="top-bar-section text-center">
+            <ul class="left">
+              <li class="has-dropdown not-click">
+                <a class="discov" href="#" title="discover">discover</a>
+              </li>
+            </ul> 
+            <div class="top_head_search">
+              <div class="search_categories">
+                 <%= form_tag filter_path, method: :post do %>
+                    <%= text_field_tag :q, nil, :placeholder => 'search...' %>
+                    <button class="search">
+                      <%= image_submit_tag("search_icon.png") %> 
+                    </button>              
+                        <select name='category' value='categories'>
+                        <option selected='selected'>Categories</option>
+                        <option>Lottery</option>
+                        <option>Raffles</option>
+                        <option>Auctions</option>
+                        <option>Appeals</option>
+                        <option>Bets</option>
+                      </select>
+                    <% end %>  
+              </div>
+            </div> 
+            <ul class="right">
+              <li class="has-dropdown not-click">
+                <% if user_signed_in? %>
+              <a href="javascript:void(0);" title="discover" style= "margin-top: -22px;"><a class="logedin" href="javascript:void(0);"><%= current_user.name %></a></a>
+                  <ul class="dropdown">
+                    <li class="parent-link hide-for-medium-up">
+                      <a href="javascript:void(0);" title="discover1" class="test"><%= current_user.firstname %></a>
+                    </li>
+
+                    <!-- <li><a href='/home_page_feed'>Home page feed</a></li>
+                    <li><a href="/profile" title="Demo">my profile</a></li>
+                    <li><a href="/my_square" title="Demo">my squares</a></li>
+                    <li><a href="#" title="Demo">manage purchases</a></li>
+                    <li><a href="#" title="Demo">account settings</a></li>
+                    <li><a href="/conversations" title="Demo">messages</a></li>
+                    <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link' %></li> -->
+                  </ul>
+                   <li class="launch_square">
+                      <a class="" href="/create_square" title="launch square">launch a square</a>
+                   </li>
+                <% else %>  
+                 <li>
+                  <a class="" href="/sign_up" title="Register">Register</a>
+                 </li>
+                 <li>
+                  <a class="" href="/sign_in" title="Login">Login</a>
+                 </li>
+                 <li class="launch_square">
+                  <a class="" href="/sign_in" title="launch square">launch a square</a>
+                 </li>
+                <% end %>  
+              
+              </li>   
+            </ul>
+          </section>
+        </nav>
+        <nav class="tab-bar show-for-small">
+          <section class="right-small">
+            <a aria-expanded="false" class="right-off-canvas-toggle menu-icon"><span></span></a>
+          </section>
+
+          <section class="left tab-bar-section">
+            <h1 class="title">
+              <a class="left" href="#">Logo</a>
+            </h1>
+          </section>
+        </nav>
+        <aside class="right-off-canvas-menu">
+          <ul class="off-canvas-list">
+            <li><label>discover</label></li>
+            <li><a href="#">Demo</a></li>
+            <li><a href="#">Demo</a></li>
+            <li><a href="#">Demo</a></li>
+            <li><a href="#">Demo</a></li>
+            <li><label>Register and Login</label></li>
+            <% if user_signed_in? %>
+              <li><%= link_to current_user.email %></li>
+              <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
+              <li><label>launch a square</label></li>
+              <li><a href="/create_square">launch a square</a></li>
+            <% else %>     
+              <li><a href="/users/sign_up">Register</a></li>
+              <li><a href="/home/login">Login</a></li>
+              <li><label>launch a square</label></li>c
+              <li><a href="/home/login">launch a square</a></li>
+            <% end %>  
+          </ul>
+        </aside>
+        <a class="exit-off-canvas"></a>
+
+        <!--descover hover div -->
+        <div class="descover_hover left">
+          <div class="large-6 medium-6 small-12 columns">
+            <ul class="descover_hover_filter left">
+              <li class="all_descover_hover">
+                <a href="#">All</a>
+              </li>
+              <li>
+                <a href="#"></a>
+              </li>
+              <li>
+                <a href="#"></a>
+              </li>
+              <li>
+                <a href="#"></a>
+              </li>
+              <li>
+                <a href="#"></a>
+              </li>
+              <li>
+                <a href="#"></a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="large-6 medium-6 small-6 columns">
+            <div class="descover_right_text_show left">
+              <h1>Appeals</h1>
+              <p>Lorem ipsum dolor sit amet, consectetur<br> adipiscing elit. Cras egestas laoreet justo <br>et eleifend. </p>
+            </div>
+          </div>
+        </div>
+
+        <!--logedin_hover div -->
+        <div class="logedin_hover left">
+          <div class="large-12 medium-12 small-12 columns">
+            <ul class="logedin_hover_sub_menu right">
+              <li>
+                <a href="#">about us</a>
+              </li>
+              <li>
+                <a href="#">contact</a>
+              </li>
+              <li>
+                <a href="#">help</a>
+              </li>
+            </ul>
+            <ul class="logedin_hover_sub_menu my_profile_accounts right">
+              <li>
+                <a href="#">child accounts</a>
+              </li>
+              <li>
+                <a href="#">statistics</a>
+              </li>
+            </ul>
+            <ul class="logedin_hover_sub_menu right">
+              <li>
+                <a href="#">my profile</a>
+              </li>
+              <li>
+                <a href="#">my squares</a>
+              </li>
+              <li>
+                <a href="#">manage purchases</a>
+              </li>
+              <li>
+                <a href="#">accounts settings</a>
+              </li>
+              <li>
+                 <a href="#">messages <span class="logedin_message">2</span></a> 
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        
+        <section class="inner_grey_bg">
+          
+          <div class="row">
+            <div class="checkout_section left">
+              <div class="large-12 columns">
+                <h1>Checkout(<%=Bet.find(params[:bet_id]).description%>)</h1>
+              </div>
+              <div class="large-8 medium-7 small-12 columns">
+                <div class="checkout_left_section left">
+                  <div class="checkout_pro_info left">  
+                    <span class="checkout_pro_img"><img src="/images/<%=CharityMedia.find_by_charityusersquare_id(params[:bet_id]).picture%>.jpg" style="height:70px;width:70px;"></span>
+                    <h1><%= Bet.find(params[:bet_id]).name %></h1>
+                   <!--  <span class="checkout_pro_size">Size: </span>
+                    <span class="checkout_pro_Quantity">Quantity: </span> -->
+                  </div>
+                  <div class="checkout_sold_out left">
+                    <div class="checkout_sold_out_list left">
+                      <span class="sold_by_check_out left">Sold by</span>
+                      <span class="charity_check_out left"><%=User.find(Bet.find(params[:bet_id]).user_id).firstname %>   
+                        <span style="margin-left:10px;"><%= mail_to User.find(Bet.find(params[:bet_id]).user_id).email, image_tag("/assets/email_icon.png") %>
+                        </span>
+                      </span>
+                    </div> 
+
+                    <div class="checkout_sold_out_list checkout_sold_out_list_price text-right right">
+                      <span class="sold_by_check_out left">Item price</span>
+                      <span class="charity_check_out left">£<%= params[:amount]%></span>
+                    </div>  
+                  </div> 
+                  <div class="checkout_delivery_outer left">
+                    <div class="large-6 medium-6 small-12 left">
+                      <!-- <span class="filters_radio communication_email_html_radio checkout_delivery_radio  left"> -->
+                        <!-- <input type="radio" name="radio"> -->
+                        <!-- <span class="filters_radio_checked"></span> -->
+                        <!-- <span class="filters_radio_checked_text">Delivery item to</span>  -->
+                      <!-- </span> -->
+                      <p>
+                   <!--      John Doe<br>
+                        1 Street<br>
+                        London<br>
+                        123 ABC<br>
+                        UK -->
+                      </p>
+                    </div>
+                    <div class="large-6 medium-6 small-12 left">
+                      <!-- <span class="filters_radio communication_email_html_radio checkout_delivery_radio  left"> -->
+                        <!-- <input type="radio" name="radio"> -->
+                        <!-- <span class="filters_radio_checked"></span> -->
+                        <!-- <span class="filters_radio_checked_text">Pick up item at</span>  -->
+                      <!-- </span> -->
+                      <p>
+                        <!-- Charity’s Address<br>
+                        1 Street<br>
+                        London<br>
+                        123 ABC<br>
+                        UK -->
+                      </p>
+                    </div>
+                    <span class="checkout_change_address left">
+                      <!-- <a href="#">Change address</a> -->
+                    </span>
+                    <div class="checkout_sold_out left">
+                      <div class="checkout_sold_out_list checkout_estimated left">
+                     <!--    <span class="sold_by_check_out left">Estimated arrival between</span>
+                        <span class="charity_check_out left">Mon. 1 June — Wed. 3 June</span> -->
+                      </div> 
+
+                      <div class="checkout_sold_out_list checkout_sold_out_list_price checkout_estimated_elivery text-right right">
+                <!--         <span class="sold_by_check_out left">Delivery</span>
+                        <span class="charity_check_out left">£3.00</span> -->
+                      </div>  
+                    </div>
+                  </div>
+                    <div class="supporting_charity_outer left">
+                      <span class="my_squre_charity_img supporting_charity left" style="background-image:url('<%=User.find(Bet.find(params[:bet_id]).user_id).picture%>');background-size:cover;"></span>
+                      <span class="color_grey font-size_supporting left">Supporting Charity</span>
+                      <span class="grey_dark_color font-size_charity left"><%=User.find(Bet.find(params[:bet_id]).user_id).firstname%></span>
+                    </div>   
+                </div>
+                <div class="checkout_promocode_button right">
+                 <!--  <input type="text" placeholder="Promo code?">
+                  <button>apply</button> -->
+                </div>
+              </div>
+              <div class="large-4 medium-5 small-12 columns">
+                <div class="checkout_section_right left">
+                  <h1>Summary</h1>
+                  <table>
+                    <tr>
+                      <td>Subtotal:</td>
+                      <td class="text-right">£<%= params[:amount]%></td>
+                    </tr>
+                    <tr>
+                      <td>Delivery:</td>
+                      <!-- <td class="text-right">£3.00</td> -->
+                    </tr>
+                    <tr>
+                      <td>Promotion:</td>
+                      <td class="text-right">£0.00</td>
+                    </tr>
+                    <tr style="height:20px;"></tr>
+                    <tr>
+                      <td>
+                      <span class="filters_checkbox left">
+                        <!-- <input type="checkbox"> -->
+                        <!-- <span class="filters_checked"></span> -->
+                        <!-- <span class="filters_checked_text account_setting_address_check checkout_section_right_check_text ">Giftaid</span> --> 
+                      </span>
+                        <!-- <span class="check_out_gifted_right">Lorem ipsum dolor sit amet.</span> -->
+                      </td>
+                      <td class="text-right">£0.00</td>
+                    </tr>
+                    <tr style="height:20px;"></tr>
+                    <tr>
+                      <td colspan="2" class="text-right">
+                        <span class="checkout_summery_total left">Total:</span>
+                        <span class="checkout_summery_total_price left">£<%=params[:amount]%></span>
+                      </td>
+                    </tr>
+                  </table>
+                  <div class="checkout_summery_button">
+                    <span class="left checkout_summery_button_img">
+                      <%= image_submit_tag("paypal.png") %>
+                    </span>
+                    <!-- <button class="right">   -->
+                    <%= link_to "continue to paypal", pay_path(:price => params[:amount], :charitytype => "Bets", :bet_id => params[:bet_id].to_i, :user_id => params[:user_id]), :class=> "checkout_button right" %>  
+
+                    <!-- </button> -->
+                    <!-- <button class="right">continue to paypal</button> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <%= render "layouts/footer" %>   
+      </div>
+    </div>
+
+<style>
+ .checkout_button {
+    background-color: transparent !important;
+    border: 1px solid #0000ff !important;
+    border-radius: 4px !important;
+    color: #0000ff !important;
+    float: left !important;
+    font-family: "dinmedium" !important;
+    font-size: 18px !important;
+    margin-left: -1px !important;
+    margin-top: 20px !important;
+    padding: 12px 20px 13px !important;
+}
+</style>

@@ -1,0 +1,26 @@
+<h3>Appeals</h3>
+<br/><br/>
+      <% if @appeals != nil %>
+        <% @appeals.each do |a| %>
+          <div class="pricing-table medium-4 columns">
+          <div class="panel callout radius">
+           <li>Types: <%= a.name %></li>
+           <li>Brand: <%= a.material %></li>
+           <li>Condition: <%= a.types %></li>
+          </div> 
+          <li class="title"><%= a.charitytype %></li>
+          </div>
+        <% end %> 
+      <% else %> 
+        <div class="pricing-table medium-4 columns">
+      	<div class="panel callout radius">
+          <li>Types: Yet to add </li>
+          <li>Brand: Yet to add </li>
+          <li>Condition: Yet to add</li>
+        </div> 
+        <li class="title">Please Add Charity</li> 
+        </div>
+      <% end %>
+
+    <br/><br/><br/><br/><br/><br/><br/><br/>
+<%= link_to 'Back', root_path %>

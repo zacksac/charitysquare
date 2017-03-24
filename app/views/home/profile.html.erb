@@ -1,0 +1,469 @@
+    <div class="off-canvas-wrap docs-wrap" data-offcanvas="">
+      <div class="inner-wrap">
+        <!-- header section start here -->
+
+       <%= render 'layouts/header'%>
+        
+
+        <!-- banner section start here -->
+        <section class="filter_banner" src='#'>  
+        <%#= image_tag current_user.banner_image%> 
+        <a href="javascript:void(0);" data-reveal-id="myModal"></a> 
+        </section>
+        <!-- Charity list section start here -->
+
+        <section class="inner_grey_bg">
+
+          <div class="profile_top_section left">
+            <div class="row">
+              <div class="large-4 medium-4 small-12 columns">
+                <div class="profile_left left">
+                     <span class="profile_left_img left" src='#'> <a href="javascript:void(0);" data-reveal-id="myModal2"></a></span>
+                  <h1>Name of charity</h1>
+                  <h2><%= current_user.firstname %></h2>
+                  <p>
+                  
+                    <%= current_user.mission %>
+                  </p>
+                  <div class="profile_left_about_member left">
+                    <span class="grey_color">Member since:</span> <%= current_user.created_at %>
+                  </div>
+                  <div class="profile_left_about_member left">
+                    <span class="grey_color">Location: </span> <%= current_user.address2 %>
+                  </div>
+                  <div class="profile_left_about_member left">
+                    <a href="#"><%= current_user.webaddress%></a>
+                  </div>
+                  <ul class="profile_left_social_icon left">
+                    <li>
+                      <a href="<%= current_user.instagram_field%>"><%= image_tag("instagram.png") %></a>
+                    </li>
+                    <li> 
+                      <a href="<%= current_user.twitter_field%>"><%= image_tag("twitter.png") %></a>
+                    </li>
+                    <li>
+                      <a href="<%= current_user.youtube_field%>"><%= image_tag("you_tube.png") %></a>
+                    </li>
+                    <li> 
+                      <a href="<%= current_user.fb_field%>"><%= image_tag("facebook.png") %></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="large-8 medium-8 small-12 columns">
+                <div class="products_right left">
+                  <div class="squre_charity_product_info profile_tabs left">
+                    <div class="row">
+                      <div class="large-12 medium-12 small-12 columns">
+                        <ul class="tabs" data-tab="" role="tablist">
+                          <li class="tab-title active" role="presentational">
+                            <a href="#panel2-1" role="tab" tabindex="0" aria-selected="true" controls="panel2-1">
+                              Donations<br>
+                              £200,000
+                            </a>
+                          </li>
+                          <li class="tab-title" role="presentational">
+                            <a href="#panel2-2" role="tab" tabindex="-1" aria-selected="false" controls="panel2-2">
+                              Feedback<br>
+                              100% 
+                            </a>
+                          </li>
+                          <li class="tab-title" role="presentational">
+                            <a href="#panel2-3" role="tab" tabindex="-1" aria-selected="false" controls="panel2-3">
+                              Followers<br>
+                              304
+                            </a>
+                          </li>
+                          <div class="squre_charity_follow_share_outer my_profile_share right">
+                            <div class="squre_charity_follow_share right">
+                              <a title="follow" href="#">follow</a>
+
+                              <!-- <a title="share" href="#">share -->
+                              <a title="edit" href="/profile_edit/<%=current_user.id%>">edit
+                              </a>
+                              <!-- <div class="tooltip_share">
+                                  <ul class="social_share">
+                                    <li> <a class="instagram_share" href="#"> </a> </li>
+                                    <li> <a class="twitter_share" href="#"> </a> </li>
+                                    <li> <a class="you_tube_share" href="#"> </a> </li>
+                                    <li> <a class="facebook_share" href="#"> </a> </li>
+                                  </ul>
+                                </div> -->
+                            </div>
+                          </div>
+                        </ul>
+                     
+                        <div class="tabs-content">
+                          <section role="tabpanel" aria-hidden="false" class="content active" id="panel2-1">
+                            <div class="product_right_about left">
+                              <span class="products_right_small_thumb_img left"></span>
+                              <p>Raised £20.00 by selling a WordPress template.</p>
+                            </div> 
+
+                            <div class="product_right_about left">
+                              <span class="products_right_small_thumb_img left"></span>
+                              <p>Raised £400.00 through charity raffle.</p>
+                            </div> 
+
+                            <div class="product_right_about left">
+                              <span class="products_right_small_thumb_img left"></span>
+                              <p>Raised £20.00 by selling a WordPress template.</p>
+                            </div>
+
+                            <div class="product_right_about left">
+                              <span class="products_right_small_thumb_img left"></span>
+                              <p>Raised £400.00 through charity raffle. </p>
+                            </div> 
+
+                            <div class="product_right_about left">
+                              <span class="products_right_small_thumb_img left"></span>
+                              <p>Raised £20.00 by selling a WordPress template. </p>
+                            </div> 
+
+                          </section>
+
+                          <section role="tabpanel" aria-hidden="true" class="content feedback_list" id="panel2-2" tabindex="-1">
+                            <div class="product_right_about left">
+                              <span class="products_right_small_thumb_img left"></span>
+                              <h1>Thanks for the item</h1>
+                              <p>BRAND NEW Samsung G850F Galaxy Alpha 32gb Sliver Smartphone.. </p>
+                            </div>
+                            <div class="product_right_about left">
+                              <span class="products_right_small_thumb_img left"></span>
+                              <h1>Thanks for the item</h1>
+                              <p>BRAND NEW Samsung G850F Galaxy Alpha 32gb Sliver Smartphone.. </p>
+                            </div>
+                            <div class="product_right_about left">
+                              <span class="products_right_small_thumb_img left"></span>
+                              <h1>Thanks for the item</h1>
+                              <p>BRAND NEW Samsung G850F Galaxy Alpha 32gb Sliver Smartphone.. </p>
+                            </div>
+                            <div class="product_right_about left">
+                              <span class="products_right_small_thumb_img left"></span>
+                              <h1>Thanks for the item</h1>
+                              <p>BRAND NEW Samsung G850F Galaxy Alpha 32gb Sliver Smartphone.. </p>
+                            </div>
+                            <div class="product_right_about left">
+                              <span class="products_right_small_thumb_img left"></span>
+                              <h1>Thanks for the item</h1>
+                              <p>BRAND NEW Samsung G850F Galaxy Alpha 32gb Sliver Smartphone.. </p>
+                            </div>
+                          </section>
+
+                          <section role="tabpanel" aria-hidden="true" class="content followers_list" id="panel2-3" tabindex="-1">
+                            <div class="large-4 medium-4 small-12 left">
+                              <div class="product_right_about left">
+                                <a href="#">
+                                  <span class="products_right_small_thumb_img left"></span>
+                                  <p>John123</p>
+                                </a>  
+                              </div>
+                              <div class="product_right_about left">
+                                <a href="#">
+                                  <span class="products_right_small_thumb_img left"></span>
+                                  <p>John123</p>
+                                </a>  
+                              </div>
+                              <div class="product_right_about left">
+                                <a href="#">
+                                  <span class="products_right_small_thumb_img left"></span>
+                                  <p>John123</p>
+                                </a>  
+                              </div> 
+                              <div class="product_right_about left">
+                                <a href="#">
+                                  <span class="products_right_small_thumb_img left"></span>
+                                  <p>John123</p>
+                                </a>  
+                              </div>
+                              <div class="product_right_about left">
+                                <a href="#">
+                                  <span class="products_right_small_thumb_img left"></span>
+                                  <p>John123</p>
+                                </a>  
+                              </div>  
+                            </div>
+                            <div class="large-4 medium-4 small-12 left">
+                              <div class="product_right_about left">
+                                <a href="#">
+                                  <span class="products_right_small_thumb_img left"></span>
+                                  <p>John123</p>
+                                </a>  
+                              </div> 
+                              <div class="product_right_about left">
+                                <a href="#">
+                                  <span class="products_right_small_thumb_img left"></span>
+                                  <p>John123</p>
+                                </a>  
+                              </div> 
+                              <div class="product_right_about left">
+                                <a href="#">
+                                  <span class="products_right_small_thumb_img left"></span>
+                                  <p>John123</p>
+                                </a>  
+                              </div>  
+                              <div class="product_right_about left">
+                                <a href="#">
+                                  <span class="products_right_small_thumb_img left"></span>
+                                  <p>John123</p>
+                                </a>  
+                              </div> 
+                              <div class="product_right_about left">
+                                <a href="#">
+                                  <span class="products_right_small_thumb_img left"></span>
+                                  <p>John123</p>
+                                </a>  
+                              </div>  
+                            </div>
+                            <div class="large-4 medium-4 small-12 left">
+                              <div class="product_right_about left">
+                                <a href="#">
+                                  <span class="products_right_small_thumb_img left"></span>
+                                  <p>John123</p>
+                                </a>  
+                              </div> 
+                              <div class="product_right_about left">
+                                <a href="#">
+                                  <span class="products_right_small_thumb_img left"></span>
+                                  <p>John123</p>
+                                </a>  
+                              </div> 
+                              <div class="product_right_about left">
+                                <a href="#">
+                                  <span class="products_right_small_thumb_img left"></span>
+                                  <p>John123</p>
+                                </a>  
+                              </div>  
+                              <div class="product_right_about left">
+                                <a href="#">
+                                  <span class="products_right_small_thumb_img left"></span>
+                                  <p>John123</p>
+                                </a>  
+                              </div> 
+                              <div class="product_right_about left">
+                                <a href="#">
+                                  <span class="products_right_small_thumb_img left"></span>
+                                  <p>John123</p>
+                                </a>  
+                              </div>   
+                            </div>
+                          </section>
+
+                        </div>
+                        <div class="watch_list_nav_bullet text-center left">
+                          <ul class="left">
+                            <li class="active">
+                              <a href="#"></a>
+                            </li>
+                            <li>
+                              <a href="#"></a>
+                            </li>
+                            <li>
+                              <a href="#"></a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div> 
+                    </div>  
+                  </div>
+                </div>
+              </div>  
+            </div>
+          </div>
+
+          <div class="filter_section left">
+            <div class="row">
+              <div class="large-12 medium-12 small-12 columns">
+                <ul class="filter_list left">
+                  <li>
+                    <div class="active" href="#">All</div>
+                  </li>
+                  <li>
+                    <div href="#"></div>
+                    <span class="tooltip_filter">Appeals</span>
+                  </li>
+                  <li>
+                    <div href="#"></div>
+                    <span class="tooltip_filter">Auctions</span>
+                  </li>
+                  <li>
+                    <div href="#"></div>
+                    <span class="tooltip_filter">Buy </span>
+                  </li>
+                  <li>
+                    <div href="#"></div>
+                    <span class="tooltip_filter">Raffles & L</span>
+                  </li>
+                  <li>
+                    <div href="#"></div>
+                    <span class="tooltip_filter">Celebrity bets</span>
+                  </li>
+                </ul>
+                <div class="more_filters_top my_profile_more_filters left">
+                  <a title="More filters" href="#">More filters +</a>
+                </div>
+              </div>
+            </div> 
+          </div>  
+
+          <div class="filters_search_feed left">
+            <div class="row">
+              <div class="large-12 columns">
+                <div class="search_result_most_relevant left">
+                  <button href="#" data-dropdown="drop1" aria-controls="drop1" aria-expanded="false" class="button dropdown right">most relevant</button>
+                  <ul style="position: absolute; left: -99999px; top: 188px;" id="drop1" data-dropdown-content="" class="f-dropdown" aria-hidden="true">
+                      <li><a href="#">This is a link</a></li>
+                      <li><a href="#">This is another</a></li>
+                      <li><a href="#">Yet another</a></li>
+                    </ul>
+                </div>
+              </div>
+              
+            <%@betall=Bet.where(:active => 1 ) %>
+            <%@betall.each do |c|%>
+            <a href=<%="/bets/#{c.id}"%>>
+             <div class="large-4 medium-6 small-12 columns">
+                    <div class="charity_feed_box left">
+                      <div class="charity_box_img left">
+
+                         <% @cmedia = CharityMedia.where(:charityusersquare_id => c.id)%>
+                           <% if !@cmedia.blank? %>                    
+                             <img src="/images/<%=@cmedia.first.picture%>.jpg">
+                           <% end %>
+
+
+
+                      </div>
+                      <div class="charity_feed_box_contant left">
+                        <h1><%= c.description%></h1>
+                        <span class="charity_feed_box_contant_user">
+                          by <%= User.find_by_id(c.user_id).firstname %>
+                        </span>
+                        <div class="charity_feed_box_user_detail left">
+                          <span class="about_square_page_user_img_thumb left" style="background-image:url('<%= User.find_by_id(c.user_id).picture %>');background-size:cover;"></span>
+                          <span class="charity_feed_box_time left">
+                            <% start_time = DateTime.now.strftime("%Y-%m-%d %H:%M") %>
+                            <% end_time   =  c.enddate.to_datetime.strftime("%Y-%m-%d %H:%M") %>
+                            <% if start_time > end_time %>
+                                Time left <br><span class="charity_feed_box_day"><%#= s.enddate %>Time Over</span>
+                            <% else %> 
+                              Time left <br><span class="charity_feed_box_day"><%#= s.enddate %><%= distance_of_time_in_words(end_time, start_time)  %></span>
+                            <% end %>
+                       
+                          </span>
+
+                          <span class="charity_feed_box_ticket_price left">
+                              Amount <br><span class="  charity_feed_box_price">£<%= c.amount %></span>
+
+                          </span>
+
+                          <% if c.charitytype == "Auctions" %>
+                            <span class="charity_feed_box_buy right">
+                              <a href="#" title="Buy now">Buy now</a>
+                            </span>
+                          <% elsif c.charitytype == "Appeals" %>  
+                            <span class="charity_feed_box_donate right">
+                              <a href="#" title="Donate">Donate</a>
+                            </span>
+                          <% elsif c.charitytype == "Bid" %>
+                            <span class="charity_feed_box_Bid right">
+                              <a href="#" title="Bid now">Bid now</a>
+                            </span>
+                          <% elsif c.charitytype == "Bets" %> 
+                            <span class="charity_feed_box_place_bet right">
+                              <a href="#" title="Place bet">Place bet</a>
+                            </span> 
+                          <% elsif c.charitytype == "Lottery" %>  
+                            <span class="charity_feed_box_play_lottery right">
+                              <a href="#" title="Play lottery">Play lottery</a>
+                            </span>
+                          <% elsif c.charitytype == "Raffles" %>  
+                            <span class="charity_feed_box_play_raffle right">
+                              <a href="#" title="Play raffle">Play raffle</a>
+                            </span>
+                          <% else %>
+                          <% end %>  
+                        </div>
+                      </div>
+                    </div>
+
+                  </div> 
+                  </a>
+               <%end%>   
+
+           </div>
+          </div>
+        <%= render "layouts/footer" %>  
+      </div>   
+    </div>
+  
+
+
+  <script>
+  $(document).ready(function(){
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#blah').attr('src', e.target.result);
+            $('#bannerimage').attr('value', e.target.result);
+            $('.filter_banner').css('background-image', 'url(' + e.target.result + ')');
+            $('.filter_banner').css('background-size', 'cover');
+            $('.filter_banner').css('background-position', 'center');
+         }
+        reader.readAsDataURL(input.files[0]);
+        $('#myModal').foundation('reveal', 'close');
+    }
+}
+$("#imgInp").change(function(){
+    readURL(this);
+});
+function readURL1(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#blah1').attr('src', e.target.result);
+            $('#profileimage').attr('value', e.target.result);
+            $('.profile_left_img').css('background-image', 'url(' + e.target.result + ')');
+            $('.profile_left_img').css('background-size', 'cover');
+            $('.profile_left_img').css('background-position', 'center');
+            $('.profile_left_img').attr('src',e.target.result);
+        }
+         reader.readAsDataURL(input.files[0]);
+         $('#myModal2').foundation('reveal', 'close');  
+    }
+}
+$("#imgInp1").change(function(){
+    readURL1(this);
+});
+})
+  
+  </script>
+
+  <style>
+  .save_changes{
+    background-color: transparent !important;
+    border: 1px solid #0000ff !important;
+    border-radius: 4px !important;
+    color: #0000ff !important;
+    float: left !important;
+    font-family: "dinmedium" !important;
+    font-size: 18px !important;
+    margin-left: -1px !important;
+    padding: 12px 20px 13px !important;
+  }
+
+  .filter_banner{
+    background-image: url("/images/banner/<%=current_user.banner_image%>");
+    background-position: center center;
+    background-size: cover;
+  }
+
+  .profile_left_img {
+    background-image: url("/images/profile/<%=current_user.profile_image%>");
+    background-position: center center;
+    background-size: cover;
+  }
+ 
+  </style>

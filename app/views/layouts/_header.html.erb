@@ -1,0 +1,147 @@
+        <nav data-topbar="" class="top-bar docs-bar hide-for-small">
+          <%= render 'layouts/logo' %>
+          <section class="top-bar-section text-center">
+           <ul class="left">
+              <li class="has-dropdown not-click">
+                <a class="discov" href="#" title="discover">discover</a>             
+              </li>
+            </ul> 
+            <div class="top_head_search">
+              <div class="search_categories">
+                 <%= form_tag filter_path, method: :post do %>
+                    <%= text_field_tag :q, nil, :placeholder => 'search...' %>
+                    <input type="submit" class="search" value=""></input>              
+                        <select name='category' value='categories' >
+                        <option selected='selected'>Categories</option>
+                        <option>Lottery</option>
+                        <option>Raffles</option>
+                        <option>Auctions</option>
+                        <option>Appeals</option>
+                        <option>Bets</option>
+                      </select>
+                    <% end %>  
+              </div>
+            </div> 
+            <ul class="right">
+              <li class="has-dropdown not-click">
+                <% if user_signed_in? %>
+              <a href="javascript:void(0);" title="discover" style= "margin-top: -22px;"><a class="logedin" href="javascript:void(0);"><%= current_user.name %></a></a>
+                  <ul class="dropdown">
+                    <li class="parent-link hide-for-medium-up">
+                      <a href="javascript:void(0);" title="discover1" class="test"><%= current_user.firstname %></a>
+                    </li>
+
+                    <!-- <li><a href='/home_page_feed'>Home page feed</a></li>
+                    <li><a href="/profile" title="Demo">my profile</a></li>
+                    <li><a href="/my_square" title="Demo">my squares</a></li>
+                    <li><a href="#" title="Demo">manage purchases</a></li>
+                    <li><a href="#" title="Demo">account settings</a></li>
+                    <li><a href="/conversations" title="Demo">messages</a></li>
+                    <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link' %></li> -->
+                  </ul>
+                   <li class="launch_square">
+                      <a class="" href="/create_square" title="launch square">launch a square</a>
+                   </li>
+                <% else %>  
+                 <li>
+                  <a class="" href="/sign_up" title="Register">Register</a>
+                 </li>
+                 <li>
+                  <a class="" href="/sign_in" title="Login">Login</a>
+                 </li>
+                 <li class="launch_square">
+                  <a class="" href="/sign_in" title="launch square">launch a square</a>
+                 </li>
+                <% end %>  
+              
+              </li>   
+            </ul>
+          </section>
+        </nav>
+
+        <div class="descover_hover left">
+          <div class="large-6 medium-6 small-12 columns">
+            <ul class="descover_hover_filter left">
+              <li class="all_descover_hover">
+                <a href="#">All</a>
+              </li>
+              <li>
+                <a href="#"></a>
+              </li>
+              <li>
+                <a href="#"></a>
+              </li>
+              <li>
+                <a href="#"></a>
+              </li>
+              <li>
+                <a href="#"></a>
+              </li>
+              <li>
+                <a href="#"></a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="large-6 medium-6 small-6 columns">
+            <div class="descover_right_text_show left">
+              <h1>Appeals</h1>
+              <p>Lorem ipsum dolor sit amet, consectetur<br> adipiscing elit. Cras egestas laoreet justo <br>et eleifend. </p>
+            </div>
+          </div>
+          
+        </div>
+
+         <!--logedin_hover div -->
+        <div class="logedin_hover left dropdown">
+          <div class="large-12 medium-12 small-12 columns">
+            <ul class="logedin_hover_sub_menu right">
+              <li>
+                <a href="#">about us</a>
+              </li>
+              <li>
+                <a href="#">contact</a>
+              </li>
+              <li>
+                <a href="#">help</a>
+              </li>
+              <li><%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link' %></li>
+            </ul>
+            <ul class="logedin_hover_sub_menu my_profile_accounts right">
+             <li>
+            <a href='/home_page_feed'>Home page feed</a>
+            </li>
+              <li>
+                <a href="#">child accounts</a>
+              </li>
+              <li>
+                <a href="#">statistics</a>
+              </li>
+            </ul>
+            <ul class="logedin_hover_sub_menu right">
+           
+              <li>
+                <a href="/profile">my profile</a>
+              </li>
+              <li>
+                <a href="/my_square">my squares</a>
+              </li>
+              <li>
+                <a href="/purchase">manage purchases</a>
+              </li>
+              <li>
+                <a href="/account_settings">accounts settings</a>
+              </li>
+              <li>
+                 <a href="/conversations">messages <span class="logedin_message"></span></a> 
+              </li>
+            </ul>
+          </div>
+        </div>
+
+         <%= render 'layouts/right_canvas' %>
+
+        <a class="exit-off-canvas"></a>
+
+        <!-- banner section start here -->
+      

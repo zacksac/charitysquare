@@ -1,0 +1,26 @@
+<h3>Charity Squares</h3>
+<br/><br/>
+      <% if @charity_squares != nil %>
+        <% @charity_squares.each do |c| %>
+        <div class="pricing-table medium-4 columns">
+          <div class="panel callout radius">
+           <li>Types: <%= c.name %></li>
+           <li>Brand: <%= c.material %></li>
+           <li>Condition: <%= c.types %></li>
+          </div> 
+          <li class="title"><%= c.charitytype %></li>
+       </div> 
+        <% end %> 
+      <% else %> 
+       <div class="pricing-table medium-4 columns">
+      	<div class="panel callout radius">
+          <li>Types: Yet to add </li>
+          <li>Brand: Yet to add </li>
+          <li>Condition: Yet to add</li>
+        </div> 
+        <li class="title">Please Add Charity</li> 
+       </div> 
+      <% end %>
+    </div> 
+<br/><br/><br/><br/><br/><br/><br/><br/>
+<%= link_to 'Back', root_path %>

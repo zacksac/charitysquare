@@ -1,0 +1,21 @@
+<%= form_tag searching_path, method: :get do %>
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="row collapse">
+        <div class="small-8 columns">
+          <%= text_field_tag :q, nil %>
+        </div> 
+        <div class="small-2 columns">
+          <select class='button postfix' type="dropdown">      
+            <option value="cat1">Browse</option>
+            <option value="cat2">one</option>
+            <option value="cat3">two </option>
+            <option value="cat4">three</option>
+          </select>
+        </div> 
+        <div class="small-2 columns"></div>
+        <%= submit_tag 'Go', :class => "button postfix", :style=>"width: 151px;" %>
+      </div>
+    </div>
+  </div>   
+<% end %>

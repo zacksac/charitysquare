@@ -1,0 +1,32 @@
+
+[1mFrom:[0m /home/ip-d/esfera_projects/charity/charitysquare/app/mailers/user_mailer.rb @ line 37 UserMailer#bet_result:
+
+    [1;34m22[0m: [32mdef[0m [1;34mbet_result[0m(email, answer, bet_id, amount)
+    [1;34m23[0m:   binding.pry
+    [1;34m24[0m:   @bet_id = bet_id.to_i
+    [1;34m25[0m:   @amount = amount
+    [1;34m26[0m:   @userid = [1;34;4mUser[0m.find_by_email(email).id
+    [1;34m27[0m:   @inv_users = [1;34;4mInvitedUser[0m.all
+    [1;34m28[0m:   [32mif[0m !@inv_users.empty?
+    [1;34m29[0m:     [32mif[0m @inv_users.count == [1;34m1[0m                                       
+    [1;34m30[0m:       [32mif[0m [1;34;4mBetResult[0m.find_by_id(bet_id).answer == answer
+    [1;34m31[0m:         mail([35mto[0m: email, [35msubject[0m: [31m[1;31m'[0m[31mBet Result[1;31m'[0m[31m[0m, [35mbody[0m: [31m[1;31m"[0m[31mCongratulations!!! You have won the bet....[1;31m"[0m[31m[0m)
+    [1;34m32[0m:       [32melse[0m  
+    [1;34m33[0m:         mail([35mto[0m: email, [35msubject[0m: [31m[1;31m'[0m[31mBet Result[1;31m'[0m[31m[0m, [35mbody[0m: [31m[1;31m"[0m[31mHello!!! You have Lost the bet....Please Pay the amount....[1;31m"[0m[31m[0m)
+    [1;34m34[0m:       [32mend[0m
+    [1;34m35[0m:     [32melse[0m
+    [1;34m36[0m:       @inv_users.each [32mdo[0m |i|
+ => [1;34m37[0m:         binding.pry
+    [1;34m38[0m:       [32munless[0m [1;34;4mUser[0m.find(i.user_id).betresponses.empty?
+    [1;34m39[0m:         [32mif[0m [1;34;4mBetResult[0m.find_by_bet_id(bet_id).answer == [1;34;4mBetResponse[0m.find_by_user_id(i.user_id).response
+    [1;34m40[0m:           mail([35mto[0m: email, [35msubject[0m: [31m[1;31m'[0m[31mBet Result[1;31m'[0m[31m[0m)
+    [1;34m41[0m:         [32melse[0m 
+    [1;34m42[0m:           mail([35mto[0m: email, [35msubject[0m: [31m[1;31m'[0m[31mBet Result[1;31m'[0m[31m[0m)
+    [1;34m43[0m:         [32mend[0m
+    [1;34m44[0m:       [32mend[0m  
+    [1;34m45[0m:      [32mend[0m 
+    [1;34m46[0m:     [32mend[0m 
+    [1;34m47[0m:   [32mend[0m 
+    [1;34m48[0m: 
+    [1;34m49[0m: [32mend[0m 
+

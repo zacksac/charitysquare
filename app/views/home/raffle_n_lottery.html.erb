@@ -1,0 +1,26 @@
+<h3>Lottery & Raffles</h3>
+<br/><br/>
+
+  <% if @raffle_n_lottery != nil %>
+    <% @raffle_n_lottery.each do |r| %>
+    <div class="pricing-table medium-4 columns">
+      <div class="panel callout radius">
+        <li>Types: <%= r.name %></li>
+        <li>Brand: <%= r.material %></li>
+        <li>Condition: <%= r.types %></li>
+      </div> 
+      <li class="title"><%= r.charitytype %></li>
+    </div>  
+    <% end %>
+  <% else %> 
+  <div class="pricing-table medium-4 columns">
+  	<div class="panel callout radius">
+        <li>Types: Yet to add </li>
+        <li>Brand: Yet to add </li>
+        <li>Condition: Yet to add</li>
+    </div> 
+    <li class="title">Please Add Charity</li>
+  </div>  
+  <% end %>    
+<br/><br/><br/><br/><br/><br/><br/><br/>
+<%= link_to 'Back', root_path %>

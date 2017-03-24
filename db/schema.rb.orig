@@ -1,0 +1,464 @@
+# encoding: UTF-8
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
+#
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# you'll amass, the slower it'll run and the greater likelihood for issues).
+#
+# It's strongly recommended that you check this file into your version control system.
+
+ActiveRecord::Schema.define(version: 20150630034758) do
+
+  create_table "active_admin_comments", force: true do |t|
+    t.string   "namespace"
+    t.text     "body"
+    t.string   "resource_id",   null: false
+    t.string   "resource_type", null: false
+    t.integer  "author_id"
+    t.string   "author_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
+
+  create_table "admin_users", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "info"
+    t.integer  "roleid"
+    t.string   "role"
+  end
+
+  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
+  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+
+  create_table "admins", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "average_caches", force: true do |t|
+    t.integer  "rater_id"
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.float    "avg",           limit: 24, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bet_responses", force: true do |t|
+    t.integer  "bet_id"
+    t.integer  "user_id"
+    t.boolean  "response"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bet_results", force: true do |t|
+    t.boolean  "answer"
+    t.integer  "bet_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bets", force: true do |t|
+    t.integer  "charityusersquare_id"
+    t.integer  "amount"
+    t.datetime "timeend"
+    t.boolean  "response"
+    t.text     "name"
+    t.text     "description"
+    t.string   "enddate"
+    t.integer  "user_id"
+    t.string   "charitytype"
+    t.boolean  "active"
+    t.string   "follow_status",        default: "follow"
+    t.string   "subject"
+    t.string   "objective"
+    t.string   "startdate"
+  end
+
+  create_table "buy_nows", force: true do |t|
+    t.integer  "charityusersquare_id"
+    t.integer  "user_id"
+    t.integer  "buy_amt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "charity_media", force: true do |t|
+    t.integer  "charityusersquare_id"
+    t.string   "types"
+    t.string   "desc"
+    t.string   "picture"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "bet_id"
+  end
+
+  create_table "charitychildren", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "address"
+    t.boolean  "active"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "charitymedia", force: true do |t|
+    t.integer  "charityusersquare_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "bet_id"
+  end
+
+  create_table "charitysquares", force: true do |t|
+    t.string  "name"
+    t.integer "userid"
+    t.string  "brand"
+    t.string  "condition"
+    t.string  "type"
+    t.string  "color"
+    t.integer "size"
+    t.string  "description"
+    t.string  "sizeinfo"
+  end
+
+  create_table "charityusersquares", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.string   "brand"
+    t.string   "condition"
+    t.string   "types"
+    t.string   "color"
+    t.integer  "size"
+    t.string   "description"
+    t.string   "sizeinfo"
+    t.string   "name"
+    t.string   "material"
+    t.string   "charitytype"
+    t.integer  "daysleft"
+    t.integer  "price"
+    t.string   "follow_status", default: "follow"
+  end
+
+  create_table "delayed_jobs", force: true do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "faqs", force: true do |t|
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "feedbacks", force: true do |t|
+    t.text     "feed"
+    t.string   "rating",     default: "Positive"
+    t.boolean  "arrival",    default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "follows", force: true do |t|
+    t.string   "follower_type"
+    t.integer  "follower_id"
+    t.string   "followable_type"
+    t.integer  "followable_id"
+    t.datetime "created_at"
+  end
+
+  add_index "follows", ["followable_id", "followable_type"], name: "fk_followables", using: :btree
+  add_index "follows", ["follower_id", "follower_type"], name: "fk_follows", using: :btree
+
+  create_table "homes", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "invited_users", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "likes", force: true do |t|
+    t.string   "liker_type"
+    t.integer  "liker_id"
+    t.string   "likeable_type"
+    t.integer  "likeable_id"
+    t.datetime "created_at"
+  end
+
+  add_index "likes", ["likeable_id", "likeable_type"], name: "fk_likeables", using: :btree
+  add_index "likes", ["liker_id", "liker_type"], name: "fk_likes", using: :btree
+
+  create_table "mailboxer_conversation_opt_outs", force: true do |t|
+    t.integer "unsubscriber_id"
+    t.string  "unsubscriber_type"
+    t.integer "conversation_id"
+  end
+
+  add_index "mailboxer_conversation_opt_outs", ["conversation_id"], name: "index_mailboxer_conversation_opt_outs_on_conversation_id", using: :btree
+  add_index "mailboxer_conversation_opt_outs", ["unsubscriber_id", "unsubscriber_type"], name: "index_mailboxer_conversation_opt_outs_on_unsubscriber_id_type", using: :btree
+
+  create_table "mailboxer_conversations", force: true do |t|
+    t.string   "subject",    default: ""
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "mailboxer_notifications", force: true do |t|
+    t.string   "type"
+    t.text     "body"
+    t.string   "subject",              default: ""
+    t.integer  "sender_id"
+    t.string   "sender_type"
+    t.integer  "conversation_id"
+    t.boolean  "draft",                default: false
+    t.string   "notification_code"
+    t.integer  "notified_object_id"
+    t.string   "notified_object_type"
+    t.string   "attachment"
+    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                           null: false
+    t.boolean  "global",               default: false
+    t.datetime "expires"
+  end
+
+  add_index "mailboxer_notifications", ["conversation_id"], name: "index_mailboxer_notifications_on_conversation_id", using: :btree
+  add_index "mailboxer_notifications", ["notified_object_id", "notified_object_type"], name: "index_mailboxer_notifications_on_notified_object_id_and_type", using: :btree
+  add_index "mailboxer_notifications", ["sender_id", "sender_type"], name: "index_mailboxer_notifications_on_sender_id_and_sender_type", using: :btree
+  add_index "mailboxer_notifications", ["type"], name: "index_mailboxer_notifications_on_type", using: :btree
+
+  create_table "mailboxer_receipts", force: true do |t|
+    t.integer  "receiver_id"
+    t.string   "receiver_type"
+    t.integer  "notification_id",                            null: false
+    t.boolean  "is_read",                    default: false
+    t.boolean  "trashed",                    default: false
+    t.boolean  "deleted",                    default: false
+    t.string   "mailbox_type",    limit: 25
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
+  end
+
+  add_index "mailboxer_receipts", ["notification_id"], name: "index_mailboxer_receipts_on_notification_id", using: :btree
+  add_index "mailboxer_receipts", ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type", using: :btree
+
+  create_table "main_admins", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "main_admins", ["email"], name: "index_main_admins_on_email", unique: true, using: :btree
+  add_index "main_admins", ["reset_password_token"], name: "index_main_admins_on_reset_password_token", unique: true, using: :btree
+
+  create_table "mentions", force: true do |t|
+    t.string   "mentioner_type"
+    t.integer  "mentioner_id"
+    t.string   "mentionable_type"
+    t.integer  "mentionable_id"
+    t.datetime "created_at"
+  end
+
+  add_index "mentions", ["mentionable_id", "mentionable_type"], name: "fk_mentionables", using: :btree
+  add_index "mentions", ["mentioner_id", "mentioner_type"], name: "fk_mentions", using: :btree
+
+  create_table "mysquares", force: true do |t|
+    t.string   "name"
+    t.integer  "square_raiser_id"
+    t.string   "info"
+    t.string   "lat"
+    t.string   "long"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "squarephoto"
+  end
+
+  create_table "overall_averages", force: true do |t|
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.float    "overall_avg",   limit: 24, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "payment_details", force: true do |t|
+    t.string   "transaction_id"
+    t.string   "sender_email"
+    t.string   "receiver_email"
+    t.date     "date"
+    t.string   "charitytype"
+    t.float    "amount",         limit: 24
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "bet_id"
+  end
+
+  create_table "rates", force: true do |t|
+    t.integer  "rater_id"
+    t.integer  "rateable_id"
+    t.string   "rateable_type"
+    t.float    "stars",         limit: 24, null: false
+    t.string   "dimension"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rates", ["rateable_id", "rateable_type"], name: "index_rates_on_rateable_id_and_rateable_type", using: :btree
+  add_index "rates", ["rater_id"], name: "index_rates_on_rater_id", using: :btree
+
+  create_table "rating_caches", force: true do |t|
+    t.integer  "cacheable_id"
+    t.string   "cacheable_type"
+    t.float    "avg",            limit: 24, null: false
+    t.integer  "qty",                       null: false
+    t.string   "dimension"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rating_caches", ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type", using: :btree
+
+  create_table "square_bets", force: true do |t|
+    t.integer  "charityusersquare_id"
+    t.integer  "user_1"
+    t.integer  "user_2"
+    t.integer  "user1_amt"
+    t.integer  "user2_amt"
+    t.string   "winner"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "square_bids", force: true do |t|
+    t.integer  "charityusersquare_id"
+    t.integer  "user_id"
+    t.integer  "bid_amt"
+    t.string   "winner"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "square_buy_nows", force: true do |t|
+    t.integer  "charityusersquare_id"
+    t.integer  "user_id"
+    t.integer  "buy_amt"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "square_raisers", force: true do |t|
+    t.string   "name"
+    t.integer  "square_id"
+    t.string   "brand_page"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "square_tickets", force: true do |t|
+    t.integer  "charityusersquare_id"
+    t.integer  "user_id"
+    t.integer  "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tickets", force: true do |t|
+    t.integer  "charityusersquare_id"
+    t.integer  "user_id"
+    t.integer  "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "email",                  default: "",       null: false
+    t.string   "encrypted_password",     default: "",       null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,        null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                                null: false
+    t.datetime "updated_at",                                null: false
+    t.string   "role"
+    t.string   "address"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "charityname"
+    t.string   "charitytype"
+    t.integer  "charitynumber"
+    t.string   "category"
+    t.string   "country"
+    t.string   "town"
+    t.integer  "postcode"
+    t.string   "webaddress"
+    t.string   "picture"
+    t.string   "mission"
+    t.string   "opt1"
+    t.string   "opt2"
+    t.string   "address1"
+    t.string   "address2"
+    t.boolean  "confirmed"
+    t.string   "formtype"
+    t.string   "phone_number"
+    t.string   "follow_status",          default: "follow"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+
+  add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", name: "mb_opt_outs_on_conversations_id", column: "conversation_id"
+
+  add_foreign_key "mailboxer_notifications", "mailboxer_conversations", name: "notifications_on_conversation_id", column: "conversation_id"
+
+  add_foreign_key "mailboxer_receipts", "mailboxer_notifications", name: "receipts_on_notification_id", column: "notification_id"
+
+end

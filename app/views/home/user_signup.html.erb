@@ -1,0 +1,57 @@
+    <div class="off-canvas-wrap docs-wrap" data-offcanvas="">
+    <div class="inner-wrap">
+      <%= render 'layouts/header' %>
+      <div class="register_banner_section">   
+        </div>
+  
+    </div>
+      <!-- Charity list section start here -->
+
+      <section class="register_section">
+        <div class="row">
+          <div class="large-12 columns">
+          <% if notice %>
+            <p class="alert alert-success"><%= notice %></p>
+          <% end %>
+          <% if alert %>
+            <div data-alert class="alert-box success radius">
+             <%= alert %>
+              <a href="#" class="close">&times;</a>
+            </div>
+          <% end %>
+           <%= form_for(:user, :html => {id: "registration_form"}, :url => user_registration_path,:remote=>true) do |f| %>
+            
+           
+            <div class="register text-center">
+              <h1>
+                Register
+              </h1>
+
+            <div id="errorExplanation">  
+             
+            </div>  
+             
+              <%= f.email_field :email, :placeholder => "Email address", :required=>true, autocomplete: "off" %>
+              <%= f.text_field :firstname, :placeholder => "First name", :required=>true, autocomplete: "off" %>
+              <%= f.text_field :lastname, :placeholder => "Last name", :required=>true, autocomplete: "off" %>
+              <%= f.password_field :password, :placeholder => "Password", :required=>true, autocomplete: "off" %>
+              <%= f.password_field :password_confirmation, :placeholder => "Password Confirmation", :required=>true %>
+              <%= f.submit "Register", :class=>"reg" %>
+              <h2>
+                By registering you accept the <a href="#" title="terms & conditions">terms & conditions</a><br> 
+                and <a href="#" title="privacy policy">privacy policy</a>.
+              </h2>
+              <div class="register_as_chirty">
+                <%= link_to "register as charity", charity_signup_path, :class=>"reg_as_charity" %>
+                <span class="allready_account left">
+                  <a href="/home/login" title="Already have an account?">Already have an account?</a>
+                </span>
+              </div>
+            </div>
+           <% end %> 
+          </div>  
+        </div>  
+        <%= render "layouts/footer" %>
+     </div> 
+ 
+

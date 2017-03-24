@@ -1,0 +1,213 @@
+    <div class="off-canvas-wrap docs-wrap" data-offcanvas="">
+      <div class="inner-wrap">
+
+        <%= render 'layouts/header'%>
+        <%= render 'layouts/right_canvas' %>
+        <a class="exit-off-canvas"></a>
+
+        <!--descover hover div -->
+        <div class="descover_hover left">
+          <div class="large-6 medium-6 small-12 columns">
+            <ul class="descover_hover_filter left">
+              <li class="all_descover_hover">
+                <a href="#">All</a>
+              </li>
+              <li>
+                <a href="#"></a>
+              </li>
+              <li>
+                <a href="#"></a>
+              </li>
+              <li>
+                <a href="#"></a>
+              </li>
+              <li>
+                <a href="#"></a>
+              </li>
+              <li>
+                <a href="#"></a>
+              </li>
+            </ul>
+          </div>
+          <div class="large-6 medium-6 small-6 columns">
+            <div class="descover_right_text_show left">
+              <h1>Appeals</h1>
+              <p>Lorem ipsum dolor sit amet, consectetur<br> adipiscing elit. Cras egestas laoreet justo <br>et eleifend. </p>
+            </div>
+          </div>
+        </div>
+
+        <section class="filter_banner">
+            <div class="row">
+              <div class="welcome_charity_section left">
+                <div class="large-12 column">
+                  <div class="welcome_charity_squre left">
+                    <span class="my_squre_charity_img left"></span>
+                    <h1>Welcome back Charity.</h1>
+                  </div>
+                  <div class="welcome_back_charity_listing_main left">
+                    <ul class="welcome_back_charity_listing left">
+                      <li>
+                        Donations: <span class="blue_color">£200,000</span> 
+                      </li>
+                      <li>
+                        Feedback: <span class="blue_color">100%</span> 
+                      </li>
+                      <li>
+                         Followers:  <span class="blue_color">304</span> 
+                      </li>
+                    </ul>
+                    <div class="welcome_back_charity_right right">
+                      <input class="left" type="text" value="create child account" id="child_btn">
+                      <%#= link_to "create child account", new_charitychild_path, :class=>"left" %>
+                      <select class="left">
+                        <option>download donation list</option>
+                        <option></option>
+                        <option></option>
+                      </select>
+                    </div>
+                  </div> 
+                  <ul class="my_squre_nav_list left">
+                    <li>
+                      <a href="/profile">my profile </a>
+                    </li>
+                    <li >
+                      <a href="/my_square">my squares</a>
+                    </li>
+                    <li>
+                      <a href="#">manage purchases </a>
+                    </li>
+                    <li>
+                      <a href="/account_settings">account settings </a>
+                    </li>
+                    <li>
+                      <a href="/conversations">messages</a>
+                    </li>
+                    <li>
+                      <a href="/charitychildren">child accounts </a>
+                    </li>
+                    <li>
+                      <a href="#">statisticst</a>
+                    </li>
+                  </ul> 
+                </div>
+              </div>  
+            </div>  
+        </section>
+        
+        <section class="inner_grey_bg">
+          <div class="filter_section my_squre_filter left">
+            <div class="row">
+              <div class="large-12 medium-12 small-12 columns">
+                <ul class="filter_list left">
+                  <li>
+                    <a href="#" class="active">All</a>
+                  </li>
+                  <li>
+                    <a href="#"></a>
+                    <span class="tooltip_filter">Appeals</span>
+                  </li>
+                  <li>
+                    <a href="#"></a>
+                    <span class="tooltip_filter">Auctions</span>
+                  </li>
+                  <li>
+                    <a href="#"></a>
+                    <span class="tooltip_filter">Buy </span>
+                  </li>
+                  <li>
+                    <a href="#"></a>
+                    <span class="tooltip_filter">Raffles &amp; L</span>
+                  </li>
+                  <li>
+                    <a href="#"></a>
+                    <span class="tooltip_filter">Celebrity bets</span>
+                  </li>
+                </ul>
+              </div>
+            </div> 
+          </div>
+          <div class="row">
+            <div class="large-12 columns">
+              <div class="search_result_most_relevant mysqure_butns left">
+                <button class="button dropdown right" aria-expanded="false" aria-controls="drop2" data-dropdown="drop2" href="#">most relevant</button>
+                <ul aria-hidden="true" class="f-dropdown" data-dropdown-content="" id="drop2" style="position: absolute; left: -99999px; top: 188px;">
+                  <li><a href="#">This is a link</a></li>
+                  <li><a href="#">This is another</a></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+                <button class="button dropdown right" aria-expanded="false" aria-controls="drop3" data-dropdown="drop3" href="#">last 60 days</button>
+                <ul aria-hidden="true" class="f-dropdown" data-dropdown-content="" id="drop3" style="position: absolute; left: -99999px; top: 188px;">
+                  <li><a href="#">This is a link</a></li>
+                  <li><a href="#">This is another</a></li>
+                  <li><a href="#">Yet another</a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="my_squre_feed left">
+              <h3>Bet Result for: <%= Bet.find(params[:id]).description %> </h3>
+              <table id="example" class="display" cellspacing="0" width="100%">
+                <thead>
+                  <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Bet Result</th>
+                  </tr>
+                </thead>
+ 
+                <tbody>
+                  <% @bet_response.each do |b| %>
+                  <tr>
+                    <td><%= User.find(b.user_id).firstname %></td>
+                    <td><%= User.find(b.user_id).email %></td>
+                    <% if BetResult.find_by_bet_id(params[:id]).answer == b.response %>
+                      <td>Bet Won</td>
+                    <% else %>
+                      <td>Bet Lost</td>
+                    <% end %>  
+                  </tr> 
+                  <% end %>
+                </tbody>
+              </table>
+             <%# @bet_response.each do |b| %>
+               <!-- <%#= User.find(b.user_id).email %> -> -->
+               <%#= b.response %><br/>
+             <%# end %>
+            </div>
+            <ul class="my_squre_pagination text-center">
+              <li>
+                <a class="" href="#"><%#= will_paginate @my_square %></a>
+              </li>
+            </ul>  
+            
+          </div>
+        <%= render "layouts/footer" %>       
+      </div>
+    </div>
+
+<script type= "text/javascript">
+  $("#child_btn").click(function(){
+    window.location.href = '/charitychildren/new';
+    return false;
+  });
+  $(document).ready(function() {
+    $('#example').dataTable();
+  });
+</script>
+
+<style>
+  input#child_btn.left {
+    height: 30.5px !important;
+  }
+
+  .radio_align {
+    margin-top: -3px;
+    padding: 17px;
+    position: absolute;  
+  } 
+
+  label {
+    color: #ffffff;
+  }
+</style>

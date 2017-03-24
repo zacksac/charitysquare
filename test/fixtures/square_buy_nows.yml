@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  charityusersquare_id: 1
+  user_id: 1
+  buy_amt: 1
+
+two:
+  charityusersquare_id: 1
+  user_id: 1
+  buy_amt: 1

@@ -1,0 +1,33 @@
+<h1>Listing mysquares</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Square raiser</th>
+      <th>Info</th>
+      <th>Lat</th>
+      <th>Long</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mysquares.each do |mysquare| %>
+      <tr>
+        <td><%= mysquare.name %></td>
+        <td><%= mysquare.square_raiser_id %></td>
+        <td><%= mysquare.info %></td>
+        <td><%= mysquare.lat %></td>
+        <td><%= mysquare.long %></td>
+        <td><%= link_to 'Show', mysquare %></td>
+        <td><%= link_to 'Edit', edit_mysquare_path(mysquare) %></td>
+        <td><%= link_to 'Destroy', mysquare, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mysquare', new_mysquare_path %>

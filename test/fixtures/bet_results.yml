@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  answer: false
+  bet_id: 1
+
+two:
+  answer: false
+  bet_id: 1
